@@ -1,38 +1,184 @@
-.App {
+.ldim{
+  background-image: url("../public/Landing_image.jpg");
+  height: 885px;
+  background-size: 100%;
+}
+
+.back{
+  background-image: url("../public/Book.jpeg");
+  /* height: 885px;
+  background-size: 100%; */
+}
+
+.rectlog{
+  width: 400px;
+  height: 500px;
+  background-color: rgba(217, 217, 217, 0.6);
+  color: black;
+  position: absolute;
+  z-index: 10px;
+  margin-left: 40%;
+  border-radius: 5px;
+  margin-top: 5%;
+}
+
+.inputbox{
+  width: 55%;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(201, 198, 198, 1);
+  text-align: left;
+  margin-left: 90px;
+  border-radius: 5px;
+
+}
+
+.button{
+  width: 30%;
+  height: 35px;
+  background-color: brown;
+  color: white;
+  position: absolute;
+  z-index: 40px;
+  margin-left:35%;
+  margin-top: 30%;
+  border-radius: 5px;
+}
+
+.regback{
+  background-image: url(../public/Agar.png);
+  height: 75rem;
+  background-size: 100%;
+  position: relative;
+  z-index: 5px;
+}
+
+.button2{
+  /* width: 20%;
+  height: 40px; */
+  background-color: rgba(96, 33, 0, 1);
+  color: white;
+  position: absolute;
+  z-index: 5px;
+  border-radius: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.back2{
+  background-image: url("../src/Admin/River.png");
+  height: 80rem;
+  background-size: 100%;
+  position: relative;
+  z-index: 5px;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bannertext{
+  height: 150px;
+  width: 100%;
+  position: relative;
+  background-color: rgba(96, 33, 0, 1);
+  color: rgba(210, 45, 45, 0.8);
+ 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.rectreg{
+  width: 40%;
+  height: 100%;
+  background-color: rgba(217, 217, 217, 0.9);
+  color: black;
+  position: absolute;
+  z-index: 10px;
+  margin-left: 25%;
+  border-radius: 5px;
+  margin-top: 5%;
+
+}
+
+.text2{
+  text-align: left;
+}
+
+.inputbox2{
+  width: 55%;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 1);
   color: white;
+  text-align: left;
+  margin-right: auto;
+  border-radius: 5px;
+
 }
 
-.App-link {
-  color: #61dafb;
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 50%;
+  margin-left: 130%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rectable{
+  width: 40%;
+  height: 800px;
+  background-color: rgba(217, 217, 217, 0.9);
+  color: black;
+  position: absolute;
+  z-index: 10px;
+  margin-left: 25%;
+  border-radius: 5px;
+  margin-top: 5%;
+
 }
+.bannerleft{
+  width: 20%;
+  position: absolute;
+  background-color: rgba(96, 33, 0, 1);
+  z-index: 600px;
+}
+
+.table2{
+  width: 70%;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 1);
+  color: white;
+  text-align: left;
+  position: absolute;
+  z-index: 30px;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+.back3{
+  background-image: url("../src/Institution/Oldpaper.png");
+  height: 70rem;
+  width: 85%;
+  margin-left: 269px;
+  background-size: 190%;
+  position: relative;
+  z-index: 5px;
+}
+
+.rectinstr{
+  width: 40%;
+  height: 80%;
+  background-color: rgba(217, 217, 217, 0.9);
+  color: black;
+  position: absolute;
+  z-index: 10px;
+  margin-left:40%;
+  border-radius: 5px;
+  margin-top: -60%;
+
+}
+
+.tableinst{
+  margin-left: 20%;
+  margin-top: -70%;
+  position: absolute;
+  z-index: 40px;
+  background-color: aliceblue;
+  min-width: 80%;
+  text-align: center;
+}
+
+
