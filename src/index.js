@@ -26,7 +26,9 @@ import { InstVisit } from './Institution/InstVisit'
 import { InstIncomeTax } from './Institution/InstIncomeTax'
 import { InstArchaeology } from './Institution/InstArchaeology'
 import { InstDonation } from './Institution/InstDonation'
-
+import { InstRating } from './Institution/InstRating'
+import { InstPhoto } from './Institution/InstPhoto'
+import './App.css'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -59,6 +61,8 @@ root.render(
           <Route path="instincometx" element={<InstIncomeTax/>}/>
           <Route path="instarch" element={<InstArchaeology/>}/>
           <Route path="instdon" element={<InstDonation/>}/>
+          <Route path="instrating" element={<InstRating/>}/>
+          <Route path="instphoto" element={<InstPhoto/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

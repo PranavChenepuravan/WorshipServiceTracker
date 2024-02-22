@@ -3,7 +3,7 @@ import React from 'react'
  
 export const Instback = () => {
   return (
-    <div><img src={pic} alt="" className='size-full'/></div>
+    <div><img src={pic} alt="" className='bsolute z-0'/></div>
   )
 }
 

@@ -3,39 +3,128 @@ import str from '../Institution/Rating.jpeg'
 
 export const InstIncomeTax = () => {
   return (
-    <div>
-        <div class="tableinst relative overflow-x-auto w-auto flex gap-[70px]">
-            <table>
-              <tr>
-                <th>SL NO</th>
-                <th>Description</th>
-                <th>Date & Time</th>
-                <th>About</th>
-                <th>Rating</th>
-              </tr>
-              <tr>
-                <td>ITR001</td>
-                <td>Extra.......</td>
-                <td>12/01/2024</td>
-                <td>
-                  <div className='bg-sky-500 text-white'>Warning</div>
-                </td>
-                <td><div><img src={str} alt="" className='h-[35px]' /></div></td>
-              </tr>
-              <tr>
-                <td>ITR002</td>
-                <td>Extra.......</td>
-                <td>15/02/2024</td>
-                <td>
-                  <div className='bg-red-600 text-white'>Action</div>
-                </td>
-                <td><div><img src={str} alt="" className='h-[35px]' /></div></td>
-              </tr>
-           </table>
+    // <div>
+    //     <div className="tableinst relative overflow-x-auto w-auto flex gap-[70px]">
+    //         <table>
+    //           <tr>
+    //             <th>SL NO</th>
+    //             <th>Description</th>
+    //             <th>Date & Time</th>
+    //             <th>About</th>
+    //             <th>Rating</th>
+    //           </tr>
+    //           <tr>
+    //             <td>ITR001</td>
+    //             <td>Extra.......</td>
+    //             <td>12/01/2024</td>
+    //             <td>
+    //               <div className='bg-sky-500 text-white'>Warning</div>
+    //             </td>
+    //             <td><div><img src={str} alt="" className='h-[35px]' /></div></td>
+    //           </tr>
+    //           <tr>
+    //             <td>ITR002</td>
+    //             <td>Extra.......</td>
+    //             <td>15/02/2024</td>
+    //             <td>
+    //               <div className='bg-red-600 text-white'>Action</div>
+    //             </td>
+    //             <td><div><img src={str} alt="" className='h-[35px]' /></div></td>
+    //           </tr>
+    //        </table>
 
-        </div>
+    //     </div>
         
-    </div>
+    // </div>
+    <div className="  overflow-x-auto  ">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Sl No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    ID
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Date & Time
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    About
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Rating
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    1
+                </th>
+                <td className="px-6 py-4">
+                    ITC001
+                </td>
+                <td className="px-6 py-4">
+                    You have dews 
+                </td>
+                <td className="px-6 py-4">
+                    13/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    <div><div className='bg-blue-500 text-white text-center'>Warning</div></div>
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    2
+                </th>
+                <td className="px-6 py-4">
+                    ITC002
+                </td>
+                <td className="px-6 py-4">
+                    You have many dews you are rejected soon
+                </td>
+                <td className="px-6 py-4">
+                    17/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    <div><div className='bg-red-600 text-white text-center'>Action</div></div>
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    3
+                </th>
+                <td className="px-6 py-4">
+                    ITC003
+                </td>
+                <td className="px-6 py-4">
+                    You have compleated all your dues
+                </td>
+                <td className="px-6 py-4">
+                    20/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+                <td className="px-6 py-4">
+                     <img src={str} alt="" className='h-[35px]' />
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
   )
 }
 export default InstIncomeTax
