@@ -30,6 +30,13 @@ import { InstRating } from './Institution/InstRating'
 import { InstPhoto } from './Institution/InstPhoto'
 import './App.css'
 
+import { IncomeLayout } from './IncomeTax/IncomeLayout'
+import { IncomeTransReq } from './IncomeTax/IncomeTransReq'
+import { IncomeTaxInst } from './IncomeTax/IncomeTaxInst'
+import { IncomeWarning } from './IncomeTax/IncomeWarning';
+import { IncomeAction } from './IncomeTax/IncomeAction';
+import { IncomeTaxReport }  from './IncomeTax/IncomeTaxReport';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -63,6 +70,16 @@ root.render(
           <Route path="instdon" element={<InstDonation/>}/>
           <Route path="instrating" element={<InstRating/>}/>
           <Route path="instphoto" element={<InstPhoto/>}/>
+        </Route>
+        <Route path="/incomelayout" element={<IncomeLayout />}>
+           <Route path="incometransreq" element={<IncomeTransReq/>}/>
+           <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
+           <Route path="incomewarning" element={<IncomeWarning/>}/>
+           <Route path="incomeaction" element={<IncomeAction/>}/>
+           <Route path="incometaxreport" element={<IncomeTaxReport/>}/>
+
+           
+          
         </Route>
       </Routes>
     </BrowserRouter>

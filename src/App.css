@@ -195,3 +195,9 @@
   background-repeat: no-repeat  ;
   background-size: 100%;
 }
+
+.incomback{
+  background-image: url('../src/IncomeTax/Woods.jpeg');
+  background-repeat: no-repeat ;
+  background-size: 100%;
+}
