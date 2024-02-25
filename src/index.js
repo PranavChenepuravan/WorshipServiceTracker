@@ -36,6 +36,13 @@ import { IncomeTaxInst } from './IncomeTax/IncomeTaxInst'
 import { IncomeWarning } from './IncomeTax/IncomeWarning';
 import { IncomeAction } from './IncomeTax/IncomeAction';
 import { IncomeTaxReport }  from './IncomeTax/IncomeTaxReport';
+import { IncomeEmployee } from './IncomeTax/IncomeEmployee';
+import { IncomeDuty } from './IncomeTax/IncomeDuty';
+
+import { ArchLayout } from './Archaeology/ArchLayout';
+import { ArchHeritage } from './Archaeology/ArchHeritage';
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -72,14 +79,17 @@ root.render(
           <Route path="instphoto" element={<InstPhoto/>}/>
         </Route>
         <Route path="/incomelayout" element={<IncomeLayout />}>
-           <Route path="incometransreq" element={<IncomeTransReq/>}/>
-           <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
-           <Route path="incomewarning" element={<IncomeWarning/>}/>
-           <Route path="incomeaction" element={<IncomeAction/>}/>
-           <Route path="incometaxreport" element={<IncomeTaxReport/>}/>
+          <Route path="incometransreq" element={<IncomeTransReq/>}/>
+          <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
+          <Route path="incomewarning" element={<IncomeWarning/>}/>
+          <Route path="incomeaction" element={<IncomeAction/>}/>
+          <Route path="incometaxreport" element={<IncomeTaxReport/>}/>
+          <Route path="incomeemployee" element={<IncomeEmployee/>}/>
+          <Route path="incomeduty" element={<IncomeDuty/>}/>
+        </Route>
 
-           
-          
+        <Route path="/archlayout" element={<ArchLayout/>}>
+          <Route path="archheritage" element={<ArchHeritage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

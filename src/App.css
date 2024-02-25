@@ -201,3 +201,10 @@
   background-repeat: no-repeat ;
   background-size: 100%;
 }
+
+.archback{
+  background-image: url('../src/Archaeology/Egyptian.jpeg');
+  background-repeat: no-repeat ;
+  background-size: 100%;
+
+}
