@@ -19,6 +19,7 @@ import { RegInst } from './RegInst';
 import { RegIncome } from './RegIncome';
 import { RegArchae } from './RegArchae';
 import { RegPilgrim } from './RegPilgrim';
+
 import { InstLayout } from './Institution/InstLayout'
 import { InstInstruction } from './Institution/InstInstruction';
 import { InstPreach } from './Institution/InstPreach';
@@ -41,6 +42,9 @@ import { IncomeDuty } from './IncomeTax/IncomeDuty';
 
 import { ArchLayout } from './Archaeology/ArchLayout';
 import { ArchHeritage } from './Archaeology/ArchHeritage';
+import { ArchEmployee } from './Archaeology/ArchEmployee';
+import { ArchDuty } from './Archaeology/ArchDuty';
+import { ArchWealth } from './Archaeology/ArchWealth';
 
 
 
@@ -90,6 +94,9 @@ root.render(
 
         <Route path="/archlayout" element={<ArchLayout/>}>
           <Route path="archheritage" element={<ArchHeritage/>}/>
+          <Route path="archemployee" element={<ArchEmployee/>}/>
+          <Route path="archduty" element={<ArchDuty/>}/>
+          <Route path="archwealth" element={<ArchWealth/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
