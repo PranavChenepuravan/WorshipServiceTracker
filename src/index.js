@@ -46,6 +46,10 @@ import { ArchEmployee } from './Archaeology/ArchEmployee';
 import { ArchDuty } from './Archaeology/ArchDuty';
 import { ArchWealth } from './Archaeology/ArchWealth';
 
+import { PilgLayout } from './Pilgrim/PilgLayout';
+import { PilgProfile } from './Pilgrim/PilgProfile';
+import { PilgProfileEdit } from './Pilgrim/PilgProfileEdit';
+
 
 
 
@@ -97,6 +101,12 @@ root.render(
           <Route path="archemployee" element={<ArchEmployee/>}/>
           <Route path="archduty" element={<ArchDuty/>}/>
           <Route path="archwealth" element={<ArchWealth/>}/>
+        </Route>
+
+        <Route path="/pilglayout" element={<PilgLayout/>}>
+          <Route path="pilgprofile" element={<PilgProfile/>}/>
+          <Route path="pilgprofileedit" element={<PilgProfileEdit/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>
