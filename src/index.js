@@ -53,6 +53,12 @@ import { PilgrimBooking } from './Pilgrim/PilgBooking';
 import { PilgBookingPay } from './Pilgrim/PilgBookingPay';
 import { PilgBookingList } from './Pilgrim/PilgBookingList';
 import { PilgDonation } from './Pilgrim/PilgDonation';
+import { PilgDonationMoney } from './Pilgrim/PilgDonationMoney';
+import { PilgDonationListMoney } from './Pilgrim/PilgDonationListMoney';
+import { PilgDonationOther } from './Pilgrim/PilgDonationOther';
+import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
+import {PilgDonationListAll} from './Pilgrim/PilgDonationListAll';
+
 
 
 
@@ -114,6 +120,11 @@ root.render(
           <Route path="pilgbookingpay" element={<PilgBookingPay/>}/>
           <Route path="pilgbookinglist" element={<PilgBookingList/>}/>
           <Route path="pilgdonation" element={<PilgDonation/>}/>
+          <Route path="pilgdonationmoney" element={<PilgDonationMoney/>}/>
+          <Route path="pilgdonationlistmoney" element={<PilgDonationListMoney/>}/>
+          <Route path="pilgdonationother" element={<PilgDonationOther/>}/>
+          <Route path="pilgdonationlistother" element={<PilgDonationListOther/>}/>
+          <Route path="pilgdonationlistall" element={<PilgDonationListAll/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
