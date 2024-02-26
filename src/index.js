@@ -49,6 +49,10 @@ import { ArchWealth } from './Archaeology/ArchWealth';
 import { PilgLayout } from './Pilgrim/PilgLayout';
 import { PilgProfile } from './Pilgrim/PilgProfile';
 import { PilgProfileEdit } from './Pilgrim/PilgProfileEdit';
+import { PilgrimBooking } from './Pilgrim/PilgBooking';
+import { PilgBookingPay } from './Pilgrim/PilgBookingPay';
+import { PilgBookingList } from './Pilgrim/PilgBookingList';
+import { PilgDonation } from './Pilgrim/PilgDonation';
 
 
 
@@ -106,7 +110,10 @@ root.render(
         <Route path="/pilglayout" element={<PilgLayout/>}>
           <Route path="pilgprofile" element={<PilgProfile/>}/>
           <Route path="pilgprofileedit" element={<PilgProfileEdit/>}/>
-
+          <Route path="pilgbooking" element={<PilgrimBooking/>}/>
+          <Route path="pilgbookingpay" element={<PilgBookingPay/>}/>
+          <Route path="pilgbookinglist" element={<PilgBookingList/>}/>
+          <Route path="pilgdonation" element={<PilgDonation/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

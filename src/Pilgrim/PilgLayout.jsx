@@ -12,7 +12,7 @@ export const PilgLayout = () => {
             <TopNavig />
             <div className='flex w-[100%]'>
             <SidNav/>
-            <div className='pilgback w-[100%] p-4'>
+            <div className='pilgback h-screen w-[100%] p-4'>
             <Outlet />
             </div>
             </div>
