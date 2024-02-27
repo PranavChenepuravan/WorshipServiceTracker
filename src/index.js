@@ -75,10 +75,6 @@ root.render(
         <Route path="/" element={<Nav />}>
           <Route index element={<LoadPic />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Registeration />}/>  
-        </Route>
-        
-        <Route path="/regcommon" element={<RegisterCommon/>}>
           <Route path="reginst" element={<RegInst />}/> 
           <Route path="regincome" element={<RegIncome />}/>
           <Route path="regarchae" element={<RegArchae />}/>

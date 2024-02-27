@@ -19,10 +19,10 @@ const Nav = () => {
                   </span>
                   {drop &&
                       <div className='list-none absolute right-[30px] sm:right-[18px] p-3 bg-slate-100 text-stone-950 sm:top-[60px] '>
-                        <Link to='/regcommon/reginst'><li>Institution</li></Link>
-                        <Link to='/regcommon/regincome'><li>Income Tax</li></Link> 
-                        <Link to='/regcommon/regarchae'><li>Archaeology</li></Link>
-                        <Link to='/regcommon/regpilgrim'><li>Pilgrim</li></Link>
+                        <Link to='/reginst'><li>Institution</li></Link>
+                        <Link to='/regincome'><li>Income Tax</li></Link> 
+                        <Link to='/regarchae'><li>Archaeology</li></Link>
+                        <Link to='/regpilgrim'><li>Pilgrim</li></Link>
                         
                         </div> 
                    }

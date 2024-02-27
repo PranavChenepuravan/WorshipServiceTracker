@@ -7,10 +7,17 @@ import Navig from '../src/Nav'
 export const RegisterCommon = () => {
   return (
     <>
-    <div>
-      <Navig/>
-    </div>
-    <div><img src={bgmap} alt="" className='size-full' /></div>
+      <div className='hyyy'>
+        <Navig />
+        <div>
+          <div className='regback h-screen w-[100%] p-4'>
+            
+            <Outlet />
+          </div>
+          
+        </div>
+      </div>
+
     </>
   )
 }

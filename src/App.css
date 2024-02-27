@@ -46,11 +46,14 @@
 }
 
 .regback{
-  background-image: url(../public/Agar.png);
+  /* background-image: url(../public/Agar.png);
   height: 75rem;
   background-size: 100%;
   position: relative;
-  z-index: 5px;
+  z-index: 5px; */
+  background-image: url('./map.jpg');
+  background-repeat: no-repeat ;
+  background-size: 100%;
 }
 
 .button2{
