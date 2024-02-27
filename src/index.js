@@ -58,6 +58,8 @@ import { PilgDonationListMoney } from './Pilgrim/PilgDonationListMoney';
 import { PilgDonationOther } from './Pilgrim/PilgDonationOther';
 import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
 import {PilgDonationListAll} from './Pilgrim/PilgDonationListAll';
+import { PilgPhotos } from './Pilgrim/PilgPhotos';
+import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 
 
 
@@ -73,12 +75,14 @@ root.render(
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registeration />}/>  
         </Route>
+        
         <Route path="/regcommon" element={<RegisterCommon/>}>
           <Route path="reginst" element={<RegInst />}/> 
           <Route path="regincome" element={<RegIncome />}/>
           <Route path="regarchae" element={<RegArchae />}/>
           <Route path="regpilgrim" element={<RegPilgrim />}/>
         </Route>
+
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="component" element={<Component/>}></Route>
           <Route path="viewinst" element={<ViewInstitution/>}/>
@@ -86,6 +90,7 @@ root.render(
           <Route path="viewarchaeology" element={<ViewArchaeology/>}/>
           <Route path="viewreport" element={<ViewReport/>}/>
         </Route>
+
         <Route path="/instlayout" element={<InstLayout />}>
           <Route path="instinstruction" element={<InstInstruction/>}/>
           <Route path="instpreach" element={<InstPreach/>}/>
@@ -96,6 +101,7 @@ root.render(
           <Route path="instrating" element={<InstRating/>}/>
           <Route path="instphoto" element={<InstPhoto/>}/>
         </Route>
+
         <Route path="/incomelayout" element={<IncomeLayout />}>
           <Route path="incometransreq" element={<IncomeTransReq/>}/>
           <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
@@ -125,6 +131,9 @@ root.render(
           <Route path="pilgdonationother" element={<PilgDonationOther/>}/>
           <Route path="pilgdonationlistother" element={<PilgDonationListOther/>}/>
           <Route path="pilgdonationlistall" element={<PilgDonationListAll/>}/>
+          <Route path="pilgphotos" element={<PilgPhotos/>}/>
+          <Route path="pilgphotosadd" element={<PilgPhotosAdd/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>
