@@ -60,6 +60,8 @@ import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
 import {PilgDonationListAll} from './Pilgrim/PilgDonationListAll';
 import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
+import { PilgReview } from './Pilgrim/PilgReview';
+import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
 
 
 
@@ -133,6 +135,8 @@ root.render(
           <Route path="pilgdonationlistall" element={<PilgDonationListAll/>}/>
           <Route path="pilgphotos" element={<PilgPhotos/>}/>
           <Route path="pilgphotosadd" element={<PilgPhotosAdd/>}/>
+          <Route path="pilgreview" element={<PilgReview/>}/>
+          <Route path="pilgreviewadd" element={<PilgReviewAdd/>}/>
 
         </Route>
       </Routes>
