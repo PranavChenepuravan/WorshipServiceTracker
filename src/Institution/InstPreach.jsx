@@ -42,9 +42,9 @@ export const InstPreach = () => {
                 <div>   
                  <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
                    <option value="" disabled>select type</option>
-                   <option value="">Golal</option>
+                   <option value="">Gopal</option>
                    <option value="">Kalyani</option>
-                   <option value="">Kalyani</option>
+                   <option value="">Dinu</option>
                  </select>
 
                  </div> 
@@ -57,15 +57,11 @@ export const InstPreach = () => {
                     TPH001
                 </td>
                 <td className="px-6 py-4 flex">
-                <div>   
-                    <div onClick={dropdown} className='bg-black text-white w-[80px]'>Select</div>
-                 {drop&& 
-                   <div className='list-none'>
-                     <li>Gita</li>
-                     <li>Ramayanm</li>
-                   </div>
-                 }
-                 </div> 
+                 <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
+                   <option value="" disabled>select topic</option>
+                   <option value="">Gita</option>
+                   <option value="">Ramayanam</option>
+                 </select>
                  <input type="text" className='h-[30px]'/>
                  <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
 

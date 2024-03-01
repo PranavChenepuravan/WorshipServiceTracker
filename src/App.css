@@ -1,11 +1,14 @@
 .ldim{
   background-image: url("../public/Landing_image.jpg");
   height: 885px;
+  background-repeat: no-repeat ;
   background-size: 100%;
 }
 
 .back{
   background-image: url("../public/Book.jpeg");
+  background-repeat: no-repeat ;
+  background-size: 100%;
   /* height: 885px;
   background-size: 100%; */
 }
@@ -213,7 +216,7 @@
 }
 
 .pilgback{
-  background-image: url('../src/Pilgrim/Rays.jpeg');
+  background-image: url('../src/Pilgrim/dew.jpg');
   background-repeat: no-repeat ;
   background-size: 100%;
 

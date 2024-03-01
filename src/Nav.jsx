@@ -14,9 +14,9 @@ const Nav = () => {
     <div className='bg-red-950 flex  justify-between p-4 items-center m-auto'>
       <div className='text-neutral-200 text-[35px]'>WORSHIP STRAIGHT PATH</div>
       <div className='text-neutral-200 flex gap-5'>
-      <div><span  onClick={dropdown}>
+      <div><button  onClick={dropdown}>
                   Register
-                  </span>
+                  </button>
                   {drop &&
                       <div className='list-none absolute right-[30px] sm:right-[18px] p-3 bg-slate-100 text-stone-950 sm:top-[60px] '>
                         <Link to='/reginst'><li>Institution</li></Link>
