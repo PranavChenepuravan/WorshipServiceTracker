@@ -1,6 +1,10 @@
 import React from 'react'
 import im1 from '../Pilgrim/temple1.jpg'
 import im2 from '../Pilgrim/Temple2.jpg'
+import im3 from '../Pilgrim/Mosque3.jpg'
+import im4 from '../Pilgrim/Mosque4.jpg'
+import im5 from '../Pilgrim/Church3.jpeg'
+import im6 from '../Pilgrim/Church4.jpeg'
 import { Link } from 'react-router-dom'
 
 export const PilgPhotos = () => {
@@ -23,6 +27,22 @@ export const PilgPhotos = () => {
     <div>
         <img src={im2} alt="" className='h-auto max-w-full rounded-lg' />
         <p className='bg-white text-slate-950'>Thiruvanandapram Pathmanabaswami Temple</p>   
+    </div>
+    <div>
+        <img src={im3} alt="" className='h-auto max-w-full rounded-lg' />
+        <p className='bg-white text-slate-950'>Thirur Mosque</p>   
+    </div>
+    <div>
+        <img src={im4} alt="" className='h-auto max-w-full rounded-lg' />
+        <p className='bg-white text-slate-950'>Mavoor Mosque</p>   
+    </div>
+    <div>
+        <img src={im5} alt="" className='h-auto max-w-full rounded-lg' />
+        <p className='bg-white text-slate-950 '>Kochi Church</p>   
+    </div>
+    <div>
+        <img src={im6} alt="" className='h-auto max-w-full rounded-lg' />
+        <p className='bg-white text-slate-950'>Kottayam Church</p>   
     </div>
 </div>
 

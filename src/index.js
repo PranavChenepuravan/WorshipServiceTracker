@@ -30,6 +30,10 @@ import { InstDonation } from './Institution/InstDonation'
 import { InstRating } from './Institution/InstRating'
 import { InstPhoto } from './Institution/InstPhoto'
 import './App.css'
+import { InstIncomeTaxList } from './Institution/InstIncomeTaxList';
+import { InstArchaeologyList } from './Institution/InstArchaeologyList';
+
+
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
 import { IncomeTransReq } from './IncomeTax/IncomeTransReq'
@@ -62,6 +66,9 @@ import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
+import InstDonationList from './Institution/InstDonationList';
+
+
 
 
 
@@ -98,6 +105,13 @@ root.render(
           <Route path="instdon" element={<InstDonation/>}/>
           <Route path="instrating" element={<InstRating/>}/>
           <Route path="instphoto" element={<InstPhoto/>}/>
+
+
+          <Route path="instincometxlist" element={<InstIncomeTaxList/>}/>
+          <Route path="instarchlist" element={<InstArchaeologyList/>}/>
+          <Route path="instdonlist" element={<InstDonationList/>}/>
+
+
         </Route>
 
         <Route path="/incomelayout" element={<IncomeLayout />}>
