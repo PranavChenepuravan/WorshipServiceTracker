@@ -8,11 +8,11 @@ import '../App.css'
 export const IncomeLayout = () => {
   return (
     <div>
-        <div className='l'>  
+        <div className=''>  
             <TopNavig />
-            <div className='flex w-[100%]'>
+            <div className='flex '>
             <SidNav/>
-            <div className='incomback w-screen p-4'>
+            <div className='incomback  p-4'>
             <Outlet />
             </div>
             </div>

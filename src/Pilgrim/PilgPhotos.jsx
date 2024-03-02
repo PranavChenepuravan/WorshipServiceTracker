@@ -21,27 +21,27 @@ export const PilgPhotos = () => {
     
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
     <div>
-        <img src={im1} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im1} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950'>Ayodya Rama Temple</p>
     </div>
     <div>
-        <img src={im2} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im2} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950'>Thiruvanandapram Pathmanabaswami Temple</p>   
     </div>
     <div>
-        <img src={im3} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im3} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950'>Thirur Mosque</p>   
     </div>
     <div>
-        <img src={im4} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im4} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950'>Mavoor Mosque</p>   
     </div>
     <div>
-        <img src={im5} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im5} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950 '>Kochi Church</p>   
     </div>
     <div>
-        <img src={im6} alt="" className='h-auto max-w-full rounded-lg' />
+        <img src={im6} alt="" className='h-[50%] w-[100%] rounded-lg' />
         <p className='bg-white text-slate-950'>Kottayam Church</p>   
     </div>
 </div>

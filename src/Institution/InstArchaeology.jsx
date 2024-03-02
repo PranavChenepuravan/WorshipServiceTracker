@@ -21,8 +21,10 @@ export const InstArchaeology = () => {
 
       <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
         <option value="" disabled>select type</option>
-        <option value="">sxsadsa</option>
-        <option value="">sxsadsa</option>
+        <option value="">Temple</option>
+        <option value="">Church</option>
+        <option value="">Mosque</option>
+        <option value="">Other</option>
       </select>
   </div>
   <div className="mb-5">
@@ -30,7 +32,11 @@ export const InstArchaeology = () => {
 
        <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
          <option value="" disabled>select location</option>
-         <option value="">sxsadsa</option>
+         <option value="">Kottaya</option>
+         <option value="">Idukki</option>
+         <option value="">Malappuram</option>
+         <option value="">Calicut</option>
+         <option value="">Kottaya</option>
        </select>   
   </div>
   <div className="mb-5">
