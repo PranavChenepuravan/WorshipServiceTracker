@@ -12,7 +12,7 @@ export const IncomeLayout = () => {
             <TopNavig />
             <div className='flex '>
             <SidNav/>
-            <div className='incomback  p-4'>
+            <div className='incomback w-screen p-4'>
             <Outlet />
             </div>
             </div>

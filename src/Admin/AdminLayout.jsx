@@ -11,7 +11,9 @@ export const AdminLayout = () => {
       <TopNavig />
       <div className='flex'>
         <SideNavig />
-        <div className='pl-[20%]'><Outlet /><Bacgr/></div>
+        <div className='admback w-screen p-4'>
+          <Outlet />
+        </div>
       </div>
 
     </div>
