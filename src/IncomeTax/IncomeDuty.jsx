@@ -1,6 +1,68 @@
-import React from 'react'
+import React,{ useState } from 'react'
+import ReactPaginate from 'react-paginate';
 
 export const IncomeDuty = () => {
+    const ratingChanged = (newRating) => {
+        console.log(newRating);
+      }
+  
+      const [drop,setDrop]=useState(false)
+  
+      let dropdown=()=>{
+          setDrop(!drop)
+          console.log(drop);
+      }
+
+      const [currentPage, setCurrentPage] = useState(0);
+      const itemsPerPage = 2; // Adjust the number of items per page as needed
+
+      const data = [
+        {
+          dutyId: 'DT001',
+          employeeId: 'EM001',
+          employeeName: 'Joyal',
+          phone: '9546544560',
+          institutionId: 'INST001',
+          institutionName: 'Padmanabhaswami temple',
+          currentDuty: 'Padmanabhaswami temple',
+          place: 'Thiruvanandapuram',
+          status:'Ongoing',
+        },
+        {
+            dutyId: 'DT002',
+            employeeId: 'EM001',
+            employeeName: 'Joyal',
+            phone: '9546544560',
+            institutionId: 'INST001',
+            institutionName: 'Padmanabhaswami temple',
+            currentDuty: 'Padmanabhaswami temple',
+            place: 'Thiruvanandapuram',
+            status:'Ongoing',
+          },
+          {
+            dutyId: 'DT003',
+            employeeId: 'EM001',
+            employeeName: 'Joyal',
+            phone: '9546544560',
+            institutionId: 'INST001',
+            institutionName: 'Padmanabhaswami temple',
+            currentDuty: 'Padmanabhaswami temple',
+            place: 'Thiruvanandapuram',
+            status:'Ongoing',
+          },
+       
+        
+        // Add more dummy data as needed
+      ];
+      const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
   return (
     <>
     <div className='flex flex-col'>
@@ -42,7 +104,7 @@ export const IncomeDuty = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
@@ -141,9 +203,79 @@ export const IncomeDuty = () => {
             </tr>
             
               
+        </tbody> */}
+        <tbody>
+
+        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </th>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                </td>
+                <td className="px-6 py-4">
+                    <input type="text" id="user_name" class="w-[280px] mx-[13%] my-[20%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required /> 
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td> 
+                <td className="px-6 py-4">
+                <div><button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Add</button></div>
+                </td>
+            </tr> 
+          {currentItems.map((item, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item.dutyId}
+              </td>
+              <td className="px-6 py-4">{item.employeeId}</td>
+              <td className="px-6 py-4">{item.employeeName}</td>
+              <td className="px-6 py-4">{item.phone}</td>
+              <td className="px-6 py-4">{item.institutionId}</td>
+              <td className="px-6 py-4">{item.institutionName}</td>
+              <td className="px-6 py-4">{item.currentDuty}</td>
+              <td className="px-6 py-4">{item.place}</td>
+              <td className="px-6 py-4">{item.status}</td>
+              <td className="px-6 py-4">
+                <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Add</button>
+                <div><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Terminate</button></div>
+              </td>
+              
+            </tr>
+          ))}
         </tbody>
     </table>
-</div>
+ </div>
+ <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
 </div>
 </>
   )

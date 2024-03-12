@@ -1,6 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ReactPaginate from 'react-paginate';
 
 export const IncomeTaxReport = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 2; // Adjust the number of items per page as needed
+    // Dummy data
+    const data = [
+    {
+      taxId: 'TM001',
+      institutionId: 'TM001',
+      institutionType: 'Temple',
+      institutionName: 'Sree Muruga',
+      location: 'Nilambur',
+      amount: '12000',
+      date: '12/01/2024',
+      transType: 'E payment',
+    },
+    {
+      taxId: 'TM002',
+      institutionId: 'TM001',
+      institutionType: 'Temple',
+      institutionName: 'Sree Muruga',
+      location: 'Nilambur',
+      amount: '12000',
+      date: '12/01/2024',
+      transType: 'E payment',
+    },
+    {
+        taxId: 'TM003',
+        institutionId: 'TM001',
+        institutionType: 'Temple',
+        institutionName: 'Sree Muruga',
+        location: 'Nilambur',
+        amount: '12000',
+        date: '12/01/2024',
+        transType: 'E payment',
+      },
+    
+    // Add more dummy data as needed
+  ];
+
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     <div className="  overflow-x-auto  ">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -13,7 +62,10 @@ export const IncomeTaxReport = () => {
                     Institution Id
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Institution
+                    Institution Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Institution Name
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Location
@@ -29,7 +81,7 @@ export const IncomeTaxReport = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">   
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -81,8 +133,38 @@ export const IncomeTaxReport = () => {
                 </td>
             </tr>
               
+        </tbody> */}
+        <tbody>
+          {currentItems.map((item, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item.taxId}
+              </td>
+              <td className="px-6 py-4">{item.institutionId}</td>
+              <td className="px-6 py-4">{item.institutionType}</td>
+              <td className="px-6 py-4">{item.institutionName}</td>
+              <td className="px-6 py-4">{item.location}</td>
+              <td className="px-6 py-4">{item.amount}</td>
+              <td className="px-6 py-4">{item.date}</td>
+              <td className="px-6 py-4">{item.transType}</td>  
+            </tr>
+          ))}
         </tbody>
     </table>
+    <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+        />
+      </div>
 </div>
   )
 }

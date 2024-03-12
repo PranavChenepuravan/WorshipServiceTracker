@@ -43,6 +43,7 @@ import { IncomeAction } from './IncomeTax/IncomeAction';
 import { IncomeTaxReport }  from './IncomeTax/IncomeTaxReport';
 import { IncomeEmployee } from './IncomeTax/IncomeEmployee';
 import { IncomeDuty } from './IncomeTax/IncomeDuty';
+import { IncomeTaxInst2 } from './IncomeTax/IncomeTaxInst2';
 
 import { ArchLayout } from './Archaeology/ArchLayout';
 import { ArchHeritage } from './Archaeology/ArchHeritage';
@@ -66,7 +67,8 @@ import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
-import InstDonationList from './Institution/InstDonationList';
+import { InstDonationList } from './Institution/InstDonationList';
+
 
 
 
@@ -117,6 +119,7 @@ root.render(
         <Route path="/incomelayout" element={<IncomeLayout />}>
           <Route path="incometransreq" element={<IncomeTransReq/>}/>
           <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
+          <Route path="incometaxinst2" element={<IncomeTaxInst2/>}/>
           <Route path="incomewarning" element={<IncomeWarning/>}/>
           <Route path="incomeaction" element={<IncomeAction/>}/>
           <Route path="incometaxreport" element={<IncomeTaxReport/>}/>
