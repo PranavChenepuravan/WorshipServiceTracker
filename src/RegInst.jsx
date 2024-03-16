@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
+
 import './App.css'
+import axios from 'axios'
 
 export const RegInst = () => {
   const[data,setData]=useState('')
@@ -7,17 +9,18 @@ export const RegInst = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
     event.preventDefault()
-    setData(data)
-    console.log(data);  
+    
+    let response=await axios.post('http://localhost:4000/register',{...data,userType:'institution'})
+    console.log(response);
   }
 
   return (
     <div className='regback'>
    
 
-<form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400">
+<form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
   </div>
   <div className="mb-5">
@@ -52,7 +55,7 @@ export const RegInst = () => {
   </div>
   <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of Institution</label>
-     <input type="text" name="instname" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+     <input type="text" name="institutionName" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>

@@ -1,36 +1,58 @@
-import React from 'react'
+import React,{ useState } from 'react'
+import ReactPaginate from 'react-paginate';
 import str from '../Institution/Rating.jpeg'
 
 export const InstRating = () => {
-  return (
-    // <div>
-    //     <div className="tableinst relative overflow-x-auto w-auto flex gap-[70px]">
-    //         <table>
-    //           <tr>
-    //             <th>Pilgrim Id</th>
-    //             <th>Name</th>
-    //             <th>Place</th>
-    //             <th>Phone</th>
-    //             <th>Email</th>
-    //             <th>Date & Time </th>
-    //             <th>Other Details</th>
-    //             <th>Rating</th>
-    //           </tr>
-    //           <tr>
-    //             <td>PL001</td>
-    //             <td>Raj</td>
-    //             <td>Grove Street</td>
-    //             <td>9993434343</td>
-    //             <td>ramaraju@gmail.com</td>
-    //             <td>12/03/2024  12:30</td>
-    //             <td></td>
-    //             <td><div><img src={str} alt="" className='h-[35px]' /></div></td>
-    //           </tr>
-    //        </table>
+    const [currentPage, setCurrentPage] = useState(0);
+      const itemsPerPage = 2; // Adjust the number of items per page as needed
 
-    //     </div>
+      const data = [
+        {
+          pilgrimId: 'APT01',
+          pilgrimName: 'Yamini',
+          place: 'Kottayam',
+          phone:'1234567890',
+          email:'yamini@gmail.com',
+          dateAndtime:'13/02/2024 10:40 am',
+          otherDetails:'',
+          rating:<img src={str} alt="" className='h-[35px]' />,
+          
+        },
+        {
+            pilgrimId: 'APT02',
+            pilgrimName: 'Prakash',
+            place: 'Kottayam',
+            phone:'1234567890',
+            email:'prak@gmail.com',
+            dateAndtime:'13/02/2024 10:40 am',
+            otherDetails:'',
+            rating:'',
+          },
+          {
+            pilgrimId: 'APT01',
+            pilgrimName: 'Dannya',
+            place: 'Kottayam',
+            phone:'1234567890',
+            email:'dan@gmail.com',
+            dateAndtime:'13/02/2024 10:40 am',
+            otherDetails:'',
+            rating:<img src={str} alt="" className='h-[35px]' />,
+          },
         
-    // </div>
+        
+        // Add more dummy data as needed
+      ];
+      const pageCount = Math.ceil(data.length / itemsPerPage);
+
+      const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+
+      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  return (
     <div className="  overflow-x-auto  ">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,7 +83,7 @@ export const InstRating = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     PL001
@@ -88,10 +110,42 @@ export const InstRating = () => {
                 <div><img src={str} alt="" className='h-[35px]' /></div>
                 </td>
             </tr>
-            
-            
+        </tbody> */}
+
+<tbody>
+          {currentItems.map((item, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item.pilgrimId}
+              </td>
+              <td className="px-6 py-4">{item.pilgrimName}</td>
+              <td className="px-6 py-4">{item.place}</td>
+              <td className="px-6 py-4">{item.phone}</td>
+              <td className="px-6 py-4">{item.email}</td>
+              <td className="px-6 py-4">{item.dateAndtime}</td>
+              <td className="px-6 py-4">{item.otherDetails}</td> 
+              <td className="px-6 py-4">{item.rating}</td>
+              
+            </tr>
+          ))}
         </tbody>
     </table>
+
+    <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
 </div>
   )
 }

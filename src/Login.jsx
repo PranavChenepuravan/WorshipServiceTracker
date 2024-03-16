@@ -1,13 +1,52 @@
 import React,{ useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './App.css'
+import axios from 'axios'
+import { Link,useNavigate } from 'react-router-dom'
 const Login = () => {
+    const navigate=useNavigate()
     const[data,setData]=useState('')
     let handleChange=(event)=>{
         setData({...data,[event.target.name]:event.target.value})
     }
-    let handleSubmit=(event)=>{
+    let handleSubmit=async (event)=>{
         event.preventDefault()
+        const requiredField = ['email','password'];
+
+        for(const field of requiredField){
+            if(!data[field]){
+                return 
+            }
+        }
+
+        let response=await axios.post('http://localhost:4000/User/login',data)
+        console.log(response);
+        if(response.data){
+            localStorage.setItem('id',response.data._id)
+            if(response.data.usertype=='admin'){
+                navigate('/admin')
+            }
+            else if(response.data.usertype=='archaeology'){
+                navigate('/archaeology')
+            }
+            else if(response.data.usertype=='incometax'){
+                navigate('/incometax')
+                
+            }
+            else if(response.data.usertype=='institution'){
+                navigate('/institution')
+                
+            }
+            else if(response.data.usertype=='pilgrim'){
+                navigate('/pilgrim')
+                
+            }
+            else{
+                
+            }
+        }
+
+
         setData(data)
         console.log(data);
 
