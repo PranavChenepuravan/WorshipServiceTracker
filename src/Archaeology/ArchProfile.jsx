@@ -3,18 +3,8 @@ import boy from '../Pilgrim/Boy.jpg'
 import { Link } from 'react-router-dom' 
 import axios from 'axios'
 
-export const PilgProfile = () => {
+export const ArchProfile = () => {
   let id=localStorage.getItem('id')
-  const [userData,setUserData]=useState('')
-  const [refresh,setrefresh]=useState(false)
-  useEffect(()=>{
-    let fetchdata=async ()=>{
-      let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
-      console.log(response.data);
-      setUserData(response.data)
-    }
-    fetchdata()
-  },[refresh])
   return (
     <>
       <div
@@ -38,7 +28,7 @@ export const PilgProfile = () => {
       </div>
       <div> 
         Name : John Smith
-        <h2>{userData.name}</h2>
+        
 
       </div>
       <div> 
@@ -70,4 +60,4 @@ export const PilgProfile = () => {
     </>
   )
 }
-export default PilgProfile
+export default ArchProfile

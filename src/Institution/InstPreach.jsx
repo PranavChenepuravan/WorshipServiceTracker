@@ -1,5 +1,6 @@
 import React,{ useState } from 'react'
 import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
 export const InstPreach = () => {
     const [drop,setDrop]=useState(false)
@@ -8,6 +9,20 @@ export const InstPreach = () => {
         setDrop(!drop)
         console.log(drop);
     }
+
+    const [datain,setData]=useState('')
+     let handleChange=(event)=>{
+      setData({...datain,[event.target.name]:event.target.value})
+     }
+
+  let handleSubmit=async (event)=>{
+    event.preventDefault()
+
+    let response=await axios.post('http://localhost:4000/institution/instruction',datain)
+    console.log(response);
+  }
+
+
 
     const [currentPage, setCurrentPage] = useState(0);
       const itemsPerPage = 2; // Adjust the number of items per page as needed
@@ -75,52 +90,11 @@ export const InstPreach = () => {
                 <th scope="col" className="px-6 py-3">
                     Other Details
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
-        {/* <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    APT001
-                </td>
-                <td className="px-6 py-4 flex">
-                <div>   
-                 <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-                   <option value="" disabled>select type</option>
-                   <option value="">Gopal</option>
-                   <option value="">Kalyani</option>
-                   <option value="">Dinu</option>
-                 </select>
-
-                 </div> 
-                 <input type="text" className='h-[30px]'/>
-                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
-
-
-                </td>
-                <td className="px-6 py-4">
-                    TPH001
-                </td>
-                <td className="px-6 py-4 flex">
-                 <select name="location" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-                   <option value="" disabled>select topic</option>
-                   <option value="">Gita</option>
-                   <option value="">Ramayanam</option>
-                 </select>
-                 <input type="text" className='h-[30px]'/>
-                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
-
-
-                </td>
-                <td className="px-6 py-4">
-                <input type="date" id="date" className="w-[300px] mx-[13%] my-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />      
-                </td>
-                <td className="px-6 py-4">
-                  <input type="text" className='h-[30px]'/>
-                </td>
-                
-            </tr>
-            
-        </tbody> */}
         <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -142,7 +116,7 @@ export const InstPreach = () => {
 
                 </td>
                 <td className="px-6 py-4">
-                    TPH001
+                   <input type="text" name="preachid" className='h-[30px]'/>
                 </td>
                 <td className="px-6 py-4 flex">
                  <select name="topic" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
@@ -159,7 +133,10 @@ export const InstPreach = () => {
                 <input type="date" id="date" name="date" className="w-[300px] mx-[13%] my-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />      
                 </td>
                 <td className="px-6 py-4">
-                  <input type="text" className='h-[30px]'/>
+                  <input type="text" name="otherdetails" className='h-[30px]'/>
+                </td>
+                <td>
+                <button type="button" onClick={handleSubmit} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
                 </td>
                 
             </tr>
@@ -174,6 +151,7 @@ export const InstPreach = () => {
               <td className="px-6 py-4">{item.topic}</td>
               <td className="px-6 py-4">{item.dateAndtime}</td>
               <td className="px-6 py-4">{item.otherDetails}</td> 
+              <td></td>
             </tr>
           ))}
         </tbody>

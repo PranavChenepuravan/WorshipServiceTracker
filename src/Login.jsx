@@ -19,26 +19,26 @@ const Login = () => {
             }
         }
 
-        let response=await axios.post('http://localhost:4000/User/login',data)
+        let response=await axios.post('http://localhost:4000/login',data)
         console.log(response);
         if(response.data){
             localStorage.setItem('id',response.data._id)
-            if(response.data.usertype=='admin'){
+            if(response.data.userType=='admin'){
                 navigate('/admin')
             }
-            else if(response.data.usertype=='archaeology'){
-                navigate('/archaeology')
+            else if(response.data.userType=='archaeology'){
+                navigate('/archlayout')
             }
-            else if(response.data.usertype=='incometax'){
-                navigate('/incometax')
+            else if(response.data.userType=='incometax'){
+                navigate('/incomelayout')
                 
             }
-            else if(response.data.usertype=='institution'){
-                navigate('/institution')
+            else if(response.data.userType=='institution'){
+                navigate('/instlayout')
                 
             }
-            else if(response.data.usertype=='pilgrim'){
-                navigate('/pilgrim')
+            else if(response.data.userType=='pilgrim'){
+                navigate('/pilglayout')
                 
             }
             else{
@@ -84,7 +84,7 @@ const Login = () => {
                       </div>
                       <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                   </div>
-                  <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                  <button type="button" onClick={handleSubmit} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Log in</button>
                   <p className="text-sm font-light text-white dark:text-gray-400">
                       Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                   </p>
