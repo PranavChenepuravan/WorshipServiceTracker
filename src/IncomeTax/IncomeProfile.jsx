@@ -5,6 +5,16 @@ import axios from 'axios'
 
 export const IncomeProfile = () => {
   let id=localStorage.getItem('id')
+  const [useData,setUserData]=useState('')
+  const [refresh,setrefresh]=useState('')
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get('http://localhost:4000/pilgrim/viewprofile/${id}')
+      console.log(response.data);
+      setUserData(response.data)
+    }
+    fetchdata()
+  },[refresh])
   return (
     <>
       <div
@@ -50,7 +60,7 @@ export const IncomeProfile = () => {
       <div>
         <li className='text-white'> </li>
         <div className='flex'>
-           <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] "><Link to='/pilglayout/pilgprofileedit'>Edit</Link></button>
+           <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] "><Link to='/incomelayout/incomeprofileedit'>Edit</Link></button>
            <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] ">Delete</button>
         </div>
       </div>

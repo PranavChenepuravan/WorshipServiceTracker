@@ -32,30 +32,29 @@ export const PilgProfile = () => {
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
 
-      <div> 
-        Id : PL001
-
+      <div className='flex'> 
+        <div>ID </div>
+        <h2>{userData.id}</h2>
       </div>
-      <div> 
-        Name : John Smith
+      <div className='flex'> 
+        <div>Name : </div>
         <h2>{userData.name}</h2>
-
       </div>
-      <div> 
-        Place : Kinaseri
-
+      <div className='flex'> 
+        <div>Place : </div>
+        <h2>{userData.location}</h2>
       </div>
-      <div> 
-        Phone : 9447464609
-
+      <div className='flex'> 
+        <div>Phone : </div>
+        <h2>{userData.phone}</h2>
       </div>
-      <div> 
-        Email : john@gmail.com
-
+      <div className='flex'> 
+       <div>Email : </div>
+       <h2>{userData.email}</h2>
       </div>
-      <div> 
-        Other : Software Engineer, Wellfare Community Leader 
-
+      <div className='flex'> 
+       <div>Other : </div>
+       <h2>{userData.other}</h2>
       </div>
       <div>
         <li className='text-white'> </li>

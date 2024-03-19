@@ -5,6 +5,16 @@ import axios from 'axios'
 
 export const InstProfile = () => {
   let id=localStorage.getItem('id')
+  const [userData,setUserData]=useState('')
+  const [refresh,setrefresh]=useState(false)
+  useEffect(()=>{
+    let fetchdata=async ()=>{
+      let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
+      console.log(response.data);
+      setUserData(response.data)
+    }
+    fetchdata()
+  },[refresh])
   return (
     <>
       <div
@@ -22,35 +32,34 @@ export const InstProfile = () => {
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
 
-      <div> 
-        Id : PL001
-
+      <div className='flex'> 
+        <div>ID : </div>
+        <h2>{userData.id}</h2> 
       </div>
-      <div> 
-        Name : John Smith
+      <div className='flex'> 
+        <div>Name : </div>
+        <h2>{userData.institutionName}</h2>
+      </div>
+      <div className='flex'> 
         
 
       </div>
-      <div> 
-        Place : Kinaseri
+      <div className='flex'> 
+        
 
       </div>
-      <div> 
-        Phone : 9447464609
+      <div className='flex'> 
+        
 
       </div>
-      <div> 
-        Email : john@gmail.com
-
-      </div>
-      <div> 
-        Other : Software Engineer, Wellfare Community Leader 
+      <div className='flex'> 
+         
 
       </div>
       <div>
         <li className='text-white'> </li>
         <div className='flex'>
-           <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] "><Link to='/pilglayout/pilgprofileedit'>Edit</Link></button>
+           <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] "><Link to='/instlayout/instprofileedit'>Edit</Link></button>
            <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] ">Delete</button>
         </div>
       </div>

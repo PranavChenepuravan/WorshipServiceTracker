@@ -34,6 +34,8 @@ import { InstIncomeTaxList } from './Institution/InstIncomeTaxList';
 import { InstArchaeologyList } from './Institution/InstArchaeologyList';
 import { InstDonationList } from './Institution/InstDonationList';
 import { InstProfile } from './Institution/InstProfile';
+import { InstProfileEdit } from './Institution/InstProfileEdit';
+
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
 import { IncomeTransReq } from './IncomeTax/IncomeTransReq'
@@ -45,6 +47,7 @@ import { IncomeEmployee } from './IncomeTax/IncomeEmployee';
 import { IncomeDuty } from './IncomeTax/IncomeDuty';
 import { IncomeTaxInst2 } from './IncomeTax/IncomeTaxInst2';
 import { IncomeProfile } from './IncomeTax/IncomeProfile';
+import { IncomeProfileEdit } from './IncomeTax/IncomeProfileEdit';
 
 import { ArchLayout } from './Archaeology/ArchLayout';
 import { ArchHeritage } from './Archaeology/ArchHeritage';
@@ -69,6 +72,7 @@ import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
+
 
 
 
@@ -112,6 +116,7 @@ root.render(
           <Route path="instrating" element={<InstRating/>}/>
           <Route path="instphoto" element={<InstPhoto/>}/>
           <Route path="instprofile" element={<InstProfile/>}/>
+          <Route path="instprofileedit" element={<InstProfileEdit/>}/>
 
 
           <Route path="instincometxlist" element={<InstIncomeTaxList/>}/>
@@ -131,6 +136,7 @@ root.render(
           <Route path="incomeemployee" element={<IncomeEmployee/>}/>
           <Route path="incomeduty" element={<IncomeDuty/>}/>
           <Route path="incomeprofile" element={<IncomeProfile/>}/>
+          <Route path="incomeprofileedit" element={<IncomeProfileEdit/>}/>
         </Route>
 
         <Route path="/archlayout" element={<ArchLayout/>}>
