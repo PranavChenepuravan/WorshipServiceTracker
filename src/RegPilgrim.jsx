@@ -3,15 +3,36 @@ import './App.css'
 import axios from 'axios'
 
 export const RegPilgrim = () => {
-  const [data,setData]=useState('')
-  let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
+const [data,setData]=useState('')
+let handlefile=(event)=>{
+  console.log(event.target.files);
+  setData({...data,[event.target.name]:event.target.files[0]})
+  console.log(data);
 }
+
+let handleChange=(event)=>{
+  setData({...data,[event.target.name]:event.target.value})
+}
+
 let handleSubmit=async (event)=>{
     event.preventDefault()
-   
+    let formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('password', data.password);
+    formData.append('email',data.email);
+    formData.append('location',data.location);
+    formData.append('phone',data.phone);
+    formData.append('other',data.other);
+    formData.append('photo',data.photo);
+    formData.append('userid',data.userid);
+    formData.append('userType','pilgrim')
 
-   let response=await axios.post('http://localhost:4000/register',{...data,userType:'pilgrim'})
+   let response=await axios.post('http://localhost:4000/register',formData, {
+    headers: {
+      'Content-Type' : 'multipart/form-data'
+    }
+
+   })
    console.log(response)
 }
   return (
@@ -20,6 +41,14 @@ let handleSubmit=async (event)=>{
     <form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
    
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+    <input type="file" id="password" name="photo" onChange={handlefile} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+    <input type="text" id="password" name="userid" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
