@@ -41,20 +41,20 @@ export const InstProfile = () => {
         <h2>{userData.institutionName}</h2>
       </div>
       <div className='flex'> 
-        
-
+        <div>Place : </div>
+        <h2>{userData.location}</h2>
       </div>
       <div className='flex'> 
-        
-
+        <div>Phone : </div>
+        <h2>{userData.phone}</h2>
       </div>
       <div className='flex'> 
-        
-
+        <div>Email : </div>
+        <h2>{userData.email}</h2>
       </div>
       <div className='flex'> 
-         
-
+        <div>Other : </div>
+        <h2>{userData.other}</h2>
       </div>
       <div>
         <li className='text-white'> </li>

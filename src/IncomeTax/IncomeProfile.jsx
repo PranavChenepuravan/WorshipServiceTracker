@@ -9,7 +9,7 @@ export const IncomeProfile = () => {
   const [refresh,setrefresh]=useState('')
   useEffect(()=>{
     let fetchdata=async ()=>{
-      let response=await axios.get('http://localhost:4000/pilgrim/viewprofile/${id}')
+      let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
       console.log(response.data);
       setUserData(response.data)
     }
@@ -32,31 +32,27 @@ export const IncomeProfile = () => {
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
 
-      <div> 
-        Id : PL001
-
+      <div className='flex'> 
+        <div>ID : </div>
+        <h2>{useData.id}</h2>
       </div>
-      <div> 
-        Name : John Smith
-        
-
+      <div className='flex'> 
+        <div>Place: </div>
+        <h2>{useData.location}</h2>
       </div>
-      <div> 
-        Place : Kinaseri
-
+      <div className='flex'> 
+        <div>Phone: </div>
+        <h2>{useData.phone}</h2>
       </div>
-      <div> 
-        Phone : 9447464609
-
+      <div className='flex'> 
+        <div>Email: </div>
+        <h2>{useData.email}</h2>
       </div>
-      <div> 
-        Email : john@gmail.com
-
+      <div className='flex'> 
+        <div>Other: </div>
+        <h2>{useData.other}</h2>
       </div>
-      <div> 
-        Other : Software Engineer, Wellfare Community Leader 
 
-      </div>
       <div>
         <li className='text-white'> </li>
         <div className='flex'>
