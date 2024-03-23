@@ -1,178 +1,89 @@
-import React,{ useState } from 'react'
-import ReactPaginate from 'react-paginate';
-import axios from 'axios';
+import React,{useState} from 'react'
+import { Link } from 'react-router-dom'
+
+import axios from 'axios'
 
 export const InstPreach = () => {
-    const [drop,setDrop]=useState(false)
-
-    let dropdown=()=>{
-        setDrop(!drop)
-        console.log(drop);
-    }
-
-    const [datain,setData]=useState('')
-     let handleChange=(event)=>{
-      setData({...datain,[event.target.name]:event.target.value})
-     }
-
-  let handleSubmit=async (event)=>{
-    event.preventDefault()
-
-    let response=await axios.post('http://localhost:4000/institution/instruction',datain)
-    console.log(response);
+  const[data,setData]=useState('')
+let id=localStorage.getItem('id')
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
   }
 
 
+let handleChange=(event)=>{
+  setData({...data,[event.target.name]:event.target.value})
+}
 
-    const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 2; // Adjust the number of items per page as needed
-
-      const data = [
-        {
-          classId: 'APT01',
-          preacherName: 'Kalyani',
-          preacherId: 'PCTM01',
-          topic:'Ramayanam',
-          dateAndtime:'12/02/2024',
-          otherDetails:'Parayanam Chapter 1'
-        },
-        {
-            classId: 'APT03',
-            preacherName: 'Dinu',
-            preacherId: 'PCTM02',
-            topic:'Mahabaratham',
-            dateAndtime:'13/02/2024',
-            otherDetails:'Parayanam Chapter 2'
-          },
-          {
-            classId: 'APT03',
-            preacherName: 'Gopal',
-            preacherId: 'PCTM03',
-            topic:'Ramayanam',
-            dateAndtime:'14/02/2024',
-            otherDetails:'Parayanam Chapter 3'
-          },
-       
-        
-        // Add more dummy data as needed
-      ];
-      const pageCount = Math.ceil(data.length / itemsPerPage);
-
-
-      const handlePageClick = ({ selected }) => {
-        setCurrentPage(selected);
-      };
+  let handleSubmit=async (event)=>{
+    event.preventDefault()
+    let formData= new FormData();
+    formData.append('photo', data.photo);
+    formData.append('InstitutionIduserid', data.InstitutionId);
+    formData.append('classId', data.classId);
+    formData.append('preacher', data.preacher);
+    formData.append('topic', data.topic);
+    formData.append('date', data.date);
+    formData.append('time', data.time);
+    formData.append('other', data.other);
+    formData.append('institutionId', id);
     
-      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    let response=await axios.post('http://localhost:4000/institution/preach',formData, {
+      headers: {
+        'Content-Type' : 'multipart/form-data'
+      }
+    })
+    console.log(response);
+  }
+
   return (
-    <>
-<div className="overflow-x-auto  ">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" className="px-6 py-3">
-                    class Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Preacher Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Preach Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Topic
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Date & Time
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Other Details
-                </th>
-                <th>
+    <div className=''>
+   
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    APT004
-                </td>
-                <td className="px-6 py-4 flex">
-                <div>   
-                 <select name="preacher" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-                   <option value="" disabled>select type</option>
-                   <option value="">Gopal</option>
-                   <option value="">Kalyani</option>
-                   <option value="">Dinu</option>
-                 </select>
-
-                 </div> 
-                 <input type="text" name="preacher" className='h-[30px]'/>
-                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
-
-
-                </td>
-                <td className="px-6 py-4">
-                   <input type="text" name="preachid" className='h-[30px]'/>
-                </td>
-                <td className="px-6 py-4 flex">
-                 <select name="topic" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-                   <option value="" disabled>select topic</option>
-                   <option value="">Gita</option>
-                   <option value="">Ramayanam</option>
-                 </select>
-                 <input type="text" name="topic" className='h-[30px]'/>
-                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
-
-
-                </td>
-                <td className="px-6 py-4">
-                <input type="date" id="date" name="date" className="w-[300px] mx-[13%] my-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />      
-                </td>
-                <td className="px-6 py-4">
-                  <input type="text" name="otherdetails" className='h-[30px]'/>
-                </td>
-                <td>
-                <button type="button" onClick={handleSubmit} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
-                </td>
-                
-            </tr>
-        
-          {currentItems.map((item, index) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item.classId}
-              </td>
-              <td className="px-6 py-4">{item.preacherName}</td>
-              <td className="px-6 py-4">{item.preacherId}</td>
-              <td className="px-6 py-4">{item.topic}</td>
-              <td className="px-6 py-4">{item.dateAndtime}</td>
-              <td className="px-6 py-4">{item.otherDetails}</td> 
-              <td></td>
-            </tr>
-          ))}
-        </tbody>
-    </table>
-    <div className="flex justify-between text-white w-24 mt-4">
-        <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          activeClassName={'active'}
-       
-        />
-      </div>
-</div>
-    </>
+<form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
+<button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to='/instlayout/instpreachlist'>List</Link></button>
+   <div className='flex'> 
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>
+     <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institution ID</label>
+    <input type="text" name="InstitutionId" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class ID</label>
+     <input type="text" name="classId" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preacher Name</label>
+     <input type="text" name="preacher" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topic</label>
+     <input type="text" name="topic" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+     <input type="date" name="date" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
+     <input type="time" name="time" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other</label>
+     <input type="text" name="other" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className=' flex items-center gap-[10px] mt-[5%] ml-[39%]'>
+    <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Save</button>
+    <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cancel</button>
+   </div>
+</form>
+    </div>
   )
 }
 export default InstPreach

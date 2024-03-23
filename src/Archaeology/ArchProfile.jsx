@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const ArchProfile = () => {
   let id=localStorage.getItem('id')
-  const [useData,setUserData]=useState('')
+  const [userData,setUserData]=useState('')
   const [refresh,setrefresh]=useState('')
   useEffect(()=>{
     let fetchdata=async ()=>{
@@ -23,7 +23,7 @@ export const ArchProfile = () => {
         {/* <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'> */}
     </div>
     <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-        <div><img src={boy} alt="" className='object-cover object-center h-32' /></div>
+        <div><img src={`http://localhost:4000/uploads/${userData.photo}`} alt="" className='object-cover object-center h-32' /></div>
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
     {/* <div class="text-center mt-2">
@@ -34,23 +34,23 @@ export const ArchProfile = () => {
 
       <div className='flex'> 
         <div>ID:</div>
-        <h2>{useData.id}</h2>
+        <h2>{userData.userid}</h2>
       </div>
       <div className='flex'> 
         <div>Place:</div>
-        <h2>{useData.location}</h2>
+        <h2>{userData.location}</h2>
       </div>
       <div className='flex'> 
         <div>Phone:</div>
-        <h2>{useData.phone}</h2>
+        <h2>{userData.phone}</h2>
       </div>
       <div className='flex'> 
         <div>Email:</div>
-        <h2>{useData.email}</h2>
+        <h2>{userData.email}</h2>
       </div>
       <div className='flex'> 
         <div>Other:</div>
-        <h2>{useData.other}</h2>
+        <h2>{userData.other}</h2>
       </div>
       
       <div>

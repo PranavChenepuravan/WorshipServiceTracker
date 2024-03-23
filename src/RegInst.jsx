@@ -5,14 +5,38 @@ import axios from 'axios'
 
 export const RegInst = () => {
   const[data,setData]=useState('')
-  let handleChange=(event)=>{
-    setData({...data,[event.target.name]:event.target.value})
+
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
   }
+
+
+let handleChange=(event)=>{
+  setData({...data,[event.target.name]:event.target.value})
+}
 
   let handleSubmit=async (event)=>{
     event.preventDefault()
+    let formData= new FormData();
+    formData.append('photo', data.photo);
+    formData.append('userid', data.userid);
+    formData.append('insttype', data.insttype);
+    formData.append('location', data.location);
+    formData.append('community', data.location);
+    formData.append('institutionName', data.institutionName);
+    formData.append('phone', data.phone);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('other', data.other);
+    formData.append('userType','institution');
     
-    let response=await axios.post('http://localhost:4000/register',{...data,userType:'institution'})
+    let response=await axios.post('http://localhost:4000/register',formData, {
+      headers: {
+        'Content-Type' : 'multipart/form-data'
+      }
+    })
     console.log(response);
   }
 
@@ -24,8 +48,12 @@ export const RegInst = () => {
    <div className='flex'> 
   </div>
   <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>
+     <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-    <input type="text" name="id" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+    <input type="text" name="userid" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
   </div>
   <div className="mb-5">
    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institution Type</label>

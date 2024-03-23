@@ -4,6 +4,11 @@ import axios from 'axios'
 
 export const RegIncome = () => {
   const [data,setData]=useState('')
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
 
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
@@ -11,8 +16,22 @@ export const RegIncome = () => {
 
   let handleSubmit=async  (event)=>{
     event.preventDefault()
+    let formData = new FormData();
+    formData.append('photo', data.photo);
+    formData.append('departmentName', data.departmentName);
+    formData.append('location', data.location);
+    formData.append('phone', data.phone);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('other', data.other);
+    formData.append('userid', data.userid);
+    formData.append('userType','incometax')
 
-    let response=await axios.post('http://localhost:4000/register',{...data,userType:'incometax'})
+    let response=await axios.post('http://localhost:4000/register',formData, {
+      headers: {
+        'Content-Type' : 'multipart/form-data'
+      }
+    })
    console.log(response)
   }
 
@@ -24,6 +43,10 @@ export const RegIncome = () => {
    
   </div>
   <div className="mb-5">
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+    <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
    <label for="password"  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Name</label>
 
       <select name="departmentName" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
@@ -34,7 +57,7 @@ export const RegIncome = () => {
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-    <input type="text" name="id" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+    <input type="text" name="userid" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
   </div>
   <div className="mb-5">
     <label for="password"  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>

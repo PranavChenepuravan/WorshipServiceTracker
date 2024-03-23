@@ -35,6 +35,7 @@ import { InstArchaeologyList } from './Institution/InstArchaeologyList';
 import { InstDonationList } from './Institution/InstDonationList';
 import { InstProfile } from './Institution/InstProfile';
 import { InstProfileEdit } from './Institution/InstProfileEdit';
+import { InstPreachList } from './Institution/InstPreachList';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -85,6 +86,7 @@ import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -123,6 +125,7 @@ root.render(
           <Route path="instincometxlist" element={<InstIncomeTaxList/>}/>
           <Route path="instarchlist" element={<InstArchaeologyList/>}/>
           <Route path="instdonlist" element={<InstDonationList/>}/>
+          <Route path="instpreachlist" element={<InstPreachList/>}/>
 
 
         </Route>

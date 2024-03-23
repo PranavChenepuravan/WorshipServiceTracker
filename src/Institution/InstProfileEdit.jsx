@@ -40,7 +40,7 @@ export const InstProfileEdit = () => {
         {/* <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'> */}
     </div>
     <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-        <div><img src={boy} alt="" className='object-cover object-center h-32' /></div>
+        <div><img src={`http://localhost:4000/uploads/${userData.photo}`} alt="" className='object-cover object-center h-32' /></div>
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
     {/* <div class="text-center mt-2">
@@ -50,7 +50,7 @@ export const InstProfileEdit = () => {
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
         <div>ID :  </div>
-        <div><input type="text" name="id" id="user_name"  className=" w-[20%] ml-[28%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.id}  /></div>
+        <div><input type="text" name="userid" id="user_name"  className=" w-[20%] ml-[28%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.userid}  /></div>
       </div>
       <div className='flex'> 
         <div>Name :  </div>
