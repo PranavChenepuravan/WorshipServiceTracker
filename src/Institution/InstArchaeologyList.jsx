@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react'
-import str from '../Institution/Rating.jpeg'
 import axios from 'axios'
 
 export const InstArchaeologyList = () => {
