@@ -1,7 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import str from '../Institution/Rating.jpeg'
+import axios from 'axios'
 
 export const InstArchaeologyList = () => {
+
+    let id=localStorage.getItem('id')
+    const [data,setdata]=useState([''])
+    const [refresh,setrefresh]=useState('')
+
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+            let response=await axios.get(`http://localhost:4000/institution/archaeological/${id}`)
+            console.log(response.data);
+            setdata(response.data)
+        }
+        fetchdata()
+    },[refresh])
   return (
     <>
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -45,37 +59,50 @@ export const InstArchaeologyList = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className=''>
+            {data.map((item,index)=>(
+                <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+                    <td>
+                        {item.archaeological ? item.archaeological.wealthid : "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.wealthname : "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.type : "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.size: "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.weight : "Wealth data is not available"}
+                    </td> 
+
+                    <td>
+                        {item.archaeological ? item.archaeological.eraofmanufacture : "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.madein : "Wealth data is not available"}
+                    </td> 
+                    <td>
+                        {item.archaeological ? item.archaeological.material: "Wealth data is not available"}
+                    </td>
+                    <td>
+                        {item.archaeological ? item.archaeological.antiquevalue : "Wealth data is not available"}
+                    </td>
+                    <td>
+                        {item.archaeological ? item.archaeological.heritage : "Wealth data is not available"}
+                    </td>
+                    <td>
+                        {item.archaeological ? item.archaeological.sanction : "Wealth data is not available"}
+                    </td>
+                    <td>
+                        {item.archaeological ? item.archaeological.rating : "Wealth data is not available"}
+                    </td>
+                </tr>
+            ))}
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 mx-[-30%]">
-            <td>WLT001</td>
-                <td>Flag Stand</td>
-                <td>External Property</td>
-                <td>12 Meter</td>
-                <td>100 Kg</td>
-                <td>AD-700</td>
-                <td>Kambodia</td>
-                <td>Bronze</td>
-                <td>1.2 CR</td>
-                <td>Using for celebrate specila occasions</td>
-                <td><div className='bg-green-500 text-white w-[70px] text-center'>Approved</div></td>  
-                <td><div><img src={str} alt="" className='h-[35px]' /></div></td> 
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td>WLT002</td>
-                <td>Chinees Mirror</td>
-                <td>Internal Property</td>
-                <td>40 cm Area</td>
-                <td> 800g</td>
-                <td>AD-1100</td>
-                <td>China</td>
-                <td>Cley</td>
-                <td> 2 Lake </td>
-                <td>Using for worship </td>
-                <td><div className='bg-red-600 text-white w-[70px] text-center'>Rejected</div></td>
-                <td></td> 
-            </tr>
-            
-            
+            </tr> 
         </tbody>
     </table>
     </>
