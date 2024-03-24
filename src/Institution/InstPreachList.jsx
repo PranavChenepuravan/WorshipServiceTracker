@@ -33,9 +33,6 @@ export const InstPreachList = () => {
                     Photo
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Preach Id
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Topic
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -56,13 +53,27 @@ export const InstPreachList = () => {
             {data.map((item,index)=>(
               <tr>
                 <td class="px-6 py-4">
-                   {item.preach.classId}
+                    {}
+                   {item.preach ? item.preach.classId : "Preacher Not Available"}
                 </td>
                 <td class="px-6 py-4">
-                   {item.preach.preacher}
+                   {item.preach ? item.preach.preacher : "Preacher Not Available"}
                 </td>
                 <td class="px-6 py-4">
-                   
+                {/* {item.preach ? (<img src={`http://localhost:4000/institution/preach/${item.preach.photo}`} alt="Preacher Image" /> ) :
+                 (<span>Preacher Not Available</span>)} */}
+                </td>
+                <td class="px-6 py-4">
+                   {item.preach ? item.preach.topic : "Preacher Not Available"}
+                </td>
+                <td class="px-6 py-4">
+                   {item.preach ? item.preach.date : "Preacher Not Available"}
+                </td>
+                <td class="px-6 py-4">
+                   {item.preach ? item.preach.time : "Preacher Not Available"}
+                </td>
+                <td class="px-6 py-4">
+                   {item.preach ? item.preach.other : "Preacher Not Available"} 
                 </td>
               </tr>
             ))}
