@@ -76,6 +76,8 @@ import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
+import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
+
 
 
 
@@ -164,7 +166,7 @@ root.render(
         <Route path="/pilglayout" element={<PilgLayout/>}>
           <Route path="pilgprofile" element={<PilgProfile/>}/>
           <Route path="pilgprofileedit" element={<PilgProfileEdit/>}/>
-          <Route path="pilgbooking" element={<PilgrimBooking/>}/>
+          <Route path="pilgbooking/:id" element={<PilgrimBooking/>}/>
           <Route path="pilgbookingpay" element={<PilgBookingPay/>}/>
           <Route path="pilgbookinglist" element={<PilgBookingList/>}/>
           <Route path="pilgdonation" element={<PilgDonation/>}/>
@@ -177,6 +179,8 @@ root.render(
           <Route path="pilgphotosadd" element={<PilgPhotosAdd/>}/>
           <Route path="pilgreview" element={<PilgReview/>}/>
           <Route path="pilgreviewadd" element={<PilgReviewAdd/>}/>
+          <Route path="pilgbookinginst" element={<PilgBookingInst/>}/>
+
 
         </Route>
       </Routes>
