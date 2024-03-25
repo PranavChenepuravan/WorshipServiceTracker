@@ -49,6 +49,7 @@ import { IncomeDuty } from './IncomeTax/IncomeDuty';
 import { IncomeTaxInst2 } from './IncomeTax/IncomeTaxInst2';
 import { IncomeProfile } from './IncomeTax/IncomeProfile';
 import { IncomeProfileEdit } from './IncomeTax/IncomeProfileEdit';
+import { IncomeEmployeeList } from './IncomeTax/IncomeEmployeeList';
 
 import { ArchLayout } from './Archaeology/ArchLayout';
 import { ArchHeritage } from './Archaeology/ArchHeritage';
@@ -57,6 +58,7 @@ import { ArchDuty } from './Archaeology/ArchDuty';
 import { ArchWealth } from './Archaeology/ArchWealth';
 import { ArchProfile } from './Archaeology/ArchProfile';
 import { ArchProfileEdit } from './Archaeology/ArchProfileEdit';
+import { ArchEmployeeList } from './Archaeology/ArchEmployeeList';
 
 import { PilgLayout } from './Pilgrim/PilgLayout';
 import { PilgProfile } from './Pilgrim/PilgProfile';
@@ -74,6 +76,8 @@ import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
+
+
 
 
 
@@ -141,6 +145,8 @@ root.render(
           <Route path="incomeduty" element={<IncomeDuty/>}/>
           <Route path="incomeprofile" element={<IncomeProfile/>}/>
           <Route path="incomeprofileedit" element={<IncomeProfileEdit/>}/>
+          <Route path="incomeemployeelist" element={<IncomeEmployeeList/>}/>
+
         </Route>
 
         <Route path="/archlayout" element={<ArchLayout/>}>
@@ -151,6 +157,8 @@ root.render(
           <Route path="archwealth" element={<ArchWealth/>}/>
           <Route path="archprofile" element={<ArchProfile/>}/>
           <Route path="archprofileedit" element={<ArchProfileEdit/>}/>
+          <Route path="archemployeelist" element={<ArchEmployeeList/>}/>
+          
         </Route>
 
         <Route path="/pilglayout" element={<PilgLayout/>}>
