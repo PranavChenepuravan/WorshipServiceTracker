@@ -93,6 +93,7 @@ import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -169,7 +170,7 @@ root.render(
           <Route path="pilgbooking/:id" element={<PilgrimBooking/>}/>
           <Route path="pilgbookingpay" element={<PilgBookingPay/>}/>
           <Route path="pilgbookinglist" element={<PilgBookingList/>}/>
-          <Route path="pilgdonation" element={<PilgDonation/>}/>
+          <Route path="pilgdonation/:id" element={<PilgDonation/>}/>
           <Route path="pilgdonationmoney" element={<PilgDonationMoney/>}/>
           <Route path="pilgdonationlistmoney" element={<PilgDonationListMoney/>}/>
           <Route path="pilgdonationother" element={<PilgDonationOther/>}/>

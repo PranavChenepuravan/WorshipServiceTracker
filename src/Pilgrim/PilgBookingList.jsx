@@ -1,6 +1,20 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 export const PilgBookingList = () => {
+
+    let id=localStorage.getItem('id')
+    const [data,setData]=useState([''])
+    const [refresh,setrefresh]=useState(false)
+
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+             let response=await axios.get(`http://localhost:4000/pilgrim/booking/${id}`)
+             console.log(response.data);
+             setData(response.data)
+        }
+        fetchdata()
+    },[refresh])
   return (
     <>
     <div className='flex flex-col'>
@@ -43,41 +57,37 @@ export const PilgBookingList = () => {
             </tr>
         </thead>
         <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td className="px-6 py-4">
-                    VSBK001
-                </td>
-                <td className="px-6 py-4">
-                    Temple
-                </td>
-                <td className="px-6 py-4">
-                    Ramanatukara
-                </td>
-                <td className="px-6 py-4">
-                    Sree Muruka Temple
-                </td>
-                <td className="px-6 py-4">
-                    9999099099
-                </td>
-                <td className="px-6 py-4">
-                    srremk@gmail.com
-                </td>
-                <td className="px-6 py-4">
-                    18/04/2024
-                </td>
-                <td className="px-6 py-4">
-                    12:00
-                </td>
-                <td className="px-6 py-4">
-                    1250
-                </td>
-                <td className="px-6 py-4">
-                <div><button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Cancel</button></div>
-                <div><button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Edit</button></div>
-                </td>
-                
-            </tr>
-   
+            {data.map((item,index)=>(
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td>
+                       {item.pilgrimId}
+                    </td>
+                    <td>
+                       {item.usersInfo?.insttype}
+                    </td>
+                    <td>
+                        {item.usersInfo?.location}
+                    </td>
+                    <td>
+                        {item.usersInfo?.institutionName}
+                    </td>
+                    <td>
+                        {item.usersInfo?.phone}
+                    </td>
+                    <td>
+                        {item.usersInfo?.email}
+                    </td>
+                    <td>
+                        {item.date}
+                    </td>
+                    <td>
+                        {item.time}
+                    </td>
+                    <td>
+                        {item.amount}
+                    </td>
+                </tr>
+            ))}
         </tbody>
     </table>
 </div>
