@@ -1,6 +1,20 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import axios from 'axios'
 
 export const PilgDonationListAll = () => {
+
+    let id=localStorage.getItem('id')
+    const [data,setData]=useState([''])
+    const [refresh,setrefresh]=useState(false)
+
+    useEffect(()=>{
+        let fetchdata=async ()=>{
+            let response=await axios.get(`http://localhost:4000/pilgrim/pilgrimdonation/${id}`)
+            console.log(response.data);
+            setData(response.data)
+        }
+        fetchdata()
+    },[refresh])
   return (
     <>
      <div className='text-3xl text-gray-400'>Money</div>
@@ -50,47 +64,49 @@ export const PilgDonationListAll = () => {
             </tr>
         </thead>
         <tbody>
-            
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td className="px-6 py-4">
-                    DNM001
+            {data.map((item,index)=>(
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td>
+                  {item._id}
                 </td>
-                <td className="px-6 py-4">
-                    TM001
+                <td>
+                  {item.institutionId}
                 </td>
-                <td className="px-6 py-4">
-                    Temple
+                <td>
+                  {item.usersInfo?.insttype}
                 </td>
-                <td className="px-6 py-4">
-                    Sree Muruka
+                <td>
+                  {item.usersInfo?.institutionName}
                 </td>
-                <td className="px-6 py-4">
-                    Ramanatukara
+                <td>
+                  {item.usersInfo?.location}
                 </td>
-                <td className="px-6 py-4">
-                    9999099099
+                <td>
+                  {item.usersInfo?.phone}
                 </td>
-                <td className="px-6 py-4">
-                    srremk@gmail.com
+                <td>
+                  {item.usersInfo?.email}
                 </td>
-                <td className="px-6 py-4">
-                    18/04/2024
+                <td>
+                  {item.date}
                 </td>
-                <td className="px-6 py-4">
-                    12:00
+                <td>    
+                  {item.time}
                 </td>
-                <td className="px-6 py-4">
-                    1250
+                <td>    
+                  {item.amount}
                 </td>
-                <td className="px-6 py-4">
-                    125
+                <td>
+                    
                 </td>
+
                 <td className="px-6 py-4">
                 <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Bill</button>
                 </td>
                 
             </tr>
-   
+            ))}
+
         </tbody>
     </table>
     
