@@ -146,13 +146,10 @@ export const PilgDonationListAll = () => {
                     Date 
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Item Details
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Weight
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Worth
+                    Material
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Tax
@@ -163,50 +160,50 @@ export const PilgDonationListAll = () => {
             </tr>
         </thead>
         <tbody>
-            
+        {data.map((item,index)=>(
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td className="px-6 py-4">
-                    DNM001
+                <td>
+                  {item._id}
                 </td>
-                <td className="px-6 py-4">
-                    TM001
+                <td>
+                  {item.institutionId}
                 </td>
-                <td className="px-6 py-4">
-                    Temple
+                <td>
+                  {item.usersInfo?.insttype}
                 </td>
-                <td className="px-6 py-4">
-                    Sree Muruka
+                <td>
+                  {item.usersInfo?.institutionName}
                 </td>
-                <td className="px-6 py-4">
-                    Ramanatukara
+                <td>
+                  {item.usersInfo?.location}
                 </td>
-                <td className="px-6 py-4">
-                    9999099099
+                <td>
+                  {item.usersInfo?.phone}
                 </td>
-                <td className="px-6 py-4">
-                    srremk@gmail.com
+                <td>
+                  {item.usersInfo?.email}
                 </td>
-                <td className="px-6 py-4">
-                    18/04/2024
+                <td>
+                  {item.date}
                 </td>
-                <td className="px-6 py-4">
-                    Golen Flag Stand
+                <td>
+                    {item.weight}
                 </td>
-                <td className="px-6 py-4">
-                    12Kg
+                <td>
+                    {item.weight}
                 </td>
-                <td className="px-6 py-4">
-                    7 Crore
+                <td>
+                    {item.material}
                 </td>
-                <td className="px-6 py-4">
-                    2 Crore
+                <td>
+                    {item.tax}
                 </td>
-                <td className="px-6 py-4">
-                    Done
+                <td>
+                    {item.status}
                 </td>
-                
-                
+
             </tr>
+            ))}
    
         </tbody>
     </table>
