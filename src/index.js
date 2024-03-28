@@ -71,12 +71,13 @@ import { PilgDonationMoney } from './Pilgrim/PilgDonationMoney';
 import { PilgDonationListMoney } from './Pilgrim/PilgDonationListMoney';
 import { PilgDonationOther } from './Pilgrim/PilgDonationOther';
 import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
-import {PilgDonationListAll} from './Pilgrim/PilgDonationListAll';
+import { PilgDonationListAll } from './Pilgrim/PilgDonationListAll';
 import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
 import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
 import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
+import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 
 
 
@@ -179,8 +180,9 @@ root.render(
           <Route path="pilgphotos" element={<PilgPhotos/>}/>
           <Route path="pilgphotosadd" element={<PilgPhotosAdd/>}/>
           <Route path="pilgreview" element={<PilgReview/>}/>
-          <Route path="pilgreviewadd" element={<PilgReviewAdd/>}/>
+          <Route path="pilgreviewadd/:id" element={<PilgReviewAdd/>}/>
           <Route path="pilgbookinginst" element={<PilgBookingInst/>}/>
+          <Route path="pilgreviewinst" element={<PilgReviewInst/>}/>
 
 
         </Route>
