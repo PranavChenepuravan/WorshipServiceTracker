@@ -23,7 +23,7 @@ export const PilgReviewAdd = () => {
           console.log(response.data);
           setUserData(response.data)
           let response1=await axios.get(`http://localhost:4000/pilgrim/viewReviews/${id}`)
-          console.log(response1.data);
+          console.log(response1.data,'as');
           setReviews(response1.data)
         }
         fetchdata()
@@ -114,8 +114,8 @@ export const PilgReviewAdd = () => {
   
 
 
-<div class="bg-gray-950/25 flex justify-center  min-h-[40%] w-[50%] ">
-    <div class="md:w-4/5 w-3/4 px-5 flex flex-col gap-2 p-5 bg-gray-800 text-white">
+<div class=" flex justify-center  min-h-[40%] w-[50%] ">
+    <div class="md:w-4/5 w-3/4 px-5 flex flex-col gap-2 p-5 bg-red-950/50 text-white">
         <h1 class="py-5 text-lg">Reviews</h1>
         <div class="flex bg-gray-600 bg-opacity-20 border border-gray-200 rounded-md">
             <ion-icon class="py-4 p-3" name="search-outline"></ion-icon>
@@ -124,11 +124,17 @@ export const PilgReviewAdd = () => {
         
         {reviews?.map((item, index)=>(   
         <div class="flex flex-col gap-3 mt-14">
-            <div class="flex flex-col gap-4 bg-gray-700 p-4">
-                {item?.userInfo?.name}
+            <div class="flex flex-col gap-4 bg-white p-4">
+                <div className='flex flex-col text-black' >
+                  <p>{item?.pilgrim?.name}</p>
+                  <p>{item?.pilgrim?.location}</p>
+                  <p>{item?.pilgrim?.email}</p>
+                </div>
+                <p className='text-2xl text-black'>REVIEW</p>
                 <div class="flex justify justify-between">
-                    <div class="flex gap-2">
-                        <span>{item.review}</span>
+                    <div class="flex gap-2 flex-col text-black">
+
+                        <span>{item?.reviews?.review}</span>
                     </div>
                     {/* <div class="flex p-1 gap-1 text-orange-300">
                         <ion-icon name="star"></ion-icon>
@@ -139,12 +145,11 @@ export const PilgReviewAdd = () => {
                     </div> */}
                 </div>
 
-                <div>
+                <div className='text-black'>
                   Rating : 
-                    {item.rating}
+                    {item?.reviews?.rating}
                 </div>
             </div>
-            
         </div>
         ))}
     </div>
