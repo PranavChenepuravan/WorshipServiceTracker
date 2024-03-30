@@ -39,6 +39,7 @@ import { InstPreachList } from './Institution/InstPreachList';
 import { InstFestival } from './Institution/InstFestival';
 import { InstFestivalList } from './Institution/InstFestivalList';
 import { InstFestivalEvents } from './Institution/InstFestivalEvents';
+import { InstFestivalEventsList } from './Institution/InstFestivalEventsList';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -101,6 +102,7 @@ import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -143,6 +145,7 @@ root.render(
           <Route path="instfestival" element={<InstFestival/>}/>
           <Route path="instfestivallist" element={<InstFestivalList/>}/>
           <Route path="instfestivalevents/:id" element={<InstFestivalEvents/>}/>
+          <Route path="instfestivaleventslist/:id" element={<InstFestivalEventsList/>}/>
 
 
         </Route>

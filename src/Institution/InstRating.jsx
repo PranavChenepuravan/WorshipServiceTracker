@@ -1,48 +1,16 @@
-import React,{ useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import str from '../Institution/Rating.jpeg'
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const InstRating = () => {
     const [currentPage, setCurrentPage] = useState(0);
       const itemsPerPage = 2; // Adjust the number of items per page as needed
+      const [reviews, setReviews]=useState([''])
 
-      const data = [
-        {
-          pilgrimId: 'APT01',
-          pilgrimName: 'Yamini',
-          place: 'Kottayam',
-          phone:'1234567890',
-          email:'yamini@gmail.com',
-          dateAndtime:'13/02/2024 10:40 am',
-          otherDetails:'',
-          rating:<img src={str} alt="" className='h-[35px]' />,
-          
-        },
-        {
-            pilgrimId: 'APT02',
-            pilgrimName: 'Prakash',
-            place: 'Kottayam',
-            phone:'1234567890',
-            email:'prak@gmail.com',
-            dateAndtime:'13/02/2024 10:40 am',
-            otherDetails:'',
-            rating:'',
-          },
-          {
-            pilgrimId: 'APT01',
-            pilgrimName: 'Dannya',
-            place: 'Kottayam',
-            phone:'1234567890',
-            email:'dan@gmail.com',
-            dateAndtime:'13/02/2024 10:40 am',
-            otherDetails:'',
-            rating:<img src={str} alt="" className='h-[35px]' />,
-          },
-        
-        
-        // Add more dummy data as needed
-      ];
-      const pageCount = Math.ceil(data.length / itemsPerPage);
+     
+      const pageCount = Math.ceil(reviews.length / itemsPerPage);
 
       const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
@@ -50,7 +18,37 @@ export const InstRating = () => {
 
       const indexOfLastItem = (currentPage + 1) * itemsPerPage;
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+      const currentItems = reviews.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+      const [data1,setData]=useState([''])
+      const [userData,setUserData]=useState('')
+      const [refresh,setrefresh]=useState(false)
+      let {id}=localStorage.getItem('id')
+      
+
+      useEffect(()=>{
+        let fetchdata=async ()=>{
+          // let response=await axios.get(`http://localhost:4000/pilgrim/viewreviewinstitution/${id}`)
+          // console.log(response.data);
+          // setUserData(response.data)
+          let response1=await axios.get(`http://localhost:4000/pilgrim/viewReviews/${id}`)
+          console.log(response1.data1,'as');
+          setReviews(response1.data1)
+        }
+        fetchdata()
+      },[refresh])
+
+      let handleChange=(event)=>{
+        setData({...data1,[event.target.name]:event.target.value})
+      }
+
+    
+
+
+
+
 
   return (
     <div className="  overflow-x-auto  ">
@@ -118,7 +116,7 @@ export const InstRating = () => {
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item.pilgrimId}
               </td>
-              <td className="px-6 py-4">{item.pilgrimName}</td>
+              <td className="px-6 py-4">{item?.pilgrim?.name}</td>
               <td className="px-6 py-4">{item.place}</td>
               <td className="px-6 py-4">{item.phone}</td>
               <td className="px-6 py-4">{item.email}</td>
