@@ -78,7 +78,7 @@ import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
 import { PilgDonationListAll } from './Pilgrim/PilgDonationListAll';
 import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
-import { PilgReview } from './Pilgrim/PilgReview';
+// import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
 import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
@@ -132,7 +132,7 @@ root.render(
           <Route path="instincometx" element={<InstIncomeTax/>}/>
           <Route path="instarch" element={<InstArchaeology/>}/>
           <Route path="instdon" element={<InstDonation/>}/>
-          <Route path="instrating" element={<InstRating/>}/>
+          <Route path="instrating/:id" element={<InstRating/>}/>
           <Route path="instphoto" element={<InstPhoto/>}/>
           <Route path="instprofile" element={<InstProfile/>}/>
           <Route path="instprofileedit" element={<InstProfileEdit/>}/>
@@ -191,7 +191,7 @@ root.render(
           <Route path="pilgdonationlistall" element={<PilgDonationListAll/>}/>
           <Route path="pilgphotos" element={<PilgPhotos/>}/>
           <Route path="pilgphotosadd" element={<PilgPhotosAdd/>}/>
-          <Route path="pilgreview" element={<PilgReview/>}/>
+          {/* <Route path="pilgreview" element={<PilgReview/>}/> */}
           <Route path="pilgreviewadd/:id" element={<PilgReviewAdd/>}/>
           <Route path="pilgbookinginst" element={<PilgBookingInst/>}/>
           <Route path="pilgreviewinst" element={<PilgReviewInst/>}/>

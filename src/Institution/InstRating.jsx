@@ -22,31 +22,23 @@ export const InstRating = () => {
 
 
 
-      const [data1,setData]=useState([''])
+      const[data,setData]=useState([''])
       const [userData,setUserData]=useState('')
       const [refresh,setrefresh]=useState(false)
-      let {id}=localStorage.getItem('id')
-      
+      let pilgrimIds=localStorage.getItem('id')
+      let {id}=useParams()
 
       useEffect(()=>{
         let fetchdata=async ()=>{
-          // let response=await axios.get(`http://localhost:4000/pilgrim/viewreviewinstitution/${id}`)
-          // console.log(response.data);
-          // setUserData(response.data)
+          let response=await axios.get(`http://localhost:4000/pilgrim/viewreviewinstitution/${id}`)
+          console.log(response.data);
+          setUserData(response.data)
           let response1=await axios.get(`http://localhost:4000/pilgrim/viewReviews/${id}`)
-          console.log(response1.data1,'as');
-          setReviews(response1.data1)
+          console.log(response1.data,'as');
+          setReviews(response1.data)
         }
         fetchdata()
       },[refresh])
-
-      let handleChange=(event)=>{
-        setData({...data1,[event.target.name]:event.target.value})
-      }
-
-    
-
-
 
 
 
@@ -71,10 +63,7 @@ export const InstRating = () => {
                     Email
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Date & Time
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Other Details
+                    Review
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Rating
@@ -111,18 +100,23 @@ export const InstRating = () => {
         </tbody> */}
 
 <tbody>
-          {currentItems.map((item, index) => (
+          {currentItems?.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item.pilgrimId}
+                {item?.pilgrim?._id}
               </td>
               <td className="px-6 py-4">{item?.pilgrim?.name}</td>
-              <td className="px-6 py-4">{item.place}</td>
+              <td className="px-6 py-4">{item?.pilgrim?.location}</td>
+              <td className="px-6 py-4">{item?.pilgrim?.phone}</td>
+              <td className="px-6 py-4">{item?.pilgrim?.email}</td>
+              <td className="px-6 py-4">{item?.reviews?.review}</td>
+              <td className="px-6 py-4">{item?.reviews?.rating}</td>
+              {/* <td className="px-6 py-4">{item.place}</td>
               <td className="px-6 py-4">{item.phone}</td>
               <td className="px-6 py-4">{item.email}</td>
               <td className="px-6 py-4">{item.dateAndtime}</td>
               <td className="px-6 py-4">{item.otherDetails}</td> 
-              <td className="px-6 py-4">{item.rating}</td>
+              <td className="px-6 py-4">{item.rating}</td> */}
               
             </tr>
           ))}
