@@ -1,48 +1,65 @@
-import React,{ useState } from 'react'
+import React,{ useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const InstVisit = () => {
     const [currentPage, setCurrentPage] = useState(0);
       const itemsPerPage = 2; // Adjust the number of items per page as needed
 
-      const data = [
-        {
-          pilgrimId: 'APT01',
-          pilgrimName: 'Yamini',
-          place: 'Kottayam',
-          phone:'1234567890',
-          email:'yamini@gmail.com',
-          dateAndtime:'13/02/2024 10:40 am',
-          otherDetails:'',
-          amount:'1200',
-          tax:'120'
-        },
-        {
-            pilgrimId: 'APT02',
-            pilgrimName: 'Prakash',
-            place: 'Kottayam',
-            phone:'1234567890',
-            email:'prak@gmail.com',
-            dateAndtime:'13/02/2024 10:40 am',
-            otherDetails:'',
-            amount:'1200',
-            tax:'120'
-          },
-          {
-            pilgrimId: 'APT01',
-            pilgrimName: 'Dannya',
-            place: 'Kottayam',
-            phone:'1234567890',
-            email:'dan@gmail.com',
-            dateAndtime:'13/02/2024 10:40 am',
-            otherDetails:'',
-            amount:'1200',
-            tax:'120'
-          },
+      let id=localStorage.getItem('id')
+      
+      const [data,setData]=useState([''])
+      const [refresh,setrefresh]=useState(false)
+
+      useEffect(()=>{
+        let fetchdata=async ()=>{
+             let response=await axios.get(`http://localhost:4000/institution/visitingBooking/${id}`)
+             console.log(response.data);
+             setData(response.data)
+        }
+        fetchdata()
+    },[refresh])
+      
+
+      // const data = [
+      //   {
+      //     pilgrimId: 'APT01',
+      //     pilgrimName: 'Yamini',
+      //     place: 'Kottayam',
+      //     phone:'1234567890',
+      //     email:'yamini@gmail.com',
+      //     dateAndtime:'13/02/2024 10:40 am',
+      //     otherDetails:'',
+      //     amount:'1200',
+      //     tax:'120'
+      //   },
+      //   {
+      //       pilgrimId: 'APT02',
+      //       pilgrimName: 'Prakash',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'prak@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
+      //     {
+      //       pilgrimId: 'APT01',
+      //       pilgrimName: 'Dannya',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'dan@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
         
         
-        // Add more dummy data as needed
-      ];
+      //   // Add more dummy data as needed
+      // ];
       const pageCount = Math.ceil(data.length / itemsPerPage);
 
 
@@ -76,10 +93,10 @@ export const InstVisit = () => {
                     Email
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Date & Time
+                    Date
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Other Details
+                    Time
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Amount
@@ -126,16 +143,16 @@ export const InstVisit = () => {
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item.pilgrimId}
+                {item?.bookings?.pilgrimId}
               </td>
-              <td className="px-6 py-4">{item.pilgrimName}</td>
-              <td className="px-6 py-4">{item.place}</td>
-              <td className="px-6 py-4">{item.phone}</td>
-              <td className="px-6 py-4">{item.email}</td>
-              <td className="px-6 py-4">{item.dateAndtime}</td>
-              <td className="px-6 py-4">{item.otherDetails}</td> 
-              <td className="px-6 py-4">{item.amount}</td>
-              <td className="px-6 py-4">{item.tax}</td>
+              <td className="px-6 py-4">{item?.pilgrims?.name}</td>
+              <td className="px-6 py-4">{item?.pilgrims?.location}</td>
+              <td className="px-6 py-4">{item?.pilgrims?.phone}</td>
+              <td className="px-6 py-4">{item?.pilgrims?.email}</td>
+              <td className="px-6 py-4">{item?.bookings?.date}</td>
+              <td className="px-6 py-4">{item?.bookings?.time}</td> 
+              <td className="px-6 py-4">{item?.bookings?.amount}</td>
+              <td className="px-6 py-4">{item?.bookings?.tax}</td>
             </tr>
           ))}
         </tbody>

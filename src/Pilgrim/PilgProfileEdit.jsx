@@ -26,9 +26,9 @@ export const PilgProfileEdit = () => {
   let handleSubmit=async(event)=>{
     event.preventDefault()
     setrefresh(!refresh)
-    // let response=await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
-    // console.log(response);
-    // setData('')
+    let response=await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
+    console.log(response);
+    setData('')
     const formData = new FormData();
   
     for (const key in data) {

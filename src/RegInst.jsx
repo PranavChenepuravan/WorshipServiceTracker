@@ -58,8 +58,8 @@ let handleChange=(event)=>{
   <div className="mb-5">
    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institution Type</label>
 
-      <select name="insttype" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-        <option value="" disabled>select type</option>
+      <select name="  " onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
+        <option value="" readonly>select type</option>
         <option value="temple">Temple</option>
         <option value="mosque">Mosque</option>
         <option value="church">Church</option>
@@ -69,7 +69,7 @@ let handleChange=(event)=>{
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
 
        <select name="location" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-         <option value="" disabled>select location</option>
+         <option value="" >select location</option>
          <option value="calicut">Calicut</option>
          <option value="malappuram">Malappuram</option>
          <option value="kannur">Kannur</option>
@@ -79,7 +79,7 @@ let handleChange=(event)=>{
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Community Type</label>
         <select name="community" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-         <option value="" disabled>select community</option>
+         <option value="" >select community</option>
          <option value="hindu">Hindu</option>
          <option value="islam">Islam</option>
          <option value="christian">Christian</option>

@@ -14,6 +14,10 @@ import { Navbar } from './Component/Navbar';
 import { ViewIncomeTax } from './Admin/ViewIncomeTax';
 import { ViewArchaeology } from './Admin/ViewArchaeology';
 import { ViewReport } from './Admin/ViewReport';
+import { AdminInstDetailPage } from './Admin/AdminInstDetailPage';
+
+
+
 import { RegisterCommon } from './RegisterCommon';
 import { RegInst } from './RegInst';
 import { RegIncome } from './RegIncome';
@@ -89,6 +93,7 @@ import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -109,12 +114,14 @@ root.render(
           <Route path="viewincometax" element={<ViewIncomeTax/>}/>
           <Route path="viewarchaeology" element={<ViewArchaeology/>}/>
           <Route path="viewreport" element={<ViewReport/>}/>
+          <Route path="admininstdetailpage/:id" element={<AdminInstDetailPage/>}/>
+
         </Route>
 
         <Route path="/instlayout" element={<InstLayout />}>
           <Route path="instinstruction" element={<InstInstruction/>}/>
           <Route path="instpreach" element={<InstPreach/>}/>
-          <Route path="instvisit" element={<InstVisit/>}/>
+          <Route path="instvisit/:id" element={<InstVisit/>}/>
           <Route path="instincometx" element={<InstIncomeTax/>}/>
           <Route path="instarch" element={<InstArchaeology/>}/>
           <Route path="instdon" element={<InstDonation/>}/>
