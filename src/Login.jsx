@@ -27,19 +27,24 @@ const Login = () => {
                 navigate('/admin')
             }
             else if(response.data.userType=='archaeology'){
-                navigate('/archlayout')
+                if(response.data.status=='approved'){
+                    navigate('/archlayout')
+                }
             }
             else if(response.data.userType=='incometax'){
-                navigate('/incomelayout')
-                
+                if(response.data.status=='approved'){
+                    navigate('/incomelayout')
+                }    
             }
             else if(response.data.userType=='institution'){
-                navigate('/instlayout')
-                
+                if(response.data.status=='approved'){
+                    navigate('/instlayout')
+                }
             }
             else if(response.data.userType=='pilgrim'){
-                navigate('/pilglayout')
-                
+                if(response.data.status=='approved'){
+                    navigate('/pilglayout')
+                }    
             }
             else{
                 

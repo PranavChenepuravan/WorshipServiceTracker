@@ -25,7 +25,8 @@ let handleSubmit=async (event)=>{
     formData.append('other',data.other);
     formData.append('photo',data.photo);
     formData.append('userid',data.userid);
-    formData.append('userType','pilgrim')
+    formData.append('userType','pilgrim');
+    formData.append('status','approved')
 
    let response=await axios.post('http://localhost:4000/register',formData, {
     headers: {
