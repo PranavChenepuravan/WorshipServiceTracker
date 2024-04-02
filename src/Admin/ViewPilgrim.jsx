@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export const ViewIncomeTax = () => {
+export const ViewPilgrim = () => {
     const [currentPage, setCurrentPage] = useState(0);
       const itemsPerPage = 2; // Adjust the number of items per page as needed
 
@@ -15,7 +15,7 @@ export const ViewIncomeTax = () => {
 
       useEffect(()=>{
         let fetchdata=async ()=>{
-          let response=await axios.get('http://localhost:4000/admin/viewincomeprofile/')
+          let response=await axios.get('http://localhost:4000/admin/viewpilgprofile/')
           console.log(response.data);
           setUserData(response.data)
         }
@@ -87,7 +87,7 @@ export const ViewIncomeTax = () => {
                     Id
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Type
+                    Name
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Place
@@ -102,6 +102,9 @@ export const ViewIncomeTax = () => {
                     Photo
                 </th>
                 <th scope="col" className="px-6 py-3">
+                    Other Detaails
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -145,13 +148,14 @@ export const ViewIncomeTax = () => {
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item?._id}
               </td>
-              <td className="px-6 py-4">{item?.departmentName}</td>
+              <td className="px-6 py-4">{item?.name}</td>
               <td className="px-6 py-4">{item?.location}</td>
               <td className="px-6 py-4">{item?.phone}</td>
               <td className="px-6 py-4">{item?.email}</td>
+              <td className="px-6 py-4">{item?.other}</td>
               <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
               <div className='flex'>
-              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/admin/admindeptdetailpage/${item?._id}`}>View</Link></button>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/admin/adminpilgdetailpage/${item?._id}`}>View</Link></button>
               </div>
             </tr>
           ))}
@@ -176,4 +180,4 @@ export const ViewIncomeTax = () => {
 
   )
 }
-export default ViewIncomeTax
+export default ViewPilgrim

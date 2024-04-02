@@ -1,106 +1,179 @@
-import React from 'react'
+import React,{ useState,useEffect } from 'react'
+import ReactPaginate from 'react-paginate';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const ViewArchaeology = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+      const itemsPerPage = 2; // Adjust the number of items per page as needed
+
+      let id=localStorage.getItem('id')
+      
+      const [data,setUserData]=useState([''])
+      const [refresh,setrefresh]=useState(false)
+
+      useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get('http://localhost:4000/admin/viewarchprofile/')
+          console.log(response.data);
+          setUserData(response.data)
+        }
+        fetchdata()
+      },[refresh])
+
+      
+
+      // const data = [
+      //   {
+      //     pilgrimId: 'APT01',
+      //     pilgrimName: 'Yamini',
+      //     place: 'Kottayam',
+      //     phone:'1234567890',
+      //     email:'yamini@gmail.com',
+      //     dateAndtime:'13/02/2024 10:40 am',
+      //     otherDetails:'',
+      //     amount:'1200',
+      //     tax:'120'
+      //   },
+      //   {
+      //       pilgrimId: 'APT02',
+      //       pilgrimName: 'Prakash',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'prak@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
+      //     {
+      //       pilgrimId: 'APT01',
+      //       pilgrimName: 'Dannya',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'dan@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
+        
+        
+      //   // Add more dummy data as needed
+      // ];
+      const pageCount = Math.ceil(data.length / itemsPerPage);
+
+
+      const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+    
+      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+      
   return (
-    <>
-             {/* <div className='table2 bg-gray-600 inputbox3 mx-[10%] '> */}
-     {/* <div className='p-15px text-black'> */}
-     
-<div className='z-[70px] '>
-<div class="relative overflow-x-auto w-auto flex">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    
+
+<div className="overflow-x-auto  ">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Dept Id
+                <th scope="col" className="px-6 py-3">
+                    Id
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Dept Name
+                <th scope="col" className="px-6 py-3">
+                    Type
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                     Place
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                     Phone
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                     Email
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Approve / Reject
+                <th scope="col" className="px-6 py-3">
+                    Photo
+                </th>
+                <th scope="col" className="px-6 py-3">
+
                 </th>
             </tr>
         </thead>
+        {/* <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    APT001
+                </th>
+                <td className="px-6 py-4">
+                    Pushkaran
+                </td>
+                <td className="px-6 py-4">
+                    Kozhikode
+                </td>
+                <td className="px-6 py-4">
+                    9756654549
+                </td>
+                <td className="px-6 py-4">
+                    pusk@gmail.com
+                </td>
+                <td className="px-6 py-4">
+                    17/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+                <td className="px-6 py-4">
+                    3400
+                </td>
+                <td className="px-6 py-4">
+                    87
+                </td>
+                
+            </tr>
+            
+        </tbody> */}
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    AR001
-                </th>
-                <td class="px-6 py-4">
-                    Sub State
-                </td>
-                <td class="px-6 py-4">
-                    Eranakulam
-                </td>
-                <td class="px-6 py-4">
-                    2100964
-                </td>
-                <td class="px-6 py-4">
-                    erarch@gmail.com
-                </td>
-                <td class="px-6 py-4">
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Approve</button>
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reject</button>
-                </td>
+          {currentItems.map((item, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item?._id}
+              </td>
+              <td className="px-6 py-4">{item?.departmentName}</td>
+              <td className="px-6 py-4">{item?.location}</td>
+              <td className="px-6 py-4">{item?.phone}</td>
+              <td className="px-6 py-4">{item?.email}</td>
+              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
+              <div className='flex'>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/admin/admindeptdetailpage/${item?._id}`}>View</Link></button>
+              </div>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    AR002
-                </th>
-                <td class="px-6 py-4">
-                    State
-                </td>
-                <td class="px-6 py-4">
-                    Thiruvanandapuram
-                </td>
-                <td class="px-6 py-4">
-                    2100966
-                </td>
-                <td class="px-6 py-4">
-                    trarch@gmail.com
-                </td>
-                <td class="px-6 py-4">
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Approve</button>
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reject</button>
-                </td>
-            </tr><tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    AR003
-                </th>
-                <td class="px-6 py-4">
-                    Sub state
-                </td>
-                <td class="px-6 py-4">
-                    Bangaluru
-                </td>
-                <td class="px-6 py-4">
-                    2003960
-                </td>
-                <td class="px-6 py-4">
-                    brarch@gmail.com
-                </td>
-                <td class="px-6 py-4">
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Approve</button>
-                <button type="button" class="w-[35%] text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reject</button>
-                </td>
-            </tr>
+          ))}
         </tbody>
     </table>
+    <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
 </div>
 
-</div>
-
-    </>
   )
 }
 export default ViewArchaeology
