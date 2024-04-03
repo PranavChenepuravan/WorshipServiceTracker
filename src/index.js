@@ -46,6 +46,8 @@ import { InstFestivalList } from './Institution/InstFestivalList';
 import { InstFestivalEvents } from './Institution/InstFestivalEvents';
 import { InstFestivalEventsList } from './Institution/InstFestivalEventsList';
 import { InstArchHeritage } from './Institution/InstArchHeriatage';
+import { InstArchHeritageCertified } from './Institution/InstArchHeritageCertified';
+import { InstArchBypass } from './Institution/InstArchBypass';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -90,7 +92,7 @@ import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
-import InstArchHeritageCertified from './Institution/InstArchHeritageCertified';
+
 
 
 
@@ -150,6 +152,7 @@ root.render(
           <Route path="instfestivaleventslist/:id" element={<InstFestivalEventsList/>}/>
           <Route path="instarchheritage" element={<InstArchHeritage/>}/>
           <Route path="instarchheritagecertified" element={<InstArchHeritageCertified/>}/>
+          <Route path="instarchbypass" element={<InstArchBypass/>}/>
 
 
 
