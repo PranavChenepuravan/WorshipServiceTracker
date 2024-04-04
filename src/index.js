@@ -18,6 +18,9 @@ import { ViewReport } from './Admin/ViewReport';
 import { AdminInstDetailPage } from './Admin/AdminInstDetailPage';
 import { AdminDeptDetailPage } from './Admin/AdminDeptDetailPage';
 import { AdminPilgDetailPage } from './Admin/AdminPilgDetailPage';
+import { AdminTaxBypass } from './Admin/AdminTaxBypass';
+import { AdminDonationTax } from './Admin/AdminDonationTax';
+import { AdminBookingTax } from './Admin/AdminBookingTax';
 
 import { RegisterCommon } from './RegisterCommon';
 import { RegInst } from './RegInst';
@@ -50,6 +53,7 @@ import { InstArchHeritageCertified } from './Institution/InstArchHeritageCertifi
 import { InstArchBypass } from './Institution/InstArchBypass';
 import { InstIncomeTaxProperties } from './Institution/InstIncomeTaxProperties';
 import { InstIncomeTaxBypass } from './Institution/InstIncomeTaxBypass';
+import { InstIncomeTaxPropertiesList } from './Institution/InstIncomeTaxPropertiesList';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -94,7 +98,10 @@ import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
-import InstIncomeTaxPropertiesList from './Institution/InstIncomeTaxPropertiesList';
+
+
+
+
 
 
 
@@ -131,6 +138,9 @@ root.render(
           <Route path="admininstdetailpage/:id" element={<AdminInstDetailPage/>}/>
           <Route path="admindeptdetailpage/:id" element={<AdminDeptDetailPage/>}/>
           <Route path="adminpilgdetailpage/:id" element={<AdminPilgDetailPage/>}/>
+          <Route path="admintaxbypass" element={<AdminTaxBypass/>}/>
+          <Route path="admindonationtax" element={<AdminDonationTax/>}/>
+          <Route path="adminbookingtax" element={<AdminBookingTax/>}/>
 
         </Route>
 

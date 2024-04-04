@@ -51,9 +51,9 @@ export const PilgBookingList = () => {
                 <th scope="col" className="px-6 py-3">
                     Amount
                 </th>
-                <th scope="col" className="px-6 py-3">
-                    
-                </th>
+                {/* <th scope="col" className="px-6 py-3">
+                    Tax
+                </th> */}
             </tr>
         </thead>
         <tbody>
@@ -86,6 +86,9 @@ export const PilgBookingList = () => {
                     <td>
                         {item.amount}
                     </td>
+                    {/* <td>
+
+                    </td> */}
                 </tr>
             ))}
         </tbody>

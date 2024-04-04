@@ -55,11 +55,15 @@ export const PilgDonationListAll = () => {
                 <th scope="col" className="px-6 py-3">
                     Amount
                 </th>
-                <th scope="col" className="px-6 py-3">
+                {/* <th scope="col" className="px-6 py-3">
                     Tax
-                </th>
+                </th> */}
+
                 <th scope="col" className="px-6 py-3">
-                    
+                    Status
+                </th>
+                <th>
+
                 </th>
             </tr>
         </thead>
@@ -96,6 +100,9 @@ export const PilgDonationListAll = () => {
                 <td>    
                   {item.amount}
                 </td>
+                {/* <td>
+                    
+                </td> */}
                 <td>
                     
                 </td>
@@ -152,7 +159,7 @@ export const PilgDonationListAll = () => {
                     Material
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Tax
+                    Worth(In Cash)
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Status
