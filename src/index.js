@@ -48,6 +48,8 @@ import { InstFestivalEventsList } from './Institution/InstFestivalEventsList';
 import { InstArchHeritage } from './Institution/InstArchHeriatage';
 import { InstArchHeritageCertified } from './Institution/InstArchHeritageCertified';
 import { InstArchBypass } from './Institution/InstArchBypass';
+import { InstIncomeTaxProperties } from './Institution/InstIncomeTaxProperties';
+import { InstIncomeTaxBypass } from './Institution/InstIncomeTaxBypass';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -92,6 +94,9 @@ import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
+import InstIncomeTaxPropertiesList from './Institution/InstIncomeTaxPropertiesList';
+
+
 
 
 
@@ -153,6 +158,9 @@ root.render(
           <Route path="instarchheritage" element={<InstArchHeritage/>}/>
           <Route path="instarchheritagecertified" element={<InstArchHeritageCertified/>}/>
           <Route path="instarchbypass" element={<InstArchBypass/>}/>
+          <Route path="instincometaxproperties" element={<InstIncomeTaxProperties/>}/>
+          <Route path="instincometaxbypass" element={<InstIncomeTaxBypass/>}/>
+          <Route path="instincometaxpropertieslist" element={<InstIncomeTaxPropertiesList/>}/>
 
 
 
