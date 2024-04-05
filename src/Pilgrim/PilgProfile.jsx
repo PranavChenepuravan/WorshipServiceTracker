@@ -31,11 +31,6 @@ export const PilgProfile = () => {
         <p class="text-gray-500">Freelance Web Designer</p>
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
-
-      <div className='flex'> 
-        <div>ID : </div>
-        <h2>{userData.userid}</h2>
-      </div>
       <div className='flex'> 
         <div>Name : </div>
         <h2>{userData.name}</h2>

@@ -17,24 +17,8 @@ export const AdminBookingTax = () => {
 
       useEffect(()=>{
         let fetchdata=async ()=>{
-
-            try{
-                let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
-                console.log(response.data);
-                setUserData(response.data)
-            }
-            catch(error){
-                console.error('Error fetching profile data:', error);
-            }
-
-            try{
-                let response1=await axios.get(`http://localhost:4000/archaeology/archaeological/${id}`)
-                console.log(response1.data);
-                setData(response1.data)
-            }
-            catch(error){
-                console.error('Error fetching profile data:', error);
-            }
+         let response=await axios.get('http://localhost:4000/admin/booking')
+         console.log(response.data)
         }
         fetchdata()
     },[refresh])
@@ -42,35 +26,25 @@ export const AdminBookingTax = () => {
     console.log(data);
 
 
-
-
-
-    const ratingChanged = (newRating) => {
-        console.log(newRating);
-        setRating(newRating )
-      };
-
-
-    
     let handleChange=(event)=>{
       setData({...data,[event.target.name]:event.target.value})
-      console.log(data);
     }
-    let handleSubmit=async (statuss,newid)=>{
-        let requestData = { status: statuss };
-        if (rating !== undefined) {
-          requestData.rating = rating;
-        }
-        try{
-            console.log('asdas');
-            let response1=await axios.put(`http://localhost:4000/archaeology/managearchaeology/${newid}`,requestData)
-            console.log(response1)
-        }
-        catch(error){
-            console.error('Error fetching profile data:', error);
-        }
 
+
+    let handleSubmit=async (event)=>{
+      event.preventDefault()
+      let formData = new FormData();
+      formData.append('bookingtax', data.bookingtax);
+
+      let response=await axios.post('http://localhoat:4000/admin/bookingtax', formData, {
+        headers: {
+          'Count-Type' : 'multipart/form-data'
+        }
+      })
+      console.log(response);
     }
+
+
 
 
 
@@ -91,14 +65,17 @@ export const AdminBookingTax = () => {
   return (
     
 
-<div className="overflow-x-auto  ">
+<div className="overflow-x-auto " >
+  <form action="">
   <div className="mb-5">
     <label for="password" className="block mb-2 font-medium text-white dark:text-white text-2xl">Tax % </label>
     <div className='flex'>
-    <input type="text" id="password" name="donationtax"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[25%]" required />
+    <input type="text" id="password" name="bookingtax"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[25%]" required />
     <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Update</button>
     </div>
   </div>
+  </form>
+
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

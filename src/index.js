@@ -98,6 +98,7 @@ import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
+import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 
 
 
@@ -223,6 +224,7 @@ root.render(
           <Route path="pilgreviewinst" element={<PilgReviewInst/>}/>
           <Route path="pilgfestivallist" element={<PilgFestivalList/>}/>
           <Route path="pilgfestivaleventlist/:id" element={<PilgFestivalEventList/>}/>
+          <Route path="pilginstitutionheritage/:id" element={<PilgInstitutionHeritage/>}/>
 
         </Route>
       </Routes>
