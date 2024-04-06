@@ -55,7 +55,6 @@ import { InstIncomeTaxProperties } from './Institution/InstIncomeTaxProperties';
 import { InstIncomeTaxBypass } from './Institution/InstIncomeTaxBypass';
 import { InstIncomeTaxPropertiesList } from './Institution/InstIncomeTaxPropertiesList';
 
-
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
 import { IncomeTransReq } from './IncomeTax/IncomeTransReq'
 import { IncomeTaxInst } from './IncomeTax/IncomeTaxInst'
@@ -68,6 +67,9 @@ import { IncomeTaxInst2 } from './IncomeTax/IncomeTaxInst2';
 import { IncomeProfile } from './IncomeTax/IncomeProfile';
 import { IncomeProfileEdit } from './IncomeTax/IncomeProfileEdit';
 import { IncomeEmployeeList } from './IncomeTax/IncomeEmployeeList';
+import { IncomeTaxBypass } from './IncomeTax/IncomeTaxBypass';
+import { IncomeTaxBooking } from './IncomeTax/IncomeTaxBooking';
+
 
 import { ArchLayout } from './Archaeology/ArchLayout';
 import { ArchHeritage } from './Archaeology/ArchHeritage';
@@ -99,6 +101,9 @@ import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
+
+
+
 
 
 
@@ -189,6 +194,8 @@ root.render(
           <Route path="incomeprofile" element={<IncomeProfile/>}/>
           <Route path="incomeprofileedit" element={<IncomeProfileEdit/>}/>
           <Route path="incomeemployeelist" element={<IncomeEmployeeList/>}/>
+          <Route path="incometaxbypass" element={<IncomeTaxBypass/>}/>
+          <Route path="incometaxbooking" element={<IncomeTaxBooking/>}/>
 
         </Route>
 
