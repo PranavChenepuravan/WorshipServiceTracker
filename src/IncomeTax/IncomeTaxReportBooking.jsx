@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 
-export const IncomeTaxBooking = () => {
+export const IncomeTaxReportBooking = () => {
   let id = localStorage.getItem('id')
   const [userData,setUserData]=useState([])
   const [bookingData,setBookingData]=useState([])
@@ -31,17 +31,6 @@ if(location){
 console.log(bookingData,'asd');
 
 
-let handleChange=(event)=>{
-  setBookingData({...bookingData,[event.target.name]:event.target.value})
-}
-
-let handleSubmit=async (statuss,userid)=>{
-  setrefresh(!refresh)
-  let response2=await axios.put(`http://localhost:4000/incometax/booking/${userid}`,{status:statuss})
-  console.log(response2)
-}
-
-
 
 
 
@@ -64,7 +53,6 @@ let handleSubmit=async (statuss,userid)=>{
          <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Print</button>
          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Send</button>
       </div>
-
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -93,7 +81,7 @@ let handleSubmit=async (statuss,userid)=>{
                     Balance
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Sanction
+                    Status
                 </th>
   
             </tr>
@@ -105,17 +93,15 @@ let handleSubmit=async (statuss,userid)=>{
         <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {item._id}
         </td>
-        <td >{bookingItem?.institution?.insttype}</td>
+        <td>{bookingItem?.institution?.insttype}</td>
         <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
         <td>{item.date}</td>
         <td className='px-5'>{item.amount}</td>
         <td className='px-5'>{item.tax}</td>
         <td></td>
         <td></td>
-        <td className='flex'> 
-           <button onClick={() => handleSubmit('approved', item._id)} type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 w-15">Approve</button>
-           <button onClick={() => handleSubmit('rejected', item._id)} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-15">Reject</button>
-        </td>
+        <td className='px-5'>{item.status}</td>
+        
       </tr>
     ))
   ))}
@@ -144,4 +130,4 @@ let handleSubmit=async (statuss,userid)=>{
     </>
   )
 }
-export default IncomeTaxBooking
+export default IncomeTaxReportBooking

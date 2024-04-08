@@ -54,6 +54,7 @@ import { InstArchBypass } from './Institution/InstArchBypass';
 import { InstIncomeTaxProperties } from './Institution/InstIncomeTaxProperties';
 import { InstIncomeTaxBypass } from './Institution/InstIncomeTaxBypass';
 import { InstIncomeTaxPropertiesList } from './Institution/InstIncomeTaxPropertiesList';
+import { InstInstructionList } from './Institution/InstInstructionList';
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
 import { IncomeTransReq } from './IncomeTax/IncomeTransReq'
@@ -69,6 +70,8 @@ import { IncomeProfileEdit } from './IncomeTax/IncomeProfileEdit';
 import { IncomeEmployeeList } from './IncomeTax/IncomeEmployeeList';
 import { IncomeTaxBypass } from './IncomeTax/IncomeTaxBypass';
 import { IncomeTaxBooking } from './IncomeTax/IncomeTaxBooking';
+import { IncomeTaxReportBypass } from './IncomeTax/IncomeTaxReportBypass';
+import { IncomeTaxReportBooking } from './IncomeTax/IncomeTaxReportBooking';
 
 
 import { ArchLayout } from './Archaeology/ArchLayout';
@@ -161,6 +164,7 @@ root.render(
           <Route path="instphoto" element={<InstPhoto/>}/>
           <Route path="instprofile" element={<InstProfile/>}/>
           <Route path="instprofileedit" element={<InstProfileEdit/>}/>
+          <Route path="instinstructionlist" element={<InstInstructionList/>}/>
 
 
           <Route path="instincometxlist" element={<InstIncomeTaxList/>}/>
@@ -196,6 +200,8 @@ root.render(
           <Route path="incomeemployeelist" element={<IncomeEmployeeList/>}/>
           <Route path="incometaxbypass" element={<IncomeTaxBypass/>}/>
           <Route path="incometaxbooking" element={<IncomeTaxBooking/>}/>
+          <Route path="incometaxreportbypass" element={<IncomeTaxReportBypass/>}/>
+          <Route path="incometaxreportbooking" element={<IncomeTaxReportBooking/>}/>
 
         </Route>
 
