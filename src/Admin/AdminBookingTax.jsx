@@ -19,6 +19,7 @@ export const AdminBookingTax = () => {
         let fetchdata=async ()=>{
          let response=await axios.get('http://localhost:4000/admin/booking')
          setBookingData(response.data)
+         console.log(response)
 
         //  let response1 = await axios.get(`http://localhost:4000/pilgrim/bookinginst`)
         //  console.log(response1.data);
@@ -72,6 +73,12 @@ export const AdminBookingTax = () => {
     </div>
   </div>
   </form>
+  <div className="text-white flex text-2xl">
+    {console.log(currentItems[0].currentPercentage,'--')}
+    <label for="password" className="block mb-2 font-medium text-white dark:text-white ">Current Tax : </label>
+    {currentItems.length > 0 && currentItems[0].currentPercentage}
+    <p>%</p>
+  </div>
 
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

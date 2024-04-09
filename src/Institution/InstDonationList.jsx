@@ -43,6 +43,9 @@ export const InstDonationList = () => {
                     Time
                 </th>
                 <th scope="col" className="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" className="px-6 py-3">
                     Other Details
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -73,6 +76,9 @@ export const InstDonationList = () => {
                     </td>
                     <td>
                         {item.donation ? item.donation.time : "Donation data not avialable"}
+                    </td>
+                    <td>
+                        {item.donation ? item.donation.category : "Donation data not avialable"}
                     </td>
                     <td>
                         {item.donation ? item.donation.other : "Donation data not avialable"}
