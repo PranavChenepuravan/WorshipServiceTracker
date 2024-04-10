@@ -21,6 +21,8 @@ import { AdminPilgDetailPage } from './Admin/AdminPilgDetailPage';
 import { AdminTaxBypass } from './Admin/AdminTaxBypass';
 import { AdminDonationTax } from './Admin/AdminDonationTax';
 import { AdminBookingTax } from './Admin/AdminBookingTax';
+import { AdminBookingTaxInstWise } from './Admin/AdminBookingTaxInstWise';
+import { AdminBookingTaxOneInst } from './Admin/AdminBookingTaxOneInst';
 
 import { RegisterCommon } from './RegisterCommon';
 import { RegInst } from './RegInst';
@@ -56,6 +58,7 @@ import { InstIncomeTaxBypass } from './Institution/InstIncomeTaxBypass';
 import { InstIncomeTaxPropertiesList } from './Institution/InstIncomeTaxPropertiesList';
 import { InstInstructionList } from './Institution/InstInstructionList';
 import { InstInstructionEditing } from './Institution/InstInstructionEditing';
+import { InstBookingTax } from './Institution/InstBookingTax';
 
 
 
@@ -75,6 +78,7 @@ import { IncomeTaxBypass } from './IncomeTax/IncomeTaxBypass';
 import { IncomeTaxBooking } from './IncomeTax/IncomeTaxBooking';
 import { IncomeTaxReportBypass } from './IncomeTax/IncomeTaxReportBypass';
 import { IncomeTaxReportBooking } from './IncomeTax/IncomeTaxReportBooking';
+import { IncomeTaxBookingInstWise } from './IncomeTax/IncomeTaxBookingInstWise';
 
 
 import { ArchLayout } from './Archaeology/ArchLayout';
@@ -107,7 +111,10 @@ import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
-import { InstBookingTax } from './Institution/InstBookingTax';
+
+
+
+
 
 
 
@@ -153,6 +160,8 @@ root.render(
           <Route path="admintaxbypass" element={<AdminTaxBypass/>}/>
           <Route path="admindonationtax" element={<AdminDonationTax/>}/>
           <Route path="adminbookingtax" element={<AdminBookingTax/>}/>
+          <Route path="adminbookingtaxinstwise" element={<AdminBookingTaxInstWise/>}/>
+          <Route path="adminbookingtaxoneinst/:id" element={<AdminBookingTaxOneInst/>}/>
 
         </Route>
 
@@ -207,6 +216,7 @@ root.render(
           <Route path="incometaxbooking" element={<IncomeTaxBooking/>}/>
           <Route path="incometaxreportbypass" element={<IncomeTaxReportBypass/>}/>
           <Route path="incometaxreportbooking" element={<IncomeTaxReportBooking/>}/>
+          <Route path="incometaxbookinginstwise" element={<IncomeTaxBookingInstWise/>}/>
 
         </Route>
 

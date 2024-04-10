@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
-import { Link } from 'react-router-dom';
 
-export const IncomeTaxBooking = () => {
+export const IncomeTaxBookingInstWise = () => {
   let id = localStorage.getItem('id')
   const [userData,setUserData]=useState([])
   const [bookingData,setBookingData]=useState([])
@@ -62,7 +61,6 @@ let handleSubmit=async (statuss,userid)=>{
   return (
     <>
       <div className='flex'>
-      <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to='/incomelayout/incometaxbookinginstwise'>Institution Wise</Link></button>
       </div>
 
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -81,10 +79,19 @@ let handleSubmit=async (statuss,userid)=>{
                     Date
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Amount
+                    Total Amount
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Tax
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Payed
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Balance
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Sanction
                 </th>
   
             </tr>
@@ -101,13 +108,21 @@ let handleSubmit=async (statuss,userid)=>{
         <td>{item.date}</td>
         <td className='px-5'>{item.amount}</td>
         <td className='px-5'>{item.tax}</td>
-
+        <td></td>
+        <td></td>
+        <td className='flex'> 
+           <button onClick={() => handleSubmit('approved', item._id)} type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 w-15">Approve</button>
+           <button onClick={() => handleSubmit('rejected', item._id)} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-15">Reject</button>
+        </td>
       </tr>
     ))
   ))}
 </tbody>
+
     </table>
- 
+    
+    
+    
     <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
@@ -127,4 +142,4 @@ let handleSubmit=async (statuss,userid)=>{
     </>
   )
 }
-export default IncomeTaxBooking
+export default IncomeTaxBookingInstWise
