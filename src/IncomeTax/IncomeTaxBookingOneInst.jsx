@@ -3,12 +3,17 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import { Link, useParams } from 'react-router-dom'
 
-export const AdminBookingTaxOneInst = () => {
+export const IncomeTaxBookingOneInst = () => {
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3; // Adjust the number of items per page as needed
+
 
     let {id}=useParams()
     const [bookingData,setBookingData]=useState([])
     const [refresh,setrefresh]=useState(false)
     const [totalTax, setTotalTax] = useState(0);
+    const [status, setStatus ] = useState('');
     const[data,setData]=useState([''])
 
     useEffect(() => {
@@ -16,9 +21,19 @@ export const AdminBookingTaxOneInst = () => {
             try {
                 const response = await axios.get(`http://localhost:4000/admin/bookingtaxinst/${id}`);
                 console.log("Response Data:", response.data);
-                setBookingData(response.data);
                 
-                const totalTaxSum = response.data.reduce((sum, item) => {
+                const currentDate = new Date();
+                const currentMonth = currentDate.getMonth() + 1; // Month is zero-based
+                const currentYear = currentDate.getFullYear();
+
+                const filteredData = response.data.filter(item => {
+                    const bookingDate = new Date(item.date);
+                    return bookingDate.getMonth() + 1 === currentMonth && bookingDate.getFullYear() === currentYear;
+                });
+
+                setBookingData(filteredData);
+                
+                const totalTaxSum = filteredData.reduce((sum, item) => {
                     console.log("Item Tax:", item.tax);
                     console.log("Current Sum:", sum);
                     return sum + item.tax;
@@ -30,6 +45,11 @@ export const AdminBookingTaxOneInst = () => {
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
+
+
+            let response1=await axios.get(`http://localhost:4000/admin/bookingtaxinst/${id}`)
+            console.log(response1.data, 'res1');
+
         };
     
         fetchdata();
@@ -42,18 +62,20 @@ export const AdminBookingTaxOneInst = () => {
       }
 
 
-    let handleSubmit=async (event)=>{
-        event.preventDefault()
-        let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax})
+    let handleSubmit=async (status)=>{
+        let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax,status:status})
         console.log(response);
     }
 
+    const handleStatusChange = (newStatus) => {
+      setStatus(newStatus);
+    };
 
 
 
 
-    const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 3; // Adjust the number of items per page as needed
+
+
   
     const pageCount = Math.ceil(bookingData.length / itemsPerPage);
   
@@ -98,6 +120,7 @@ export const AdminBookingTaxOneInst = () => {
 </tbody>
 
   </table>
+
   <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
@@ -117,8 +140,10 @@ export const AdminBookingTaxOneInst = () => {
 
 
 
+
+  <div className='flex'>
   <div className='w-44 mt-4 '>
-    <label htmlFor="">Total Tax</label>
+    <label htmlFor="" className='text-white'>Total Tax</label>
       <div className='flex'>
                <input
                     onChange={handleChange}
@@ -130,10 +155,8 @@ export const AdminBookingTaxOneInst = () => {
                     readOnly
                     required
                 /> 
-                <button onClick={handleSubmit} type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Set</button>
         </div>
     </div>
-    <div className='flex'>
     <div className='w-44 mt-4 '>
     <label htmlFor="" className='text-white'>Total Payed</label>
       <div className='flex'>
@@ -161,20 +184,14 @@ export const AdminBookingTaxOneInst = () => {
         </div>
     </div>
     <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Income Tax Sanction</label>
       <div className='flex'>
-               <input
-                    name='sanction'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
+      <button type="submit"   onClick={() => {handleStatusChange('approve'); handleSubmit('approve');}} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22" >Approve</button>
+      <button type="submit" onClick={() => handleSubmit('rejected')} class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22 " >Reject</button>
         </div>
     </div>
+
     </div>
     </>
   )
 }
-export default AdminBookingTaxOneInst
+export default IncomeTaxBookingOneInst

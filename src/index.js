@@ -79,6 +79,8 @@ import { IncomeTaxBooking } from './IncomeTax/IncomeTaxBooking';
 import { IncomeTaxReportBypass } from './IncomeTax/IncomeTaxReportBypass';
 import { IncomeTaxReportBooking } from './IncomeTax/IncomeTaxReportBooking';
 import { IncomeTaxBookingInstWise } from './IncomeTax/IncomeTaxBookingInstWise';
+import { IncomeTaxBookingOneInst } from './IncomeTax/IncomeTaxBookingOneInst';
+import { IncomeTaxInstDetailPage } from './IncomeTax/IncomeTaxInstDetailPage';
 
 
 import { ArchLayout } from './Archaeology/ArchLayout';
@@ -111,6 +113,8 @@ import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
+
+
 
 
 
@@ -217,6 +221,8 @@ root.render(
           <Route path="incometaxreportbypass" element={<IncomeTaxReportBypass/>}/>
           <Route path="incometaxreportbooking" element={<IncomeTaxReportBooking/>}/>
           <Route path="incometaxbookinginstwise" element={<IncomeTaxBookingInstWise/>}/>
+          <Route path="incometaxbookingoneinst/:id" element={<IncomeTaxBookingOneInst/>}/>
+          <Route path="incometaxinstdetailpage/:id" element={<IncomeTaxInstDetailPage/>}/>
 
         </Route>
 

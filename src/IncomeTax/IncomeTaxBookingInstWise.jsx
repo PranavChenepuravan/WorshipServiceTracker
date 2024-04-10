@@ -1,128 +1,132 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React,{ useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const IncomeTaxBookingInstWise = () => {
-  let id = localStorage.getItem('id')
-  const [userData,setUserData]=useState([])
-  const [bookingData,setBookingData]=useState([])
-  const [refresh,setrefresh]=useState(false)
+    const [currentPage, setCurrentPage] = useState(0);
+      const itemsPerPage = 2; // Adjust the number of items per page as needed
 
-  useEffect(()=>{
-    let fetchdata=async ()=>{
-      let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
-      console.log(response.data);
-      setUserData(response.data)
+      let id=localStorage.getItem('id')
+      
+      const [data,setUserData]=useState([''])
+      const [refresh,setrefresh]=useState(false)
 
-      let location = response.data.location;
-      console.log(location)
-if(location){
+      useEffect(()=>{
+        let fetchdata=async ()=>{
+          let response=await axios.get(`http://localhost:4000/incometax/viewinstprofile/${id}`)
+          console.log(response.data);
+          setUserData(response.data)
+        }
+        fetchdata()
+      },[refresh])
 
-  let response1=await axios.get(`http://localhost:4000/incometax/booking/${location}`)
-  console.log(response1.data,'sda')
-  setBookingData(response1.data)
-}
+      
 
-
-    }
-    fetchdata()
-  },[refresh])
-
-console.log(bookingData,'asd');
+      const pageCount = Math.ceil(data.length / itemsPerPage);
 
 
-let handleChange=(event)=>{
-  setBookingData({...bookingData,[event.target.name]:event.target.value})
-}
-
-let handleSubmit=async (statuss,userid)=>{
-  setrefresh(!refresh)
-  let response2=await axios.put(`http://localhost:4000/incometax/booking/${userid}`,{status:statuss})
-  console.log(response2)
-}
+      const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+    
+      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
 
 
-
-
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3; // Adjust the number of items per page as needed
-
-  const pageCount = Math.ceil(bookingData.length / itemsPerPage);
-
-
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected);
-  };
-
-  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = bookingData.slice(indexOfFirstItem, indexOfLastItem);
+      
   return (
-    <>
-      <div className='flex'>
-      </div>
+    
 
+<div className="overflow-x-auto  ">
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-            <th scope="col" className="px-6 py-3">
-                    Booking Id
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Institution Id
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    InstType
+                    Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Institution Address
+                    Type
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Date
+                    Place
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Total Amount
+                    Phone
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Tax
+                    Email
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Payed
+                    Community
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Balance
+                    Photo
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Sanction
-                </th>
-  
-            </tr>
-      </thead>
-      <tbody>
-  {currentItems.map((bookingItem, index) => (
-    bookingItem.bookings.map((item, innerIndex) => (
-      <tr key={`${index}-${innerIndex}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {item._id}
-        </td>
-        <td >{bookingItem?.institution?.insttype}</td>
-        <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
-        <td>{item.date}</td>
-        <td className='px-5'>{item.amount}</td>
-        <td className='px-5'>{item.tax}</td>
-        <td></td>
-        <td></td>
-        <td className='flex'> 
-           <button onClick={() => handleSubmit('approved', item._id)} type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 w-15">Approve</button>
-           <button onClick={() => handleSubmit('rejected', item._id)} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-15">Reject</button>
-        </td>
-      </tr>
-    ))
-  ))}
-</tbody>
 
+                </th>
+            </tr>
+        </thead>
+        {/* <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    APT001
+                </th>
+                <td className="px-6 py-4">
+                    Pushkaran
+                </td>
+                <td className="px-6 py-4">
+                    Kozhikode
+                </td>
+                <td className="px-6 py-4">
+                    9756654549
+                </td>
+                <td className="px-6 py-4">
+                    pusk@gmail.com
+                </td>
+                <td className="px-6 py-4">
+                    17/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+                <td className="px-6 py-4">
+                    3400
+                </td>
+                <td className="px-6 py-4">
+                    87
+                </td>
+                
+            </tr>
+            
+        </tbody> */}
+        <tbody>
+          {currentItems.map((item, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item?.institution?._id}
+              </td>
+              <td className="px-6 py-4">{item?.institution?.institutionName}</td>
+              <td className="px-6 py-4">{item?.institution?.insttype}</td>
+              <td className="px-6 py-4">{item?.location}</td>
+              <td className="px-6 py-4">{item?.institution?.phone}</td>
+              <td className="px-6 py-4">{item?.institution?.email}</td>
+              <td className="px-6 py-4">{item?.institution?.community}</td>
+              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.institution?.photo}`} alt="" /></td>
+              <div className='flex'>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/incomelayout/incometaxbookingoneinst/${item?.institution?._id}`}>View</Link></button>
+              </div>
+            </tr>
+          ))}
+        </tbody>
     </table>
-    
-    
-    
     <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
@@ -138,8 +142,8 @@ let handleSubmit=async (statuss,userid)=>{
        
         />
       </div>
-    
-    </>
+</div>
+
   )
 }
 export default IncomeTaxBookingInstWise
