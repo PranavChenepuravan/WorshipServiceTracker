@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import { Link, useParams } from 'react-router-dom'
 
-export const AdminBookingTaxOneInst = () => {
+export const InstBookingTaxTotal = () => {
 
     let {id}=useParams()
     const [bookingData,setBookingData]=useState([])
@@ -123,6 +123,41 @@ export const AdminBookingTaxOneInst = () => {
             <div>Income Tax Sanction : </div>
             <h2>{item?.status}</h2>
         </div>
+        <br />
+        <div>
+        <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        </div>
+        <div>
+            <li className='text-white'> </li>
+        </div>
+    </div>
+</div>
+
+
+))}
+
+
+<div class="max-w-2xl mx-4 sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-2xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white/90 shadow-xl rounded-lg text-gray-900">
+    <div class="rounded-t-lg h-32 overflow-hidden"></div>
+
+    <div className='flex flex-col pl-[15%] text-xl'>
+    <div className='flex'> 
+         <div>Amount : </div>
+         <input type="text" name="other" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+        </div>
+        <div className='flex'> 
+            <div>Email : </div>
+            <input type="text" name="other" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        </div>
+        <div className='flex'> 
+            <div>Date and Time : </div>
+            <input type="text" name="other" id="user_name" className=" w-[60%] ml-[2%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+
+        </div>
+        <br />
+        <div>
+        <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        </div>
         <div>
             <li className='text-white'> </li>
         </div>
@@ -131,77 +166,7 @@ export const AdminBookingTaxOneInst = () => {
 
 
 
-))}
-
-
-
-    
-
-
-
-
-
-
-
-
-    {/* <div className='flex'>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Payed</label>
-      <div className='flex'>
-               <input
-                    name='totalpayed'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Balance</label>
-      <div className='flex'>
-               <input
-                    name='totalbalance'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Date and Time</label>
-      <div className='flex'>
-               <input
-                    name='date'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                    value={(new Date(item.date)).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Income Tax Sanction</label>
-      <div className='flex'>
-               <input
-                    name='sanction'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                    value={item?.status}
-                /> 
-        </div>
-    </div>
-    </div> */}
-
     </>
   )
 }
-export default AdminBookingTaxOneInst
+export default InstBookingTaxTotal

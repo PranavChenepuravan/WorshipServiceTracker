@@ -14,6 +14,7 @@ export const IncomeTaxBookingOneInst = () => {
     const [refresh,setrefresh]=useState(false)
     const [totalTax, setTotalTax] = useState(0);
     const [status, setStatus ] = useState('');
+    // const [date, setDate]= useState('')
     const[data,setData]=useState([''])
 
     useEffect(() => {
@@ -183,6 +184,7 @@ export const IncomeTaxBookingOneInst = () => {
                 /> 
         </div>
     </div>
+
     <div className='w-44 mt-4 '>
       <div className='flex'>
       <button type="submit"   onClick={() => {handleStatusChange('approve'); handleSubmit('approve');}} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22" >Approve</button>

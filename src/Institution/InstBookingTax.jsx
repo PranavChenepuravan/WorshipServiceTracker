@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 export const InstBookingTax = () => {
 
@@ -39,6 +40,7 @@ export const InstBookingTax = () => {
   
   return (
     <>
+    <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/instlayout/instbookingtaxtotal/${id}`}>Total</Link></button>
   <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
@@ -54,19 +56,6 @@ export const InstBookingTax = () => {
               <th scope="col" className="px-6 py-3">
                   Tax
               </th>
-              <th scope="col" className="px-6 py-3">
-                  Payed
-              </th>
-              <th scope="col" className="px-6 py-3">
-                  Balance
-              </th>
-              <th scope="col" className="px-6 py-3">
-                  Sanction
-              </th>
-              <th>
-
-              </th>
-
           </tr>
     </thead>
 <tbody>
@@ -78,12 +67,6 @@ export const InstBookingTax = () => {
       <td>{item.date}</td>
       <td>{item.amount}</td>
       <td>{item.tax}</td>
-      <td>{item.payed}</td>
-      <td>{item.balance}</td>
-      <td>{item.status}</td>
-      <td>
-      <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
-      </td>
     </tr>
   ))}
 </tbody>

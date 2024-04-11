@@ -23,6 +23,14 @@ export const PilgProfileEdit = () => {
     console.log(data);
   }
 
+
+  let handlefile=(event)=>{
+    console.log(event.target.files);
+    setData({...data,[event.target.name]:event.target.files[0]})
+    console.log(data);
+  }
+
+
   let handleSubmit=async(event)=>{
     event.preventDefault()
     setrefresh(!refresh)
@@ -57,7 +65,7 @@ export const PilgProfileEdit = () => {
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
         <div>Photo :</div>
-        <div><input type="file" name="name" id="photo"  className=" w-[70%] ml-[6%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.name}  /></div>
+        <div><input type="file" name="photo" id="photo"  className=" w-[70%] ml-[6%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
       </div>
       <div className='flex'> 
         <div>Name :  </div>

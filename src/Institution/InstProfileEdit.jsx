@@ -49,8 +49,8 @@ export const InstProfileEdit = () => {
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
-        <div>ID :  </div>
-        <div><input type="text" name="userid" id="user_name"  className=" w-[20%] ml-[28%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.userid}  /></div>
+        <div>Photo :  </div>
+        <div><input type="file" name="photo" id="user_name"  className=" w-28 ml-[15%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.userid}  /></div>
       </div>
       <div className='flex'> 
         <div>Name :  </div>

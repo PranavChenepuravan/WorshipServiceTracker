@@ -59,7 +59,7 @@ import { InstIncomeTaxPropertiesList } from './Institution/InstIncomeTaxProperti
 import { InstInstructionList } from './Institution/InstInstructionList';
 import { InstInstructionEditing } from './Institution/InstInstructionEditing';
 import { InstBookingTax } from './Institution/InstBookingTax';
-
+import { InstBookingTaxTotal } from './Institution/InstBookingTaxTotal';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -113,6 +113,7 @@ import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
 import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
+
 
 
 
@@ -199,8 +200,8 @@ root.render(
           <Route path="instincometaxpropertieslist" element={<InstIncomeTaxPropertiesList/>}/>
           <Route path="instinstructionediting/:instrId" element={<InstInstructionEditing/>}/>
           <Route path="instbookingtax" element={<InstBookingTax/>}/>
+          <Route path="instbookingtaxtotal/:id" element={<InstBookingTaxTotal/>}/>
           
-
 
         </Route>
 
