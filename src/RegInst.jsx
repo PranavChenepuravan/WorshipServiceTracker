@@ -22,7 +22,6 @@ let handleChange=(event)=>{
     let formData= new FormData();
     formData.append('photo', data.photo);
     formData.append('userid', data.userid);
-    formData.append('userid', data.userid);
     formData.append('insttype', data.insttype);
     formData.append('location', data.location);
     formData.append('community', data.community);
@@ -31,6 +30,8 @@ let handleChange=(event)=>{
     formData.append('email', data.email);
     formData.append('password', data.password);
     formData.append('other', data.other);
+    formData.append('otherauthorityname', data.otherauthorityname);
+    formData.append('otherauthorityid', data.otherauthorityid);
     formData.append('userType','institution');
     
     let response=await axios.post('http://localhost:4000/register',formData, {
@@ -52,10 +53,6 @@ let handleChange=(event)=>{
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>
      <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
-  {/* <div className="mb-5">
-     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Id : </label>
-     <input type="file" name="userid" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
-  </div> */}
   <div className="mb-5">
    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institution Type</label>
 
@@ -65,6 +62,14 @@ let handleChange=(event)=>{
         <option value="mosque">Mosque</option>
         <option value="church">Church</option>
       </select>
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Authority Name</label>
+       <input type="text" name="otherauthorityname" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required /> 
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Authority Id</label>
+       <input type="text" name="otherauthorityid" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required /> 
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
