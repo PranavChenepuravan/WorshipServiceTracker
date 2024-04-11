@@ -25,7 +25,8 @@ let handleChange=(event)=>{
     formData.append('classId', data.classId);
     formData.append('preacher', data.preacher);
     formData.append('topic', data.topic);
-    formData.append('date', data.date);
+    formData.append('startingdate', data.startingdate);
+    formData.append('endingdate', data.endingdate);
     formData.append('time', data.time);
     formData.append('other', data.other);
     formData.append('institutionId', id);
@@ -67,8 +68,12 @@ let handleChange=(event)=>{
      <input type="text" name="topic" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
-     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-     <input type="date" name="date" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Staring Date</label>
+     <input type="date" name="startingdate" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ending Date</label>
+     <input type="date" name="endingdate" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>

@@ -13,48 +13,29 @@ export const IncomeTaxBookingOneInst = () => {
     const [bookingData,setBookingData]=useState([])
     const [refresh,setrefresh]=useState(false)
     const [totalTax, setTotalTax] = useState(0);
+    const [totalPayed, setTotalPayed] = useState()
     const [status, setStatus ] = useState('');
     // const [date, setDate]= useState('')
     const[data,setData]=useState([''])
 
     useEffect(() => {
         const fetchdata = async () => {
-            try {
-                const response = await axios.get(`http://localhost:4000/admin/bookingtaxinst/${id}`);
-                console.log("Response Data:", response.data);
-                
-                const currentDate = new Date();
-                const currentMonth = currentDate.getMonth() + 1; // Month is zero-based
-                const currentYear = currentDate.getFullYear();
+            
 
-                const filteredData = response.data.filter(item => {
-                    const bookingDate = new Date(item.date);
-                    return bookingDate.getMonth() + 1 === currentMonth && bookingDate.getFullYear() === currentYear;
-                });
-
-                setBookingData(filteredData);
-                
-                const totalTaxSum = filteredData.reduce((sum, item) => {
-                    console.log("Item Tax:", item.tax);
-                    console.log("Current Sum:", sum);
-                    return sum + item.tax;
-                }, 0);
-                
-                console.log("Total Tax Sum:", totalTaxSum);
-                const roundedTotalTaxSum = totalTaxSum.toFixed(2);
-                setTotalTax(roundedTotalTaxSum);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
+            // let response1=await axios.get(`http://localhost:4000/admin/bookingtaxinst/${id}`)
+            // console.log(response1.data, 'res1');
 
 
-            let response1=await axios.get(`http://localhost:4000/admin/bookingtaxinst/${id}`)
-            console.log(response1.data, 'res1');
+            const response1 = await axios.get(`http://localhost:4000/admin/institionsbookingtax/${id}`)
+            console.log("Response 1 Data", response1.data)
+            setBookingData(response1.data)
+
+            
 
         };
     
         fetchdata();
-    }, [id, refresh]);
+    }, [ refresh]);
 
 
 
@@ -100,22 +81,31 @@ export const IncomeTaxBookingOneInst = () => {
                   Date
               </th>
               <th scope="col" className="px-6 py-3">
-                  Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
                   Tax
               </th>
+              <th scope="col" className="px-6 py-3">
+                  Payed
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Balance
+              </th>
+              <th></th>
           </tr>
     </thead>
 <tbody>
   {bookingData.map((item, index) => (
     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {item._id}
+        {item?._id}
       </td>
-      <td>{item.date}</td>
-      <td>{item.amount}</td>
-      <td>{item.tax}</td>
+      <td>{item?.date}</td>
+      <td>{item?.totaltax}</td>
+      <td>{item?.payed}</td>
+      <td>{item?.totaltax - item?.payed}</td>
+      <td>
+      <button type="submit"   onClick={() => {handleStatusChange('approve'); handleSubmit('approve');}} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22" >Approve</button>
+      <button type="submit" onClick={() => handleSubmit('rejected')} class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22 " >Reject</button>
+      </td>
     </tr>
   ))}
 </tbody>

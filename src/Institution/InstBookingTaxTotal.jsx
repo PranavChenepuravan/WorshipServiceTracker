@@ -11,6 +11,7 @@ export const InstBookingTaxTotal = () => {
     const [totalTax, setTotalTax] = useState(0);
     const[data,setData]=useState([''])
     const [totdata,setTotdata]=useState([])
+    const [payform,setPayform]=useState(false)
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -42,7 +43,7 @@ export const InstBookingTaxTotal = () => {
         };
     
         fetchdata();
-    }, [id, refresh]);
+    }, [ refresh]);
 
 
 
@@ -51,10 +52,19 @@ export const InstBookingTaxTotal = () => {
       }
 
 
-    let handleSubmit=async (event)=>{
+    let handleSubmit=async(event)=>{
         event.preventDefault()
-        let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax})
+        setrefresh(!refresh)
+        let response=await axios.put(`http://localhost:4000/institution/institionsbookingtax/${taxId}`,data)
         console.log(response);
+        setData('')
+    }
+
+const [taxId,setTaxId]=useState('')
+    const toggle=(tid)=>{
+        setTaxId(tid)
+        setPayform(!payform)
+        
     }
 
 
@@ -79,7 +89,7 @@ export const InstBookingTaxTotal = () => {
 
 
   <div className='w-44 mt-4 '>
-    <label htmlFor="">Total Tax</label>
+    <label htmlFor="" className='text-white'>Total Tax</label>
       <div className='flex'>
                <input
                     onChange={handleChange}
@@ -91,7 +101,7 @@ export const InstBookingTaxTotal = () => {
                     readOnly
                     required
                 /> 
-                <button onClick={handleSubmit} type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Set</button>
+     
         </div>
     </div>
 
@@ -125,7 +135,7 @@ export const InstBookingTaxTotal = () => {
         </div>
         <br />
         <div>
-        <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        <button onClick={()=>toggle(item._id)}  type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
         </div>
         <div>
             <li className='text-white'> </li>
@@ -136,14 +146,15 @@ export const InstBookingTaxTotal = () => {
 
 ))}
 
-
+{
+    payform&&
 <div class="max-w-2xl mx-4 sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-2xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white/90 shadow-xl rounded-lg text-gray-900">
     <div class="rounded-t-lg h-32 overflow-hidden"></div>
 
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
          <div>Amount : </div>
-         <input type="text" name="other" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+         <input type="text" onChange={handleChange} name="payed" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
         </div>
         <div className='flex'> 
             <div>Email : </div>
@@ -151,18 +162,18 @@ export const InstBookingTaxTotal = () => {
         </div>
         <div className='flex'> 
             <div>Date and Time : </div>
-            <input type="text" name="other" id="user_name" className=" w-[60%] ml-[2%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-
+            <input type="date" onChange={handleChange} name="payeddate" id="user_name" className=" w-[60%] ml-[2%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
         </div>
         <br />
         <div>
-        <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        <button type="button" onClick={handleSubmit} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
         </div>
         <div>
             <li className='text-white'> </li>
         </div>
     </div>
 </div>
+}
 
 
 

@@ -109,11 +109,11 @@ export const AdminBookingTaxOneInst = () => {
         </div>
         <div className='flex'> 
             <div>Total Payed : </div>
-            <h2></h2> 
+            <h2>{item?.payed}</h2> 
         </div>
         <div className='flex'> 
             <div>Total Balance : </div>
-            <h2></h2>
+            <h2>{item?.totaltax - item?.payed}</h2>
         </div>
         <div className='flex'> 
             <div>Date and Time : </div>

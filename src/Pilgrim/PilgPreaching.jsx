@@ -1,10 +1,11 @@
 import React,{ useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
+import { useParams } from 'react-router-dom'
 
-export const InstPreachList = () => {
+export const PilgPreaching = () => {
 
-    let id=localStorage.getItem('id')
+    let {id}=useParams()
     const [data,setdata]=useState([''])
     const [refresh,setrefresh]=useState('')
 
@@ -91,4 +92,4 @@ export const InstPreachList = () => {
     </>
   )
 }
-export default InstPreachList
+export default PilgPreaching
