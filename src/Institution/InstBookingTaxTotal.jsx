@@ -52,12 +52,10 @@ export const InstBookingTaxTotal = () => {
       }
 
 
-    let handleSubmit=async(event)=>{
-        event.preventDefault()
+    let handleSubmit=async(totaltaxes,taxId)=>{
         setrefresh(!refresh)
-        let response=await axios.put(`http://localhost:4000/institution/institionsbookingtax/${taxId}`,data)
+        let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes})
         console.log(response);
-        setData('')
     }
 
 const [taxId,setTaxId]=useState('')
@@ -119,11 +117,11 @@ const [taxId,setTaxId]=useState('')
         </div>
         <div className='flex'> 
             <div>Total Payed : </div>
-            <h2></h2> 
+            <h2>{item?.totaltax-item?.balance}</h2> 
         </div>
         <div className='flex'> 
             <div>Total Balance : </div>
-            <h2></h2>
+            <h2>{item?.balance}</h2>
         </div>
         <div className='flex'> 
             <div>Date and Time : </div>
@@ -134,22 +132,8 @@ const [taxId,setTaxId]=useState('')
             <h2>{item?.status}</h2>
         </div>
         <br />
-        <div>
-        <button onClick={()=>toggle(item._id)}  type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
-        </div>
-        <div>
-            <li className='text-white'> </li>
-        </div>
-    </div>
-</div>
+        
 
-
-))}
-
-{
-    payform&&
-<div class="max-w-2xl mx-4 sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-2xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white/90 shadow-xl rounded-lg text-gray-900">
-    <div class="rounded-t-lg h-32 overflow-hidden"></div>
 
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
@@ -166,14 +150,28 @@ const [taxId,setTaxId]=useState('')
         </div>
         <br />
         <div>
-        <button type="button" onClick={handleSubmit} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        <button type="button" onClick={()=>handleSubmit(item?.totaltax,item?._id)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+        </div>
+        <div>
+            <li className='text-white'> </li>
+        </div>
+    </div>
+
+
+
+
+        <div>
         </div>
         <div>
             <li className='text-white'> </li>
         </div>
     </div>
 </div>
-}
+
+
+))}
+
+
 
 
 

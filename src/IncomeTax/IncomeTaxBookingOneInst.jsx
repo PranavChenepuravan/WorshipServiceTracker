@@ -10,13 +10,14 @@ export const IncomeTaxBookingOneInst = () => {
 
 
     let {id}=useParams()
+    
     const [bookingData,setBookingData]=useState([])
     const [refresh,setrefresh]=useState(false)
     const [totalTax, setTotalTax] = useState(0);
     const [totalPayed, setTotalPayed] = useState()
     const [status, setStatus ] = useState('');
     // const [date, setDate]= useState('')
-    const[data,setData]=useState([''])
+    const[data,setData]=useState('')
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -44,10 +45,15 @@ export const IncomeTaxBookingOneInst = () => {
       }
 
 
-    let handleSubmit=async (status)=>{
-        let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax,status:status})
-        console.log(response);
-    }
+    // let handleSubmit=async (status)=>{
+    //     let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax,status:status})
+    //     console.log(response);
+    // }
+
+    let handleSubmit = async (status,txtid) => {
+      let response = await axios.put(`http://localhost:4000/incometax/insttotalbookingstatus/${txtid}`, { status: status });
+      console.log(response);
+  };
 
     const handleStatusChange = (newStatus) => {
       setStatus(newStatus);
@@ -89,6 +95,9 @@ export const IncomeTaxBookingOneInst = () => {
               <th scope="col" className="px-6 py-3">
                   Balance
               </th>
+              <th scope="col" className="px-6 py-3">
+                  Sanction
+              </th>
               <th></th>
           </tr>
     </thead>
@@ -102,9 +111,10 @@ export const IncomeTaxBookingOneInst = () => {
       <td>{item?.totaltax}</td>
       <td>{item?.payed}</td>
       <td>{item?.totaltax - item?.payed}</td>
+      <td>{item?.status}</td>
       <td>
-      <button type="submit"   onClick={() => {handleStatusChange('approve'); handleSubmit('approve');}} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22" >Approve</button>
-      <button type="submit" onClick={() => handleSubmit('rejected')} class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22 " >Reject</button>
+        <button type="submit" onClick={() => handleSubmit('approve', item._id)} className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22">Approve</button>
+        <button type="submit" onClick={() => handleSubmit('rejected', item._id)} className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22">Reject</button>
       </td>
     </tr>
   ))}
@@ -129,60 +139,6 @@ export const IncomeTaxBookingOneInst = () => {
  </div>
 
 
-
-
-
-  <div className='flex'>
-  <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Tax</label>
-      <div className='flex'>
-               <input
-                    onChange={handleChange}
-                    name='totaltax'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    value={totalTax}
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Payed</label>
-      <div className='flex'>
-               <input
-                    name='totalpayed'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Balance</label>
-      <div className='flex'>
-               <input
-                    name='totalbalance'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-
-    <div className='w-44 mt-4 '>
-      <div className='flex'>
-      <button type="submit"   onClick={() => {handleStatusChange('approve'); handleSubmit('approve');}} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22" >Approve</button>
-      <button type="submit" onClick={() => handleSubmit('rejected')} class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22 " >Reject</button>
-        </div>
-    </div>
-
-    </div>
     </>
   )
 }
