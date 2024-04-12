@@ -43,9 +43,19 @@ let handleChange=(event)=>{
     console.log(response);
   }
 
+
+
+
+  const [menu,setMenu]=useState(true)
+
+  const toggle=()=>{
+    setMenu(!menu)
+ }
+
   return (
     <div className='regback'>
-   
+
+  
 
 <form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
@@ -110,11 +120,76 @@ let handleChange=(event)=>{
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Details</label>
     <input type="text" name="other" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"  />
   </div>
-  <div className=' flex items-center gap-[10px] mt-[5%] ml-[39%]'>
-    <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Save</button>
+  <div className=' flex items-center gap-[10px] mt-[5%] ml-[13%]'>
+
+  <button onClick={toggle} type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Save</button>
+
+    <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
     <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Cancel</button>
+
    </div>
 </form>
+
+
+{
+  menu &&
+<div className='flex flex-col pl-[15%] text-xl bg-slate-500/75 w-[50%] align-middle ml-72 z-50'>
+   <div className='mt-20 -ml-28'>
+
+   
+       <div className='flex gap-1'> 
+         <div>Property 1 * : </div>
+         <input type="text"  name="property1" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required  />
+        </div>
+        <div className='flex mt-4'> 
+            <div>Income 1 : </div>
+            <input type="text" name="income1" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required /> 
+        </div>
+
+        <div className='flex mt-4 gap-3.5'> 
+         <div>Property 2 : </div>
+         <input type="text"  name="property2" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
+        </div>
+        <div className='flex mt-4'> 
+            <div>Income 2 : </div>
+            <input type="text" name="income2" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        </div>
+
+        <div className='flex mt-4 gap-3.5'> 
+         <div>Property 3 : </div>
+         <input type="text"  name="property3" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
+        </div>
+        <div className='flex mt-4'> 
+            <div>Income 3 : </div>
+            <input type="text" name="income3" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        </div>
+
+
+        <div className='flex mt-4 gap-3.5'> 
+         <div>Property 4 : </div>
+         <input type="text"  name="property4" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
+        </div>
+        <div className='flex mt-4'> 
+            <div>Income 4 : </div>
+            <input type="text" name="income4" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        </div>
+        <div className='flex mt-16 ml-64'>
+        <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Save</button>
+        </div>
+
+        
+        
+        
+
+        <div>
+            <li className='text-white'> </li>
+        </div>
+    </div>
+  
+    </div>
+  
+}
+
     </div>
   )
 }

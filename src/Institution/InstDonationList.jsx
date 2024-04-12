@@ -16,6 +16,7 @@ export const InstDonationList = () => {
             let response1=await axios.get(`http://localhost:4000/institution/pilgdonation/${id}`)
             console.log(response1.data,'response1');
             setdata1(response1.data)
+            
         }
         fetchdata()
     },[refresh])
@@ -122,6 +123,18 @@ export const InstDonationList = () => {
                 <th scope="col" className="px-6 py-3">
                     Amount
                 </th>
+                <th scope="col" className="px-6 py-3">
+                    Material
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Size
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    weight
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Worth
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -131,6 +144,10 @@ export const InstDonationList = () => {
                     <td>{item.date}</td>
                     <td>{item.time}</td>
                     <td>{item.amount}</td>
+                    <td>{item.material}</td>
+                    <td>{item.size}</td>
+                    <td>{item.weight}</td>
+                    <td>{item.worth}</td>
 
                 </tr>
             ))}
