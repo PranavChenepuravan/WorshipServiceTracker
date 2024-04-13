@@ -28,53 +28,50 @@ export const PilgBookingInst = () => {
 
 <div className='flex flex-wrap gap-2'>
 
-{data.map((item)=>(
-
-                    <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-80">
-                        <div
-                            class="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
-                            <img
-                                src={`http://localhost:4000/uploads/${item.photo}`}
-                                alt="card-image" />
-                        </div>
-                        <div class="p-6">
-                            <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                                {item.institutionName}
-                            </h5>
-                            <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                               {item.insttype}
-                            </p>
-                        </div>
-                        <div className='flex'>
-                         <div class="p-1 pt-0">
-                            <button
-                                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-                                type="button">
-                                    <Link to={`/pilglayout/pilgbooking/${item._id}`}>Select</Link>
-                            </button>
-                         </div>
-                         <div class="p-1 pt-0">
-                            <button
-                                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-                                type="button">
-                                    <Link to={`/pilglayout/pilgdonation/${item._id}`}>Donate</Link>
-                            </button>
-                         </div>
-                         <div class="p-1 pt-0">
-                            <button
-                                class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-5 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-                                type="button">
-                                    <Link to={`/pilglayout/pilgpreaching/${item._id}`}>Preaching</Link>
-                            </button>
-                         </div>
-
-                        </div> 
-                        <div className='p-1 pt-0 ml-[30%] mr-[30%]'>
-                         <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-9 py-2.5 text-center me-2 mb-2 "><Link to={`/pilglayout/pilginstitutionheritage/${item._id}`}>More</Link></button>
-
-                         </div>
+{data.map((item) => {
+    if (item.status=='approved' && item.transaction == 'approved') {
+        return (
+            <div key={item._id} className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-80">
+                <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
+                    <img src={`http://localhost:4000/uploads/${item.photo}`} alt="card-image" />
+                </div>
+                <div className="p-6">
+                    <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                        {item.institutionName}
+                    </h5>
+                    <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                        {item.insttype}
+                    </p>
+                </div>
+                <div className='flex'>
+                    <div className="p-1 pt-0">
+                        <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
+                            <Link to={`/pilglayout/pilgbooking/${item._id}`}>Select</Link>
+                        </button>
                     </div>
-))}
+                    <div className="p-1 pt-0">
+                        <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
+                            <Link to={`/pilglayout/pilgdonation/${item._id}`}>Donate</Link>
+                        </button>
+                    </div>
+                    <div className="p-1 pt-0">
+                        <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-5 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
+                            <Link to={`/pilglayout/pilgpreaching/${item._id}`}>Preaching</Link>
+                        </button>
+                    </div>
+                </div>
+                <div className="p-1 pt-0 ml-[30%] mr-[30%]">
+                    <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-9 py-2.5 text-center me-2 mb-2 ">
+                        <Link to={`/pilglayout/pilginstitutionheritage/${item._id}`}>More</Link>
+                    </button>
+                </div>
+            </div>
+        );
+    } else {
+        return null; // If transaction is not 'approved', render nothing
+    }
+})}
+
 </div>
 
 
