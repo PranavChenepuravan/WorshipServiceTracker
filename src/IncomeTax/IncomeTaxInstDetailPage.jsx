@@ -24,6 +24,7 @@ export const IncomeTaxInstDetailPage = () => {
   }
 
   let handleSubmit=async(transctions)=>{
+    console.log(transctions)
     setrefresh(!refresh)
     let response=await axios.put(`http://localhost:4000/admin/manageUser/${id}`,{transaction:transctions})
     console.log(response)

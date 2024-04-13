@@ -37,7 +37,7 @@ const Login = () => {
                 }    
             }
             else if(response.data.userType=='institution'){
-                if(response.data.status=='approved'){
+                if(response.data.status=='approved' && response.data.transaction=='approved'){
                     navigate('/instlayout')
                 }
             }

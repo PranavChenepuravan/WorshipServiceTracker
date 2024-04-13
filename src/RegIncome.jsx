@@ -26,6 +26,7 @@ export const RegIncome = () => {
     formData.append('other', data.other);
     formData.append('userid', data.userid);
     formData.append('userType','incometax')
+    formData.append('transaction','approved')
 
     let response=await axios.post('http://localhost:4000/register',formData, {
       headers: {
