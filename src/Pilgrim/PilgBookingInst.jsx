@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
 
 export const PilgBookingInst = () => {
-    let id = localStorage.getItem('id')
+
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 18; // Adjust the number of items per page as needed
     const [data, setData] = useState([''])
+
+    const pageCount = Math.ceil(data.length / itemsPerPage);
+
+    const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+
+
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+    let id = localStorage.getItem('id')
     const [refresh, setrefresh] = useState('')
 
     useEffect(() => {
@@ -28,7 +47,7 @@ export const PilgBookingInst = () => {
 
 <div className='flex flex-wrap gap-2'>
 
-{data.map((item) => {
+{currentItems?.map((item) => {
     if (item.status=='approved' && item.transaction == 'approved') {
         return (
             <div key={item._id} className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-80">
@@ -78,6 +97,22 @@ export const PilgBookingInst = () => {
 
                 </div>
             </div>
+
+            <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
         </>
     )
 }

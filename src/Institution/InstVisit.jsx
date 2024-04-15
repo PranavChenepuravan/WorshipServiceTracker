@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export const InstVisit = () => {
     const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 2; // Adjust the number of items per page as needed
+      const itemsPerPage = 10; // Adjust the number of items per page as needed
 
       let id=localStorage.getItem('id')
       

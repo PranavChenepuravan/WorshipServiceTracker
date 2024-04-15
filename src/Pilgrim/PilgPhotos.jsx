@@ -7,10 +7,29 @@ import im5 from '../Pilgrim/Church3.jpeg'
 import im6 from '../Pilgrim/Church4.jpeg'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import ReactPaginate from 'react-paginate';
 
 export const PilgPhotos = () => {
 
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 4; // Adjust the number of items per page as needed
     const [data, setData] = useState([''])
+
+    const pageCount = Math.ceil(data.length / itemsPerPage);
+
+    const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+
+    
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+
     const [refresh, setrefresh] = useState(false)
     useEffect(() => {
         let fetchdata = async () => {
@@ -35,7 +54,7 @@ export const PilgPhotos = () => {
 
 <div className='flex flex-wrap gap-4 justify-center'>
 
-                {data?.map((item, index) => (
+                {currentItems?.map((item, index) => (
                    
 
                         <div class="h-[20%] bg-gray-100 flex items-center text-center ">
@@ -54,7 +73,23 @@ export const PilgPhotos = () => {
 
 
                 ))}
-    </div>         
+    </div> 
+
+         <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>        
 
             </>
 

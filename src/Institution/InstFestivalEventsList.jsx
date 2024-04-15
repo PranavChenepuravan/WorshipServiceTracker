@@ -1,10 +1,31 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
 
 export const InstFestivalEventsList = () => {
-    let {id}=useParams()
+
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 5; // Adjust the number of items per page as needed
     const [data,setData]=useState([''])
+
+
+
+
+    const pageCount = Math.ceil(data.length / itemsPerPage);
+
+    const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+    
+    const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+    let {id}=useParams()
+    
     const [refresh,setrefresh]=useState('')
 
     useEffect(()=>{
@@ -47,7 +68,7 @@ export const InstFestivalEventsList = () => {
             </tr>
         </thead>
         <tbody>
-           {data.map((item,index)=>(
+           {currentItems?.map((item,index)=>(
              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                  <td>
                    {item?.eventname}                
@@ -74,6 +95,22 @@ export const InstFestivalEventsList = () => {
         
         </tbody>
     </table>
+
+    <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
     </div>
     </>
   )
