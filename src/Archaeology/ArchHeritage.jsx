@@ -2,12 +2,34 @@ import React, { useEffect, useState } from 'react'
 import str from '../Component/Rating.jpeg'
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios'
+import ReactPaginate from 'react-paginate';
 
 export const ArchHeritage = () => {
-    let id = localStorage.getItem('id')
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3; // Adjust the number of items per page as needed
+  const [data,setData]=useState([''])
+
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+
+
+
+  let id=localStorage.getItem('id')
+
     const [userData,setUserData]=useState('')
     const [rating,setRating]=useState()
-    const [data,setData]=useState([])
+
     const [refresh,setrefresh]=useState(false)
 
     useEffect(()=>{
@@ -84,7 +106,7 @@ export const ArchHeritage = () => {
             </tr>
         </thead>
         <tbody>
-            {data?.map((item, index) => (
+            {currentItems?.map((item, index) => (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {item?.institutionId}
@@ -124,43 +146,26 @@ export const ArchHeritage = () => {
                 </td>
                 </tr>
             ))}
-            {/* <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    TM001
-                </th>
-                <td className="px-6 py-4">
-                    Sree Muruka Temple
-                </td>
-                <td className="px-6 py-4">
-                    Temple
-                </td>
-                <td className="px-6 py-4">
-                    Kalamaseri
-                </td>
-                <td className="px-6 py-4">
-                    dsd@gmail.com
-                </td>
-                <td className="px-6 py-4">
-                    9674565464
-                </td>
-                <td className="px-6 py-4">
-                    The place famous for misterious water fall
-                </td>
-                <td className="px-6 py-4">
-                    There lived a land lord named gupta. He founded the temple.
-                    He obserbed a sacred waterfall against gravity.......
-                </td>
-                <td className="px-6 py-4">
-                    <div><button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Approve</button></div>
-                    <div><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]">Reject</button></div>
-                </td>
-                <td className="px-6 py-4">
-                    <div><img src={str} alt="" className='h-[35px]' /></div>
-                </td>         
-            </tr> */}
             
         </tbody>
     </table>
+    <div className="flex justify-between text-white w-24 mt-4">
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={'pagination'}
+          activeClassName={'active'}
+       
+        />
+      </div>
+
+
 </div>
   )
 }

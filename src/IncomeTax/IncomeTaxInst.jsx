@@ -1,161 +1,187 @@
-import React,{ useState }  from 'react'
-import str from '../IncomeTax/Rating.jpeg'
-import { Link } from 'react-router-dom'
+import React,{ useState,useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
-import ReactStars from "react-rating-stars-component";
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const IncomeTaxInst = () => {
-      const ratingChanged = (newRating) => {
-      console.log(newRating);
-    }
-
-    const [drop,setDrop]=useState(false)
-
-    let dropdown=()=>{
-        setDrop(!drop)
-        console.log(drop);
-    }
-
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 2; // Adjust the number of items per page as needed
+      const itemsPerPage = 2; // Adjust the number of items per page as needed
 
-    const data = [
-        {
-          institutionId: 'TM001',
-          institutionName: 'Sree Muruka Temple',
-          institutionType: 'Temple',
-          community: 'Hindu',
-          headOfInstitution: 'Vinshnu Das',
-          location: 'Nilambur',
-          email: 'sreemuruka@gmail.com',
-          phone: '9546544560',
-          worth: '2 Billion',
-          tax: ' ',
-          date:'12/02/2024',
-          stat:'payed',
-          balance:'NA',
+      let id=localStorage.getItem('id')
+      
+      const [data,setUserData]=useState([''])
+      const [data1,setUserData1]=useState([''])
+      const [refresh,setrefresh]=useState(false)
+
+      useEffect(()=>{
+        let fetchdata=async ()=>{
+  
+
+
+          let response1=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
+          console.log(response1.data);
+          setUserData1(response1.data)
           
-        },
-        {
-          institutionId: 'CH001',
-          institutionType: 'Church',
-          name: 'Sacred Heart',
-          headOfInstitution: 'Father Sebastian',
-          community: 'Christian',
-          location: 'Calicut',
-          phone: '9540544560',
-          email: 'sacredheart@gmail.com',
-        },
-        {
-            institutionId: 'CH001',
-            institutionType: 'Church',
-            name: 'Sacred Heart',
-            headOfInstitution: 'Father Sebastian',
-            community: 'Christian',
-            location: 'Calicut',
-            phone: '9540544560',
-            email: 'sacredheart@gmail.com',
-          },
-        // Add more dummy data as needed
-      ];
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+          let location = response1.data.location;
+          console.log(location)
+          if(location){
+            let response=await axios.get(`http://localhost:4000/admin/viewinstprofile/${location}`)
+            console.log(response.data);
+            setUserData(response.data)
 
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected);
-  };
+          }
+        }
+        fetchdata()
+      },[refresh])
 
-  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+      
 
+      // const data = [
+      //   {
+      //     pilgrimId: 'APT01',
+      //     pilgrimName: 'Yamini',
+      //     place: 'Kottayam',
+      //     phone:'1234567890',
+      //     email:'yamini@gmail.com',
+      //     dateAndtime:'13/02/2024 10:40 am',
+      //     otherDetails:'',
+      //     amount:'1200',
+      //     tax:'120'
+      //   },
+      //   {
+      //       pilgrimId: 'APT02',
+      //       pilgrimName: 'Prakash',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'prak@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
+      //     {
+      //       pilgrimId: 'APT01',
+      //       pilgrimName: 'Dannya',
+      //       place: 'Kottayam',
+      //       phone:'1234567890',
+      //       email:'dan@gmail.com',
+      //       dateAndtime:'13/02/2024 10:40 am',
+      //       otherDetails:'',
+      //       amount:'1200',
+      //       tax:'120'
+      //     },
+        
+        
+      //   // Add more dummy data as needed
+      // ];
+      const pageCount = Math.ceil(data.length / itemsPerPage);
+
+
+      const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected);
+      };
+    
+      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+      
   return (
-    <div className="  overflow-x-auto w-[100%]  ">
-    <table className=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+    
+
+<div className="overflow-x-auto  ">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
                     Institution Id
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Institution Name
+                    Name
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Type
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Community
+                    Place
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Head of Institution
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Location
+                    Phone
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Email
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Phone 
+                    Head
                 </th>
                 <th scope="col" className="px-6 py-3">
-                 
+                    Community
                 </th>
                 <th scope="col" className="px-6 py-3">
-                 
-                </th>
-                {/* <th scope="col" className="px-6 py-3 flex">
-                 <div className='relative'>   
-                    <div onClick={dropdown} className='bg-black  text-white w-[80px]'>Select Tax</div>
-                        {drop&& 
-                        <div className='list-none flex-col w-full top-5  absolute bg-white'>
-                            <li className=''>10%</li>
-                            <li>20%</li>
-                            <li>25%</li>
-                        </div>
-                        }
-                 </div> 
-                 <input type="text" className='h-[30px]'/>
-                 <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 h-[30px] text-center">Add</button>
-                 
+                    Photo
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Last Date
+
                 </th>
-                <th scope="col" className="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Balance
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Option
-                </th>
-                <th scope="col" className="px-8 py-2">
-                    Rating
-                </th> */}
             </tr>
         </thead>
+        {/* <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    APT001
+                </th>
+                <td className="px-6 py-4">
+                    Pushkaran
+                </td>
+                <td className="px-6 py-4">
+                    Kozhikode
+                </td>
+                <td className="px-6 py-4">
+                    9756654549
+                </td>
+                <td className="px-6 py-4">
+                    pusk@gmail.com
+                </td>
+                <td className="px-6 py-4">
+                    17/01/2024
+                </td>
+                <td className="px-6 py-4">
+                    
+                </td>
+                <td className="px-6 py-4">
+                    3400
+                </td>
+                <td className="px-6 py-4">
+                    87
+                </td>
+                
+            </tr>
+            
+        </tbody> */}
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item.institutionId}
+              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item?._id}
               </td>
-              
-              <td className="px-6 py-4">{item.institutionName}</td>
-              <td className="px-6 py-4">{item.institutionType}</td>
-              <td className="px-6 py-4">{item.community}</td>
-              <td className="px-6 py-4">{item.headOfInstitution}</td>
-              <td className="px-6 py-4">{item.location}</td>
-              <td className="px-6 py-4">{item.email}</td>
-              <td className="px-6 py-4">{item.phone}</td>
-              <td className="px-6 py-4">{item.tax}</td>
-              <td><button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><Link to='/incomelayout/incometaxinst2'>More</Link></button></td>
+              <td className="px-6 py-4">{item?.institutionName}</td>
+              <td className="px-6 py-4">{item?.insttype}</td>
+              <td className="px-6 py-4">{item?.location}</td>
+              <td className="px-6 py-4">{item?.phone}</td>
+              <td className="px-6 py-4">{item?.email}</td>
+              <td className="px-6 py-4">{item?.email}</td>
+              <td className="px-6 py-4">{item?.community}</td>
+              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
+              <div className='flex'>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/incomelayout/incometaxinstdetailpage/${item?._id}`}>View</Link></button>
+              </div>
             </tr>
           ))}
         </tbody>
     </table>
-
     <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
@@ -171,8 +197,8 @@ export const IncomeTaxInst = () => {
        
         />
       </div>
-
 </div>
+
   )
 }
 export default IncomeTaxInst

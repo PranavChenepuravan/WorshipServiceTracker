@@ -22,46 +22,7 @@ export const ViewInstitution = () => {
         fetchdata()
       },[refresh])
 
-      
-
-      // const data = [
-      //   {
-      //     pilgrimId: 'APT01',
-      //     pilgrimName: 'Yamini',
-      //     place: 'Kottayam',
-      //     phone:'1234567890',
-      //     email:'yamini@gmail.com',
-      //     dateAndtime:'13/02/2024 10:40 am',
-      //     otherDetails:'',
-      //     amount:'1200',
-      //     tax:'120'
-      //   },
-      //   {
-      //       pilgrimId: 'APT02',
-      //       pilgrimName: 'Prakash',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'prak@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-      //     {
-      //       pilgrimId: 'APT01',
-      //       pilgrimName: 'Dannya',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'dan@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-        
-        
-      //   // Add more dummy data as needed
-      // ];
+    
       const pageCount = Math.ceil(data.length / itemsPerPage);
 
 

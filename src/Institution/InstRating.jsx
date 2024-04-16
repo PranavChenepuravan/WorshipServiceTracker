@@ -20,8 +20,6 @@ export const InstRating = () => {
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
       const currentItems = reviews.slice(indexOfFirstItem, indexOfLastItem);
 
-
-
       const[data,setData]=useState([''])
       const [userData,setUserData]=useState('')
       const [refresh,setrefresh]=useState(false)

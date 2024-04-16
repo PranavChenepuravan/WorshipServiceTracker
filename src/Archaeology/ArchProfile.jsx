@@ -33,8 +33,8 @@ export const ArchProfile = () => {
     <div className='flex flex-col pl-[15%] text-xl'>
 
       <div className='flex'> 
-        <div>ID:</div>
-        <h2>{userData.userid}</h2>
+        <div>Department Type:</div>
+        <h2>{userData.departmentName}</h2>
       </div>
       <div className='flex'> 
         <div>Place:</div>

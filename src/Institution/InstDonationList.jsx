@@ -27,32 +27,39 @@ export const InstDonationList = () => {
         fetchData();
     }, [id, refresh]);
 
-    // Calculate sum of income1, income2, income3, income4
-    const incomeSum = data2.reduce((acc, item) => acc + item.income1 + item.income2 + item.income3 + item.income4, 0);
+    // Calculate sum of all incomes
+    const incomeSum = data2.reduce((acc, item) => {
+        let sum = 0;
+        for (let i = 1; i <= 4; i++) {
+            sum += item[`income${i}`];
+        }
+        return acc + sum;
+    }, 0);
 
     // Calculate sum of amounts
     const amountSum = data.reduce((acc, item) => acc + (item.donation ? item.donation.amount : 0), 0);
 
     // Calculate sum of worth
-    const worthSum = data1.reduce((acc, item) => acc + item.worth, 0);
+    const worthSum = data1.reduce((acc, item) => acc + item.amount, 0);
 
     // Calculate total sum
-    const totalSum = incomeSum + amountSum + worthSum;
+    const totalSum =  amountSum + worthSum;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Prepare data to be sent to backend
         const postData = {
-            incomeSum,
+            // incomeSum,
             amountSum,
             worthSum,
             totalSum,
+            id
             // Add any additional data needed
         };
 
         try {
-            const response = await axios.post('http://localhost:4000/institution/cash', postData);
+            const response = await axios.post('http://localhost:4000/institution/wholedonation', postData);
             console.log(response);
         } catch (error) {
             console.error('Error posting data:', error);
@@ -211,9 +218,6 @@ export const InstDonationList = () => {
                     Time
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Amount
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Material
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -223,7 +227,7 @@ export const InstDonationList = () => {
                     weight
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Worth
+                    Amount
                 </th>
             </tr>
         </thead>
@@ -233,19 +237,17 @@ export const InstDonationList = () => {
                     <td>{item.pilgrimId}</td>
                     <td>{item.date}</td>
                     <td>{item.time}</td>
-                    <td>{item.amount}</td>
+                    
                     <td>{item.material}</td>
                     <td>{item.size}</td>
                     <td>{item.weight}</td>
-                    <td>{item.worth}</td>
+                    <td>{item.amount}</td>
 
                 </tr>
             ))}
             
         </tbody>
     </table>
-    
-            
             <div className="pt-2">
                 <button type="button" onClick={handleSubmit} className="focus:outline-none ml-[43%] mr-[50%] text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Confirm</button>
             </div>

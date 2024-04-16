@@ -9,7 +9,7 @@ export const PilgBookingList = () => {
 
     useEffect(()=>{
         let fetchdata=async ()=>{
-             let response=await axios.get(`http://localhost:4000/pilgrim/booking2/${id}`)
+             let response=await axios.get(`http://localhost:4000/pilgrim/booking/${id}`)
              console.log(response.data);
              setData(response.data)
         }
