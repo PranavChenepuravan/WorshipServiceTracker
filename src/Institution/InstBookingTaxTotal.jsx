@@ -86,7 +86,7 @@ const [taxId,setTaxId]=useState('')
     <>
 
 
-  <div className='w-44 mt-4 '>
+  {/* <div className='w-44 mt-4 '>
     <label htmlFor="" className='text-white'>Total Tax</label>
       <div className='flex'>
                <input
@@ -101,7 +101,7 @@ const [taxId,setTaxId]=useState('')
                 /> 
      
         </div>
-    </div>
+    </div> */}
 
 
 

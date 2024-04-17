@@ -25,13 +25,17 @@ export const AdminDonationTax = () => {
         fetchdata()
       },[refresh])
 
+      let handleChange = (event) =>{
+        setData1({...data1, [event.target.name]: event.target.value });
+      };
 
-
-
-
-
-
-
+      let handleSubmit = async (event) => {
+        console.log('in submit');
+        event.preventDefault();
+        console.log('sad');
+        let response = await axios.put('http://localhost:4000/admin/wholedonationtax', data1);
+        console.log(response);
+    };
 
 
 
@@ -46,26 +50,35 @@ export const AdminDonationTax = () => {
       const indexOfLastItem = (currentPage + 1) * itemsPerPage;
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
       const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     
 
 <div className="overflow-x-auto  ">
+<form action="" onSubmit={handleSubmit}>
   <div className="mb-5">
     <label for="password" className="block mb-2 font-medium text-white dark:text-white text-2xl">Tax % </label>
     <div className='flex'>
-    <input type="text" id="password" name="donationtax"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[25%]" required />
-    <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Update</button>
+    <input type="text" id="password" onChange={handleChange} name="tax"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[25%]" required />
+    <button type="submit"  class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Update</button>
     </div>
   </div>
+  </form>
+
+  {currentItems.length > 0 && currentItems[0]?.donations?.currentPercentage &&
+
+  <div className="text-white flex text-2xl">
+                    <label htmlFor="password" className="block mb-2 font-medium text-white dark:text-white ">Current Tax : </label>
+                    {currentItems[0]?.donations?.currentPercentage}
+                    <p>%</p>
+ </div>
+ }
+
+
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="px-6 py-3">
-                    Incometax Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Incometax Adress
-                </th>
+
                 <th scope="col" className="px-6 py-3">
                     Institution Id
                 </th>
@@ -76,18 +89,6 @@ export const AdminDonationTax = () => {
                     Institution Address
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Pilgrim Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Pilgrim Adress
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Donation Type
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Donation Details
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Date
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -96,26 +97,30 @@ export const AdminDonationTax = () => {
                 <th scope="col" className="px-6 py-3">
                     Tax
                 </th>
-                
-
-                
+                <th scope="col" className="px-6 py-3">
+                    Payed
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Balance
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Status
+                </th>
+    
             </tr>
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item?.institutionId}
-              </td>
-
-              <td className="px-6 py-4">{item?.instittutionId}</td>
-
-              <td className="px-6 py-4">{item?.totalSum}</td>
-
-              <td className="px-4 py-4">
-                    <div><button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]" >Approve</button></div>
-                    <div><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[90%]" >Reject</button></div>
-                </td>    
+              <td className="px-6 py-4">{item?.donations?.instittutionId}</td>
+              <td className="px-6 py-4">{item?.instInfo?.insttype}</td>
+              <td className="px-6 py-4">{item?.instInfo?.institutionName},{item?.instInfo?.location},{item?.instInfo?.phone},{item?.instInfo?.email}</td>
+              <td className="px-6 py-4">{item?.donations?.date}</td>
+              <td className="px-6 py-4">{item?.donations?.totalSum}</td>
+              <td className="px-6 py-4">{item?.donations?.tax}</td>
+              <td></td>
+              <td></td>
+              <td className="px-6 py-4"></td>
             </tr>
           ))}
         </tbody>

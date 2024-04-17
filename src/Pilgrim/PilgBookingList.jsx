@@ -4,17 +4,20 @@ import React, { useEffect, useState } from 'react'
 export const PilgBookingList = () => {
 
     let id=localStorage.getItem('id')
+    console.log(id)
     const [data,setData]=useState([''])
     const [refresh,setrefresh]=useState(false)
 
     useEffect(()=>{
         let fetchdata=async ()=>{
-             let response=await axios.get(`http://localhost:4000/pilgrim/booking/${id}`)
+             let response=await axios.get(`http://localhost:4000/pilgrim/booking2/${id}`)
              console.log(response.data);
              setData(response.data)
         }
         fetchdata()
     },[refresh])
+
+    console.log(data,'data');
   return (
     <>
     <div className='flex flex-col'>
@@ -51,9 +54,9 @@ export const PilgBookingList = () => {
                 <th scope="col" className="px-6 py-3">
                     Amount
                 </th>
-                {/* <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                     Tax
-                </th> */}
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -86,9 +89,10 @@ export const PilgBookingList = () => {
                     <td>
                         {item.amount}
                     </td>
-                    {/* <td>
-
-                    </td> */}
+                    <td>
+                        {item.tax}
+                    </td>
+                 
                 </tr>
             ))}
         </tbody>
