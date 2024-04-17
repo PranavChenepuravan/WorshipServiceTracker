@@ -62,37 +62,16 @@ export const PilgBookingList = () => {
         <tbody>
             {data.map((item,index)=>(
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td>
-                       {item.pilgrimId}
-                    </td>
-                    <td>
-                       {item.usersInfo?.insttype}
-                    </td>
-                    <td>
-                        {item.usersInfo?.location}
-                    </td>
-                    <td>
-                        {item.usersInfo?.institutionName}
-                    </td>
-                    <td>
-                        {item.usersInfo?.phone}
-                    </td>
-                    <td>
-                        {item.usersInfo?.email}
-                    </td>
-                    <td>
-                        {item.date}
-                    </td>
-                    <td>
-                        {item.time}
-                    </td>
-                    <td>
-                        {item.amount}
-                    </td>
-                    <td>
-                        {item.tax}
-                    </td>
-                 
+                    <td>{item?.booking?._id}</td>
+                    <td>{item?.institutions?.insttype}</td>
+                    <td>{item?.institutions?.location}</td>
+                    <td>{item?.institutions?.institutionName}</td>
+                    <td>{item?.institutions?.phone}</td>
+                    <td>{item?.institutions?.email}</td>
+                    <td>{item?.booking?.date}</td>
+                    <td>{item?.booking?.time}</td>
+                    <td>{item?.booking?.amount}</td>
+                    <td>{item?.booking?.tax}</td>
                 </tr>
             ))}
         </tbody>
