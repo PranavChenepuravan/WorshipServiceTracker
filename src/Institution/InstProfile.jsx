@@ -30,8 +30,8 @@ export const InstProfile = () => {
         <h2 class="font-semibold">John Smith</h2>
         <p class="text-gray-500">Freelance Web Designer</p>
     </div> */}
-    <div className='flex flex-col pl-[15%] text-xl'>
-    <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to='/instlayout/instproperties'>Properties</Link></button>
+    <div className='flex flex-col pl-[15%] text-xl pt-2'>
+    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><Link to='/instlayout/instproperties'>Properties</Link></button>
 
       <div className='flex'> 
         <div>ID : </div>

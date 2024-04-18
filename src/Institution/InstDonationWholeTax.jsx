@@ -24,7 +24,7 @@ export const InstDonationWholeTax = () => {
 
     let handleSubmit=async(totaltaxes,taxId)=>{
         setrefresh(!refresh)
-        let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes})
+        let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes,status:'rejected'})
         console.log(response);
     }
 
@@ -53,50 +53,53 @@ export const InstDonationWholeTax = () => {
         </div>
         <div className='flex'> 
             <div>Income Tax Sanction : </div>
-            <h2></h2>
+            <h2>{item?.donation?.status}</h2>
         </div>
         <br />
+
+        <div className='flex flex-col pl-[15%] text-xl'>
+    <div className='flex mt-3'> 
+        <label htmlFor="payed" className="w-[20%]">Amount :</label>
+        <input type="text" onChange={handleChange}  name="payed" id="payed" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
+    </div>
+
+    <div className='flex mt-3'> 
+        <label htmlFor="bank" className="w-[20%]">Bank Name :</label>
+        <input type="text" name="bank" id="bank" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <div className='flex mt-3'> 
+        <label htmlFor="account" className="w-[20%]">Account No :</label>
+        <input type="text" name="account" id="account" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <div className='flex mt-3'> 
+        <label htmlFor="ifsc" className="w-[20%]">IFSC No:</label>
+        <input type="text" name="ifsc" id="ifsc" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <div className='flex mt-3'> 
+        <label htmlFor="username" className="w-[20%]">User Name :</label>
+        <input type="text" name="other" id="username" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <div className='flex mt-3'> 
+        <label htmlFor="password" className="w-[20%]">Password :</label>
+        <input type="text" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <div className='flex mt-3'> 
+        <label htmlFor="payeddate" className="w-[20%]">Date and Time :</label>
+        <input type="date" onChange={handleChange}  name="payeddate" id="payeddate" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+    </div>
+    <br />
+    <div>
+    <button type="button" onClick={()=>handleSubmit(item?.donation?.tax,item?.donation?._id)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+    </div>
+    <div>
+        <li className='text-white'> </li>
+    </div>
+</div>
+
         
 
 
-    <div className='flex flex-col pl-[15%] text-xl'>
-    <div className='flex'> 
-         <div>Amount : </div>
-         <input type="text" onChange={handleChange}  name="payed" id="user_name" className=" w-[60%] ml-[12%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   />
-        </div>
 
-        <div className='flex'> 
-            <div>Bank Name : </div>
-            <input type="text" name="" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <div className='flex'> 
-            <div>Account No : </div>
-            <input type="text" name="" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <div className='flex'> 
-            <div>IFSC No: </div>
-            <input type="text" name="" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <div className='flex'> 
-            <div>User Name : </div>
-            <input type="text" name="other" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <div className='flex'> 
-            <div>Password : </div>
-            <input type="text" name="" id="user_name" className=" w-[60%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <div className='flex'> 
-            <div>Date and Time : </div>
-            <input type="date" onChange={handleChange}  name="payeddate" id="user_name" className=" w-[60%] ml-[2%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-        </div>
-        <br />
-        <div>
-        <button type="button" onClick={()=>handleSubmit(item?.donation?.tax,item?.donation?._id)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
-        </div>
-        <div>
-            <li className='text-white'> </li>
-        </div>
-    </div>
 
 
 

@@ -22,7 +22,7 @@ export const IncomeTaxDonation = () => {
             {
                 let response1=await axios.get(`http://localhost:4000/incometax/donation/${location}`)
                 console.log(response1.data,'sdf')
-                setDonationData(refresh.data)
+                setDonationData(response1.data)
             }
         }
         fetchdata()
@@ -38,7 +38,7 @@ export const IncomeTaxDonation = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3; // Adjust the number of items per page as needed
 
-  const pageCount = Math.ceil(donationData.length / itemsPerPage);
+  const pageCount = Math.ceil(donationData?.length / itemsPerPage);
 
 
   const handlePageClick = ({ selected }) => {
@@ -47,11 +47,11 @@ export const IncomeTaxDonation = () => {
 
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = donationData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = donationData.slice(indexOfFirstItem,indexOfLastItem);
   return (
     <>
       <div className='flex'>
-      <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to='/incomelayout/incometaxbookinginstwise'>Institution Wise</Link></button>
+      <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to='/incomelayout/incometaxdonationinstwise'>Institution Wise</Link></button>
       </div>
 
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -67,7 +67,7 @@ export const IncomeTaxDonation = () => {
                     Institution Address
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Date
+                    Date and Time
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Amount
@@ -75,26 +75,52 @@ export const IncomeTaxDonation = () => {
                 <th scope="col" className="px-6 py-3">
                     Tax
                 </th>
+                <th scope="col" className="px-6 py-3">
+                    Payed
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Balance
+                </th>
   
             </tr>
       </thead>
-      <tbody>
-  {/* {currentItems.map((bookingItem, index) => (
-    bookingItem.bookings.map((item, innerIndex) => (
-      <tr key={`${index}-${innerIndex}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {item._id}
-        </td>
-        <td >{bookingItem?.institution?.insttype}</td>
-        <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
-        <td>{item.date}</td>
-        <td className='px-5'>{item.amount}</td>
-        <td className='px-5'>{item.tax}</td>
+      {/* <tbody>
 
-      </tr>
-    ))
-  ))} */}
+      {currentItems.map((item,index)=>(
+              <tr className="bg-white dark:bg-gray-800 dark:border-gray-700">
+                <td>{item?.wholedon?._id}</td>
+                <td>{item?.inst?.insttype}</td>
+                <td>{item?.inst?.institutionName},{item?.inst?.location},{item?.inst?.phone},{item?.inst?.email}</td>
+                <td>{item?.wholedon?.date}</td>
+                <td>{item?.wholedon?.totalSum}</td>
+                <td>{item?.wholedon?.tax}</td>
+                if({item?.wholedon?.tax-item?.wholedon?.balance}!=NaN){
+                <td>{item?.wholedon?.tax-item?.wholedon?.balance}</td>
+              }
+                <td>{item?.wholedon?.balance}</td>
+               </tr>
+            ))}
+      </tbody> */}
+      <tbody>
+    {currentItems.map((item,index)=>(
+        <tr className="bg-white dark:bg-gray-800 dark:border-gray-700" key={index}>
+            <td>{item?.wholedon?._id}</td>
+            <td>{item?.inst?.insttype}</td>
+            <td>{item?.inst?.institutionName},{item?.inst?.location},{item?.inst?.phone},{item?.inst?.email}</td>
+            <td>{item?.wholedon?.date}</td>
+            <td>{item?.wholedon?.totalSum}</td>
+            <td>{item?.wholedon?.tax}</td>
+            <td>
+                {isNaN(item?.wholedon?.tax - item?.wholedon?.balance) 
+                    ? '' 
+                    : item?.wholedon?.tax - item?.wholedon?.balance
+                }
+            </td>
+            <td>{item?.wholedon?.balance}</td>
+        </tr>
+    ))}
 </tbody>
+
     </table>
  
     <div className="flex justify-between text-white w-24 mt-4">

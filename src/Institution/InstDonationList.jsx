@@ -57,7 +57,7 @@ export const InstDonationList = () => {
             amountSum,
             worthSum,
             totalSum,
-            id,
+            id, 
             date: formattedDate
             // Add any additional data needed
         };
