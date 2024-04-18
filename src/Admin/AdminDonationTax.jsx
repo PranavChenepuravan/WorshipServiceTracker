@@ -118,8 +118,13 @@ export const AdminDonationTax = () => {
               <td className="px-6 py-4">{item?.donations?.date}</td>
               <td className="px-6 py-4">{item?.donations?.totalSum}</td>
               <td className="px-6 py-4">{item?.donations?.tax}</td>
-              <td></td>
-              <td></td>
+              <td>
+                {isNaN(item?.donations?.tax - item?.donations?.balance) 
+                    ? '' 
+                    : item?.donations?.tax - item?.donations?.balance
+                }
+            </td>
+              <td className="px-6 py-4">{item?.donations?.status}</td>
               <td className="px-6 py-4"></td>
             </tr>
           ))}
