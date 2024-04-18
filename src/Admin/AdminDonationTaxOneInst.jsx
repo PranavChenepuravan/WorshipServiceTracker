@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import { Link, useParams } from 'react-router-dom'
 
-export const AdminBookingTaxOneInst = () => {
+export const AdminDonationTaxOneInst = () => {
 
     let {id}=useParams()
     const [bookingData,setBookingData]=useState([])
@@ -30,7 +30,7 @@ export const AdminBookingTaxOneInst = () => {
                 const roundedTotalTaxSum = totalTaxSum.toFixed(2);
                 setTotalTax(roundedTotalTaxSum);
 
-                const response1 = await axios.get(`http://localhost:4000/admin/institionsbookingtax/${id}`)
+                const response1 = await axios.get(`http://localhost:4000/admin/institutionsdonationtax/${id}`)
                 console.log("Response 1 Data", response1.data)
                 setTotdata(response1.data)
 
@@ -53,7 +53,7 @@ export const AdminBookingTaxOneInst = () => {
 
     let handleSubmit=async (event)=>{
         event.preventDefault()
-        let response=await axios.post(`http://localhost:4000/admin/institionsbookingtax`,{...data,institutionId:id,totaltax:totalTax})
+        let response=await axios.post(`http://localhost:4000/admin/institutionsdonationtax`,{...data,institutionId:id,totaltax:totalTax})
         console.log(response);
     }
 
@@ -105,15 +105,15 @@ export const AdminBookingTaxOneInst = () => {
     <div className='flex flex-col pl-[15%] text-xl'>
     <div className='flex'> 
          <div>Tax For The Date : </div>
-            <h2>{item?.totaltax}</h2> 
+            <h2>{item?.tax}</h2> 
         </div>
         <div className='flex'> 
             <div>Total Payed : </div>
-            <h2>{item?.payed}</h2> 
+            <h2>{item?.tax - item?.balance}</h2> 
         </div>
         <div className='flex'> 
             <div>Total Balance : </div>
-            <h2>{item?.totaltax - item?.payed}</h2>
+            <h2>{item?.balance}</h2>
         </div>
         <div className='flex'> 
             <div>Date and Time : </div>
@@ -135,73 +135,7 @@ export const AdminBookingTaxOneInst = () => {
 
 
 
-    
-
-
-
-
-
-
-
-
-    {/* <div className='flex'>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Payed</label>
-      <div className='flex'>
-               <input
-                    name='totalpayed'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Balance</label>
-      <div className='flex'>
-               <input
-                    name='totalbalance'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Date and Time</label>
-      <div className='flex'>
-               <input
-                    name='date'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                    value={(new Date(item.date)).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}
-                /> 
-        </div>
-    </div>
-    <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Income Tax Sanction</label>
-      <div className='flex'>
-               <input
-                    name='sanction'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    readOnly
-                    required
-                    value={item?.status}
-                /> 
-        </div>
-    </div>
-    </div> */}
-
     </>
   )
 }
-export default AdminBookingTaxOneInst
+export default AdminDonationTaxOneInst

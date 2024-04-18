@@ -23,6 +23,8 @@ import { AdminDonationTax } from './Admin/AdminDonationTax';
 import { AdminBookingTax } from './Admin/AdminBookingTax';
 import { AdminBookingTaxInstWise } from './Admin/AdminBookingTaxInstWise';
 import { AdminBookingTaxOneInst } from './Admin/AdminBookingTaxOneInst';
+import { AdminDonationTaxInstWise } from './Admin/AdminDonationTaxInstWise';
+import { AdminDonationTaxOneInst } from './Admin/AdminDonationTaxOneInst';
 
 import { RegisterCommon } from './RegisterCommon';
 import { RegInst } from './RegInst';
@@ -152,6 +154,8 @@ import { PilgPreaching } from './Pilgrim/PilgPreaching';
 
 
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -181,6 +185,8 @@ root.render(
           <Route path="adminbookingtax" element={<AdminBookingTax/>}/>
           <Route path="adminbookingtaxinstwise" element={<AdminBookingTaxInstWise/>}/>
           <Route path="adminbookingtaxoneinst/:id" element={<AdminBookingTaxOneInst/>}/>
+          <Route path="admindonationtaxinstwise" element={<AdminDonationTaxInstWise/>}/>
+          <Route path="admindonationtaxoneinst/:id" element={<AdminDonationTaxOneInst/>}/>
 
         </Route>
 
