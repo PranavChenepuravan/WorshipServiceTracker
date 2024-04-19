@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './App.css'
 import axios from 'axios'
-
+import { ToastContainer, toast } from 'react-toastify';
 export const RegPilgrim = () => {
 const [data,setData]=useState('')
 let handlefile=(event)=>{
@@ -16,29 +16,34 @@ let handleChange=(event)=>{
 
 let handleSubmit=async (event)=>{
     event.preventDefault()
-    let formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('idproof', data.idproof);
-    formData.append('password', data.password);
-    formData.append('email',data.email);
-    formData.append('location',data.location);
-    formData.append('phone',data.phone);
-    formData.append('other',data.other);
-    formData.append('photo',data.photo);
-    formData.append('userid',data.userid);
-    formData.append('userType','pilgrim');
-    formData.append('status','approved')
-    formData.append('transaction','approved')
+    try{
 
-   let response=await axios.post('http://localhost:4000/register',formData, {
-    headers: {
-      'Content-Type' : 'multipart/form-data'
+      let formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('idproof', data.idproof);
+      formData.append('password', data.password);
+      formData.append('email',data.email);
+      formData.append('location',data.location);
+      formData.append('phone',data.phone);
+      formData.append('other',data.other);
+      formData.append('photo',data.photo);
+      formData.append('userid',data.userid);
+      formData.append('userType','pilgrim');
+      formData.append('status','approved')
+      formData.append('transaction','approved')
+      
+      let response=await axios.post('http://localhost:4000/register',formData, {
+        headers: {
+          'Content-Type' : 'multipart/form-data'
+        }
+        
+      })
+    }catch(e){
+      console.log(e);
+      toast.error( e.response.data.message || e.message)
     }
-
-   })
-   console.log(response)
-}
-  return (
+    }
+    return (
     <>
     <div className='regback h-screen'>
     <form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
@@ -63,11 +68,11 @@ let handleSubmit=async (event)=>{
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-    <input type="text" onChange={handleChange} name="phone" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={10} required />
+    <input type="phone" onChange={handleChange} pattern="[0-9]{10}" name="phone" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={10} required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-    <input type="text" onChange={handleChange} name="email" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+    <input type="email" onChange={handleChange} name="email" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>

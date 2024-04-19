@@ -23,6 +23,7 @@ const Login = () => {
         console.log(response);
         if(response.data){
             localStorage.setItem('id',response.data._id)
+            localStorage.setItem('email',response.data.email)
             if(response.data.userType=='admin'){
                 navigate('/admin')
             }
@@ -37,7 +38,7 @@ const Login = () => {
                 }    
             }
             else if(response.data.userType=='institution'){
-                if(response.data.status=='approved' && response.data.transaction=='approved'){
+                if(response.data.status=='approved'){
                     navigate('/instlayout')
                 }
             }

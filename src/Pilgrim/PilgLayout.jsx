@@ -1,11 +1,42 @@
-import React from 'react'
-import { Link,Outlet } from 'react-router-dom'
+import React,{ useEffect } from 'react'
+import { Link,Outlet,useNavigate } from 'react-router-dom'
 import TopNavig from '../Component/Navbar'
 import SidNav from '../Pilgrim/SidNavigPilg'
 import bac from '../Institution/Oldpaper.png'
 import '../App.css'
+import axios from 'axios'
 
 export const PilgLayout = () => {
+
+  let navigate=useNavigate()
+
+
+  useEffect(()=>{
+    let id=localStorage.getItem('id')
+    let email=localStorage.getItem('email')
+    let auth=async ()=>{
+
+      let response=await axios.post('http://localhost:4000/authenticate',{_id:id,email:email})
+      console.log(response);
+      if(response==null){
+        navigate('/login')
+      }
+      else if(response?.data?.userType !=='pilgrim'){
+        navigate('/login')
+      }
+ 
+    }
+    if(id){
+
+      auth()
+    }
+    else{
+      navigate('/login')
+    }
+  },[])
+
+
+
   return (
     <div>
         <div className='l'>  

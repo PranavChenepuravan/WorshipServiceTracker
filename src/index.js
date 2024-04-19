@@ -25,6 +25,7 @@ import { AdminBookingTaxInstWise } from './Admin/AdminBookingTaxInstWise';
 import { AdminBookingTaxOneInst } from './Admin/AdminBookingTaxOneInst';
 import { AdminDonationTaxInstWise } from './Admin/AdminDonationTaxInstWise';
 import { AdminDonationTaxOneInst } from './Admin/AdminDonationTaxOneInst';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { RegisterCommon } from './RegisterCommon';
 import { RegInst } from './RegInst';
@@ -123,6 +124,7 @@ import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
+import { ArchHome } from './Archaeology/ArchHome';
 
 
 
@@ -171,6 +173,7 @@ root.render(
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<ArchHome />}/>
           <Route path="component" element={<Component/>}></Route>
           <Route path="viewinst" element={<ViewInstitution/>}/>
           <Route path="viewincometax" element={<ViewIncomeTax/>}/>
@@ -191,6 +194,7 @@ root.render(
         </Route>
 
         <Route path="/instlayout" element={<InstLayout />}>
+          <Route index element={<ArchHome />}/>
           <Route path="instinstruction" element={<InstInstruction/>}/>
           <Route path="instpreach" element={<InstPreach/>}/>
           <Route path="instvisit/:id" element={<InstVisit/>}/>
@@ -229,6 +233,7 @@ root.render(
         </Route>
 
         <Route path="/incomelayout" element={<IncomeLayout />}>
+          <Route index element={<ArchHome />}/>
           <Route path="incometransreq" element={<IncomeTransReq/>}/>
           <Route path="incometaxinst" element={<IncomeTaxInst/>}/>
           <Route path="incometaxinst2" element={<IncomeTaxInst2/>}/>
@@ -255,6 +260,7 @@ root.render(
         </Route>
 
         <Route path="/archlayout" element={<ArchLayout/>}>
+          <Route index element={<ArchHome/>}/>
           <Route path="archheritage" element={<ArchHeritage/>}/>
           <Route path="archemployee" element={<ArchEmployee/>}/>
           <Route path="archduty" element={<ArchDuty/>}/>
@@ -267,6 +273,7 @@ root.render(
         </Route>
 
         <Route path="/pilglayout" element={<PilgLayout/>}>
+          <Route index element={<ArchHome/>}/>
           <Route path="pilgprofile" element={<PilgProfile/>}/>
           <Route path="pilgprofileedit" element={<PilgProfileEdit/>}/>
           <Route path="pilgbooking/:id" element={<PilgrimBooking/>}/>

@@ -1,6 +1,7 @@
 import React,{ useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
 
 export const RegArchae = () => {
   const [data,setData]=useState('')
@@ -26,6 +27,7 @@ export const RegArchae = () => {
 
 let handleSubmit=async (event)=>{
     event.preventDefault()
+    try{
     let formData = new FormData();
     formData.append('photo', data.photo);
     formData.append('location',data.location);
@@ -43,6 +45,13 @@ let handleSubmit=async (event)=>{
       }
     })
     console.log(response);
+  }
+  catch(e){
+    console.log(e);
+    toast.error( e.response.data.message || e.message)
+
+}
+    
     }
 
   return (
@@ -61,7 +70,7 @@ let handleSubmit=async (event)=>{
    <label for="password"  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Type</label>
 
       <select name="departmentName" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-        <option value="" disabled>select type</option>
+        <option value="" readonly>select type</option>
         <option value="State">State</option>
         <option value="Central">Central</option>
       </select>
@@ -72,11 +81,11 @@ let handleSubmit=async (event)=>{
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-    <input type="text" name="phone" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={10} required />
+    <input type="phone" name="phone" pattern="[0-9]{10}" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={10} required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-    <input type="text" name="email" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+    <input type="email" name="email" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
