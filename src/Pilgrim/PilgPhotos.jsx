@@ -1,99 +1,96 @@
-import React, { useEffect, useState } from 'react'
-import im1 from '../Pilgrim/temple1.jpg'
-import im2 from '../Pilgrim/Temple2.jpg'
-import im3 from '../Pilgrim/Mosque3.jpg'
-import im4 from '../Pilgrim/Mosque4.jpg'
-import im5 from '../Pilgrim/Church3.jpeg'
-import im6 from '../Pilgrim/Church4.jpeg'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
 export const PilgPhotos = () => {
-
-
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 4; // Adjust the number of items per page as needed
-    const [data, setData] = useState([''])
+    const itemsPerPage = 4;
+    const [data, setData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const pageCount = Math.ceil(data.length / itemsPerPage);
+    // Filtering data based on search query
+    const filteredData = data.filter(item =>
+        item.institutions?.institutionName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const pageCount = Math.ceil(filteredData.length / itemsPerPage);
 
     const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
-      };
+    };
 
-    
     const indexOfLastItem = (currentPage + 1) * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-
-
-
-    const [refresh, setrefresh] = useState(false)
-    useEffect(() => {
-        let fetchdata = async () => {
-            let response = await axios.get('http://localhost:4000/pilgrim/picture/')
-            console.log(response.data);
-            setData(response.data)
-
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:4000/pilgrim/picture/');
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-        fetchdata()
-    }, [refresh])
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const handleSearchChange = event => {
+        setSearchQuery(event.target.value);
+    };
 
     return (
         <>
             <div className="mb-5 flex">
-                <input type="text" id="password" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2">Search</button>
-
-
+            <label htmlFor="" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Search : </label>
+                <input
+                    type="text"
+                    id="search"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search by institution name"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
             </div>
-            <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2 mx-[2%]"><Link to='/pilglayout/pilgphotosadd'>Add</Link></button>
+            <button className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2 mx-[2%]">
+                <Link to="/pilglayout/pilgphotosadd">Add</Link>
+            </button>
 
-
-<div className='flex flex-wrap gap-4 justify-center'>
-
-                {currentItems?.map((item, index) => (
-                   
-
-                        <div class="h-[20%] bg-gray-100 flex items-center text-center ">
-                            <div class="container mx-auto p-9 bg-white max-w-sm rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-                                <img src={`http://localhost:4000/uploads/${item.Picture?.photo}`} className='w-48 h-48' alt="" />
-                                <div class=" justify-between items-center">
-                                    <div>
-                                        <h1 class="mt-5 text-2xl font-semibold">{item.institutions?.institutionName}</h1>
-                                        <h1 class="mt-5 text-2xl font-semibold">{item.pilgrims?.name} </h1>
-                                        <p class="mt-2"> </p>
-
-                                    </div>
+            <div className="flex flex-wrap gap-4 justify-center">
+                {currentItems.map((item, index) => (
+                    <div key={index} className="h-[20%] bg-gray-100 flex items-center text-center">
+                        <div className="container mx-auto p-9 bg-white max-w-sm rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
+                            <img src={`http://localhost:4000/uploads/${item.Picture?.photo}`} className="w-48 h-48" alt="" />
+                            <div className="justify-between items-center">
+                                <div>
+                                    <h1 className="mt-5 text-2xl font-semibold">{item.institutions?.institutionName}</h1>
+                                    <h1 className="mt-5 text-2xl font-semibold">{item.pilgrims?.name}</h1>
+                                    <p className="mt-2"> </p>
                                 </div>
                             </div>
                         </div>
-
-
+                    </div>
                 ))}
-    </div> 
+            </div>
 
-         <div className="flex justify-between text-white w-24 mt-4">
-        <ReactPaginate
-          previousLabel={'Previous'}
-          nextLabel={'Next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
-          containerClassName={'pagination'}
-          activeClassName={'active'}
-       
-        />
-      </div>        
+            <div className="flex justify-between text-white w-24 mt-4">
+                <ReactPaginate
+                    previousLabel={'Previous'}
+                    nextLabel={'Next'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={'pagination'}
+                    activeClassName={'active'}
+                />
+            </div>
+        </>
+    );
+};
 
-            </>
-
-
-    )
-}
-export default PilgPhotos
+export default PilgPhotos;

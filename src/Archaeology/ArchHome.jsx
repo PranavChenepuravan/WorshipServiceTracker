@@ -11,7 +11,7 @@ export const ArchHome = () => {
   return (
     <div>
 
-        <button className='bg-black text-white p-4 rounded-[20px] w-36 ' onClick={logout}>Logout</button>
+        <button className='bg-red-950 text-red-600 p-4 rounded-[20px] w-36 ' onClick={logout}>Logout</button>
     </div>
   )
 }
