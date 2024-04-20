@@ -72,6 +72,10 @@ export const InstProfileEdit = () => {
         <div>Other : </div>
         <div><input type="text" name="other" id="user_name" className=" w-[20%] ml-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.other}  /></div>
       </div>
+      <div className='flex'> 
+        <div>Visiting : </div>
+        <div><input type="text" name="visitamount" id="user_name" className=" w-[20%] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.visitamount}  /></div>
+      </div>
       
     </div>
     <div className='pl-[30%] flex'>

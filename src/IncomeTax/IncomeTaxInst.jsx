@@ -1,166 +1,97 @@
-import React,{ useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export const IncomeTaxInst = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 2; // Adjust the number of items per page as needed
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 2; // Adjust the number of items per page as needed
 
-      let id=localStorage.getItem('id')
-      
-      const [data,setUserData]=useState([''])
-      const [data1,setUserData1]=useState([''])
-      const [refresh,setrefresh]=useState(false)
+  const [data, setUserData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-      useEffect(()=>{
-        let fetchdata=async ()=>{
-  
-
-
-          let response1=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
-          console.log(response1.data);
-          setUserData1(response1.data)
-          
-          let location = response1.data.location;
-          console.log(location)
-          if(location){
-            let response=await axios.get(`http://localhost:4000/admin/viewinstprofile/${location}`)
-            console.log(response.data);
-            setUserData(response.data)
-
-          }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const id = localStorage.getItem('id');
+        const response1 = await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`);
+        const location = response1.data.location;
+        if (location) {
+          const response = await axios.get(`http://localhost:4000/admin/viewinstprofile/${location}`);
+          setUserData(response.data);
+          setFilteredData(response.data);
         }
-        fetchdata()
-      },[refresh])
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-      
+    fetchData();
+  }, []);
 
-      // const data = [
-      //   {
-      //     pilgrimId: 'APT01',
-      //     pilgrimName: 'Yamini',
-      //     place: 'Kottayam',
-      //     phone:'1234567890',
-      //     email:'yamini@gmail.com',
-      //     dateAndtime:'13/02/2024 10:40 am',
-      //     otherDetails:'',
-      //     amount:'1200',
-      //     tax:'120'
-      //   },
-      //   {
-      //       pilgrimId: 'APT02',
-      //       pilgrimName: 'Prakash',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'prak@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-      //     {
-      //       pilgrimId: 'APT01',
-      //       pilgrimName: 'Dannya',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'dan@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-        
-        
-      //   // Add more dummy data as needed
-      // ];
-      const pageCount = Math.ceil(data.length / itemsPerPage);
+  useEffect(() => {
+    const filteredResults = data.filter(item =>
+      item?.institutionName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    console.log('Filtered results:', filteredResults); // Debugging statement
+    setFilteredData(filteredResults);
+  }, [data, searchQuery]);
 
+  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
 
-      const handlePageClick = ({ selected }) => {
-        setCurrentPage(selected);
-      };
-    
-      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
 
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
-
-      
   return (
-    
-
-<div className="overflow-x-auto  ">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <div className="overflow-x-auto">
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by institution name"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          className="px-3 py-2 border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" className="px-6 py-3">
-                    Institution Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Type
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Place
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Phone
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Email
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Head
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Community
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Photo
-                </th>
-                <th scope="col" className="px-6 py-3">
-
-                </th>
-            </tr>
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Institution Id
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Type
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Place
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Phone
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Email
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Head
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Community
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Photo
+            </th>
+            <th scope="col" className="px-6 py-3"></th>
+          </tr>
         </thead>
-        {/* <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    APT001
-                </th>
-                <td className="px-6 py-4">
-                    Pushkaran
-                </td>
-                <td className="px-6 py-4">
-                    Kozhikode
-                </td>
-                <td className="px-6 py-4">
-                    9756654549
-                </td>
-                <td className="px-6 py-4">
-                    pusk@gmail.com
-                </td>
-                <td className="px-6 py-4">
-                    17/01/2024
-                </td>
-                <td className="px-6 py-4">
-                    
-                </td>
-                <td className="px-6 py-4">
-                    3400
-                </td>
-                <td className="px-6 py-4">
-                    87
-                </td>
-                
-            </tr>
-            
-        </tbody> */}
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -174,15 +105,21 @@ export const IncomeTaxInst = () => {
               <td className="px-6 py-4">{item?.email}</td>
               <td className="px-6 py-4">{item?.email}</td>
               <td className="px-6 py-4">{item?.community}</td>
-              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
-              <div className='flex'>
-              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><Link to={`/incomelayout/incometaxinstdetailpage/${item?._id}`}>View</Link></button>
-              </div>
+              <td className="px-6 py-4">
+                <img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" />
+              </td>
+              <td className="px-6 py-4">
+                <div className="flex">
+                  <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    <Link to={`/incomelayout/incometaxinstdetailpage/${item?._id}`}>View</Link>
+                  </button>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
-    </table>
-    <div className="flex justify-between text-white w-24 mt-4">
+      </table>
+      <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
           nextLabel={'Next'}
@@ -194,11 +131,10 @@ export const IncomeTaxInst = () => {
           onPageChange={handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
-       
         />
       </div>
-</div>
+    </div>
+  );
+};
 
-  )
-}
-export default IncomeTaxInst
+export default IncomeTaxInst;

@@ -70,6 +70,21 @@ export const InstDonationList = () => {
         }
     };
 
+
+    const[data4,setAuthData]=useState('')
+    let handleChange=(event)=>{
+        setAuthData({...data4,[event.target.name]:event.target.value})
+        console.log(data4)
+    }
+
+    let handleTableSubmit=async(donid,statuss)=>{
+        setRefresh(!refresh)
+        let response4=await axios.put('http://localhost:4000/institution/pilgdonation',{_id:donid,status:statuss})
+    }
+
+
+
+
     return (
         <>
             <p className='text-white text-xl'>Properties</p>
@@ -195,14 +210,7 @@ export const InstDonationList = () => {
         </tbody>
     </table>
 
-
-
-
-
-
-
-
-            
+          
             <p className='text-white text-xl mt-2'>Online</p>
             <div className='flex'>
         <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
@@ -233,22 +241,32 @@ export const InstDonationList = () => {
                 <th scope="col" className="px-6 py-3">
                     Amount
                 </th>
+                <th>
+                </th>
             </tr>
         </thead>
         <tbody>
-            {data1.map((item,index)=>(
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td>{item.pilgrimId}</td>
-                    <td>{item.date}</td>
-                    <td>{item.time}</td>
-                    
-                    <td>{item.material}</td>
-                    <td>{item.size}</td>
-                    <td>{item.weight}</td>
-                    <td>{item.amount}</td>
+        {data1.map((item, index) => {
+    if (item.status === 'approved') {
+        return (
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
+                <td>{item.pilgrimId}</td>
+                <td>{item.date}</td>
+                <td>{item.time}</td>
+                <td>{item.material}</td>
+                <td>{item.size}</td>
+                <td>{item.weight}</td>
+                <td>{item.amount}</td>
+                <td>
+                    {/* Buttons for Approve and Reject */}
+                </td>
+            </tr>
+        );
+    } else {
+        return null; // If status is not 'approved', return null
+    }
+})}
 
-                </tr>
-            ))}
             
         </tbody>
     </table>

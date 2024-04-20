@@ -66,6 +66,7 @@ import { InstBookingTaxTotal } from './Institution/InstBookingTaxTotal';
 import { InstProperties } from './Institution/InstProperties';
 import { InstDonationTax } from './Institution/InstDonationTax';
 import { InstDonationWholeTax } from './Institution/InstDonationWholeTax';
+import { InstDonationOnlineList } from './Institution/InstDonationOnlineList';
 
 
 
@@ -91,6 +92,7 @@ import { IncomeTaxInstDetailPage } from './IncomeTax/IncomeTaxInstDetailPage';
 import { IncomeTaxDonation } from './IncomeTax/IncomeTaxDonation';
 import { IncomeTaxDonationInstWise } from './IncomeTax/IncomeTaxDonationInstWise';
 import { IncomeTaxDonationOneInst } from './IncomeTax/IncomeTaxDonationOneInst';
+import { IncomeTaxReportDonation } from './IncomeTax/IncomeTaxReportDonation';
 
 
 import { ArchLayout } from './Archaeology/ArchLayout';
@@ -125,6 +127,8 @@ import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
 import { ArchHome } from './Archaeology/ArchHome';
+
+
 
 
 
@@ -228,6 +232,7 @@ root.render(
           <Route path="instproperties" element={<InstProperties/>}/>
           <Route path="instdonationtax" element={<InstDonationTax/>}/>
           <Route path="instdonationwholetax" element={<InstDonationWholeTax/>}/>
+          <Route path="instdonationonlinelist" element={<InstDonationOnlineList/>}/>
           
 
         </Route>
@@ -255,6 +260,7 @@ root.render(
           <Route path="incometaxdonation" element={<IncomeTaxDonation/>}/>
           <Route path="incometaxdonationinstwise" element={<IncomeTaxDonationInstWise/>}/>
           <Route path="incometaxdonationoneinst/:id" element={<IncomeTaxDonationOneInst/>}/>
+          <Route path="incometaxreportdonation" element={<IncomeTaxReportDonation/>}/>
           
 
         </Route>

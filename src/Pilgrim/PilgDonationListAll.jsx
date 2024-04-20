@@ -100,11 +100,8 @@ export const PilgDonationListAll = () => {
                 <td>    
                   {item.amount}
                 </td>
-                {/* <td>
-                    
-                </td> */}
                 <td>
-                    
+                  {item.status} 
                 </td>
 
                 {/* <td className="px-6 py-4">
@@ -192,9 +189,6 @@ export const PilgDonationListAll = () => {
                 </td>
                 <td>
                   {item.date}
-                </td>
-                <td>
-                    {item.weight}
                 </td>
                 <td>
                     {item.weight}
