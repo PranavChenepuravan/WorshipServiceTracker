@@ -127,6 +127,7 @@ import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
 import { ArchHome } from './Archaeology/ArchHome';
+import PilgChangePassword from './Pilgrim/PilgChangePassword';
 
 
 
@@ -301,6 +302,7 @@ root.render(
           <Route path="pilgfestivaleventlist/:id" element={<PilgFestivalEventList/>}/>
           <Route path="pilginstitutionheritage/:id" element={<PilgInstitutionHeritage/>}/>
           <Route path="pilgpreaching/:id" element={<PilgPreaching/>}/>
+          <Route path="pilgchangepassword" element={<PilgChangePassword/>}/>
 
         </Route>
       </Routes>

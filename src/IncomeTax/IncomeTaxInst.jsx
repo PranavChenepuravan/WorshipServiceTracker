@@ -18,7 +18,7 @@ export const IncomeTaxInst = () => {
         const response1 = await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`);
         const location = response1.data.location;
         if (location) {
-          const response = await axios.get(`http://localhost:4000/admin/viewinstprofile/${location}`);
+          const response = await axios.get(`http://localhost:4000/admin/viewinstprofile2/${location}`);
           setUserData(response.data);
           setFilteredData(response.data);
         }

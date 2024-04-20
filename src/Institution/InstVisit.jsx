@@ -1,144 +1,92 @@
-import React,{ useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const InstVisit = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 10; // Adjust the number of items per page as needed
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
+  const [data, setData] = useState(['']);
+  const [searchQuery, setSearchQuery] = useState('');
 
-      let id=localStorage.getItem('id')
-      
-      const [data,setData]=useState([''])
-      const [refresh,setrefresh]=useState(false)
+  let id = localStorage.getItem('id');
 
-      useEffect(()=>{
-        let fetchdata=async ()=>{
-             let response=await axios.get(`http://localhost:4000/institution/visitingBooking/${id}`)
-             console.log(response.data);
-             setData(response.data)
-        }
-        fetchdata()
-    },[refresh])
-      
+  const [refresh, setRefresh] = useState(false);
 
-      // const data = [
-      //   {
-      //     pilgrimId: 'APT01',
-      //     pilgrimName: 'Yamini',
-      //     place: 'Kottayam',
-      //     phone:'1234567890',
-      //     email:'yamini@gmail.com',
-      //     dateAndtime:'13/02/2024 10:40 am',
-      //     otherDetails:'',
-      //     amount:'1200',
-      //     tax:'120'
-      //   },
-      //   {
-      //       pilgrimId: 'APT02',
-      //       pilgrimName: 'Prakash',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'prak@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-      //     {
-      //       pilgrimId: 'APT01',
-      //       pilgrimName: 'Dannya',
-      //       place: 'Kottayam',
-      //       phone:'1234567890',
-      //       email:'dan@gmail.com',
-      //       dateAndtime:'13/02/2024 10:40 am',
-      //       otherDetails:'',
-      //       amount:'1200',
-      //       tax:'120'
-      //     },
-        
-        
-      //   // Add more dummy data as needed
-      // ];
-      const pageCount = Math.ceil(data.length / itemsPerPage);
+  useEffect(() => {
+    let fetchData = async () => {
+      try {
+        let response = await axios.get(`http://localhost:4000/institution/visitingBooking/${id}`);
+        console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [refresh]);
 
+  const pageCount = Math.ceil(data.length / itemsPerPage);
 
-      const handlePageClick = ({ selected }) => {
-        setCurrentPage(selected);
-      };
-    
-      const indexOfLastItem = (currentPage + 1) * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const filteredData = searchQuery
+    ? data.filter(item => item?.pilgrims?.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : data;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleSearch = event => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
-    
-
-<div className="overflow-x-auto  ">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <div className="overflow-x-auto">
+      <div className="flex pb-2">
+        <input
+          type="text"
+          name="search"
+          value={searchQuery}
+          onChange={handleSearch}
+          placeholder="Search by pilgrim's name"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]"
+        />
+      </div>
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" className="px-6 py-3">
-                    Pilgrim Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Place
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Phone
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Email
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Date
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Time
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Amount
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Tax
-                </th>
-            </tr>
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Pilgrim Id
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Place
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Phone
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Email
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Date
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Time
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Amount
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Tax
+            </th>
+          </tr>
         </thead>
-        {/* <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    APT001
-                </th>
-                <td className="px-6 py-4">
-                    Pushkaran
-                </td>
-                <td className="px-6 py-4">
-                    Kozhikode
-                </td>
-                <td className="px-6 py-4">
-                    9756654549
-                </td>
-                <td className="px-6 py-4">
-                    pusk@gmail.com
-                </td>
-                <td className="px-6 py-4">
-                    17/01/2024
-                </td>
-                <td className="px-6 py-4">
-                    
-                </td>
-                <td className="px-6 py-4">
-                    3400
-                </td>
-                <td className="px-6 py-4">
-                    87
-                </td>
-                
-            </tr>
-            
-        </tbody> */}
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -150,14 +98,14 @@ export const InstVisit = () => {
               <td className="px-6 py-4">{item?.pilgrims?.phone}</td>
               <td className="px-6 py-4">{item?.pilgrims?.email}</td>
               <td className="px-6 py-4">{item?.bookings?.date}</td>
-              <td className="px-6 py-4">{item?.bookings?.time}</td> 
+              <td className="px-6 py-4">{item?.bookings?.time}</td>
               <td className="px-6 py-4">{item?.bookings?.amount}</td>
               <td className="px-6 py-4">{item?.bookings?.tax}</td>
             </tr>
           ))}
         </tbody>
-    </table>
-    <div className="flex justify-between text-white w-24 mt-4">
+      </table>
+      <div className="flex justify-between text-white w-24 mt-4">
         <ReactPaginate
           previousLabel={'Previous'}
           nextLabel={'Next'}
@@ -169,11 +117,10 @@ export const InstVisit = () => {
           onPageChange={handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
-       
         />
       </div>
-</div>
+    </div>
+  );
+};
 
-  )
-}
-export default InstVisit
+export default InstVisit;

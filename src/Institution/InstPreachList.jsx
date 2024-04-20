@@ -4,6 +4,7 @@ import axios from 'axios';
 export const InstPreachList = () => {
     let id = localStorage.getItem('id');
     const [data, setData] = useState(['']);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         let fetchdata = async () => {
@@ -22,9 +23,22 @@ export const InstPreachList = () => {
         return diffDays;
     };
 
+    // Filter data based on preacher's name
+    const filteredData = data.filter(item =>
+        item.preach && item.preach.preacher.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
             <div className="overflow-x-auto ">
+                {/* Search input */}
+                <input
+                    type="text"
+                    placeholder="Search by preacher's name..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                />
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -58,7 +72,7 @@ export const InstPreachList = () => {
                         </tr>
                     </thead>
                     <tbody className="text-black bg-white">
-                        {data.map((item, index) => (
+                        {filteredData.map((item, index) => (
                             <tr key={index}>
                                 <td className="px-6 py-4">{item.preach ? item.preach.classId : "Preacher Not Available"}</td>
                                 <td className="px-6 py-4">{item.preach ? item.preach.preacher : "Preacher Not Available"}</td>
@@ -77,3 +91,4 @@ export const InstPreachList = () => {
         </>
     );
 };
+export default InstPreachList;
