@@ -13,7 +13,7 @@ export const InstBookingTax = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/institution/booking/${id}`);
+        const response = await axios.get(`http://localhost:4000/institution/booking2/${id}`);
         console.log(response.data);
         setBookingData(response.data); // Set bookingData state with fetched data
       } catch (error) {
@@ -45,7 +45,13 @@ export const InstBookingTax = () => {
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
           <th scope="col" className="px-6 py-3">
-                  Booking Id
+                  Pilgrim Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                  Phone
               </th>
               <th scope="col" className="px-6 py-3">
                   Date
@@ -61,12 +67,12 @@ export const InstBookingTax = () => {
 <tbody>
   {bookingData.map((item, index) => (
     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {item._id}
-      </td>
-      <td>{item.date}</td>
-      <td>{item.amount}</td>
-      <td>{item.tax}</td>
+      <td>{item?.pilgrims?.name}</td>
+      <td>{item?.pilgrims?.email}</td>
+      <td>{item?.pilgrims?.phone}</td>
+      <td>{item?.bookings?.date}</td>
+      <td>{item?.bookings?.amount}</td>
+      <td>{item?.bookings?.tax}</td>
     </tr>
   ))}
 </tbody>
