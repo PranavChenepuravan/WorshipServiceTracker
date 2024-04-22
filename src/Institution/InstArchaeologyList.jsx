@@ -93,7 +93,7 @@ export const InstArchaeologyList = () => {
                         {item.archaeological ? item.archaeological.heritage : "Wealth data is not available"}
                     </td>
                     <td>
-                        {item.archaeological ? item.archaeological.sanction : "Wealth data is not available"}
+                        {item.archaeological ? item.archaeological.status : "Wealth data is not available"}
                     </td>
                     <td>
                         {item.archaeological ? item.archaeological.rating : "Wealth data is not available"}

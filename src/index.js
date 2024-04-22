@@ -67,7 +67,7 @@ import { InstProperties } from './Institution/InstProperties';
 import { InstDonationTax } from './Institution/InstDonationTax';
 import { InstDonationWholeTax } from './Institution/InstDonationWholeTax';
 import { InstDonationOnlineList } from './Institution/InstDonationOnlineList';
-
+import { InstDaily } from './Institution/InstDaily';
 
 
 import { IncomeLayout } from './IncomeTax/IncomeLayout'
@@ -103,6 +103,7 @@ import { ArchWealth } from './Archaeology/ArchWealth';
 import { ArchProfile } from './Archaeology/ArchProfile';
 import { ArchProfileEdit } from './Archaeology/ArchProfileEdit';
 import { ArchEmployeeList } from './Archaeology/ArchEmployeeList';
+import { ArchHome } from './Archaeology/ArchHome';
 
 import { PilgLayout } from './Pilgrim/PilgLayout';
 import { PilgProfile } from './Pilgrim/PilgProfile';
@@ -126,8 +127,8 @@ import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
-import { ArchHome } from './Archaeology/ArchHome';
-import PilgChangePassword from './Pilgrim/PilgChangePassword';
+
+
 
 
 
@@ -234,6 +235,8 @@ root.render(
           <Route path="instdonationtax" element={<InstDonationTax/>}/>
           <Route path="instdonationwholetax" element={<InstDonationWholeTax/>}/>
           <Route path="instdonationonlinelist" element={<InstDonationOnlineList/>}/>
+          <Route path="instdaily" element={<InstDaily/>}/>
+
           
 
         </Route>
@@ -302,7 +305,6 @@ root.render(
           <Route path="pilgfestivaleventlist/:id" element={<PilgFestivalEventList/>}/>
           <Route path="pilginstitutionheritage/:id" element={<PilgInstitutionHeritage/>}/>
           <Route path="pilgpreaching/:id" element={<PilgPreaching/>}/>
-          <Route path="pilgchangepassword" element={<PilgChangePassword/>}/>
 
         </Route>
       </Routes>

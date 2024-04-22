@@ -67,14 +67,38 @@ let handleChange=(event)=>{
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Topic</label>
      <input type="text" name="topic" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
-  <div className="mb-5">
+  {/* <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Staring Date</label>
      <input type="date" name="startingdate" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
-  </div>
-  <div className="mb-5">
+  </div> */}
+  <div className="mb-5 ">
+  <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starting Date : </label>
+  <input 
+    onChange={handleChange} 
+    name='startingdate' 
+    type="date" 
+    id="password" 
+    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" 
+    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
+    required 
+  />
+</div>
+  {/* <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ending Date</label>
      <input type="date" name="endingdate" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
-  </div>
+  </div> */}
+    <div className="mb-5">
+  <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ending Date : </label>
+  <input 
+    onChange={handleChange} 
+    name='endingdate' 
+    type="date" 
+    id="password" 
+    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" 
+    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
+    required 
+  />
+</div>
   <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
      <input type="time" name="time" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   

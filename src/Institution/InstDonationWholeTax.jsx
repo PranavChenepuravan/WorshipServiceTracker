@@ -81,12 +81,25 @@ export const InstDonationWholeTax = () => {
     </div>
     <div className='flex mt-3'> 
         <label htmlFor="password" className="w-[20%]">Password :</label>
-        <input type="text" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="password" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
-    <div className='flex mt-3'> 
-        <label htmlFor="payeddate" className="w-[20%]">Date and Time :</label>
+    {/* <div className='flex mt-3'> 
+        <label htmlFor="payeddate" className="w-[20%]">Date :</label>
         <input type="date" onChange={handleChange}  name="payeddate" id="payeddate" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
-    </div>
+    </div> */}
+  <div className="mt-3 flex">
+  <label htmlFor="password" className="w-[20%]">Date : </label>
+  <input 
+    onChange={handleChange} 
+    name='payeddate' 
+    type="date" 
+    id="password" 
+    className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
+    required 
+  />
+</div>
+
     <br />
     <div>
     <button type="button" onClick={()=>handleSubmit(item?.donation?.tax,item?.donation?._id)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>

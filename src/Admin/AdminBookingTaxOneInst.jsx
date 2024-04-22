@@ -21,6 +21,7 @@ export const AdminBookingTaxOneInst = () => {
                 setBookingData(response.data);
                 
                 const totalTaxSum = response.data.reduce((sum, item) => {
+                    console.log(item,'-=-=-=-=-=-=-=-=-');
                     console.log("Item Tax:", item.tax);
                     console.log("Current Sum:", sum);
                     return sum + item.tax;
@@ -57,7 +58,7 @@ export const AdminBookingTaxOneInst = () => {
         console.log(response);
     }
 
-
+console.log(totalTax,'================================');
 
 
 
@@ -78,7 +79,7 @@ export const AdminBookingTaxOneInst = () => {
     <>
 
 
-  {/* <div className='w-44 mt-4 '>
+  <div className='w-44 mt-4 '>
     <label htmlFor="">Total Tax</label>
       <div className='flex'>
                <input
@@ -89,11 +90,12 @@ export const AdminBookingTaxOneInst = () => {
                     className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
                     value={totalTax}
                     readOnly
+
                     required
                 /> 
                 <button onClick={handleSubmit} type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Set</button>
         </div>
-    </div> */}
+    </div>
 
 
 

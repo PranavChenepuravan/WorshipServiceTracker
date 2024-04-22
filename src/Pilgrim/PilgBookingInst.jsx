@@ -91,6 +91,9 @@ export const PilgBookingInst = () => {
                                             <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                                                 {item.insttype}
                                             </p>
+                                            <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                                                {item.location}
+                                            </p>
                                         </div>
                                         <div className="flex">
                                             <div className="p-1 pt-0">

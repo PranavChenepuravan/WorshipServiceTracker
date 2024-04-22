@@ -54,6 +54,7 @@ export const InstBookingTaxTotal = () => {
 
     let handleSubmit=async(totaltaxes,taxId)=>{
         setrefresh(!refresh)
+        console.log(taxId,'taxid')
         let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected'})
         console.log(response);
     }
@@ -84,25 +85,6 @@ const [taxId,setTaxId]=useState('')
     // const currentItems = bookingData.slice(indexOfFirstItem, indexOfLastItem);
   return (
     <>
-
-
-  {/* <div className='w-44 mt-4 '>
-    <label htmlFor="" className='text-white'>Total Tax</label>
-      <div className='flex'>
-               <input
-                    onChange={handleChange}
-                    name='totaltax'
-                    type="text"
-                    id="password"
-                    className="bg-gray-50 border w-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"
-                    value={totalTax}
-                    readOnly
-                    required
-                /> 
-     
-        </div>
-    </div> */}
-
 
 
     {totdata.map((item,index)=>(
@@ -171,10 +153,6 @@ const [taxId,setTaxId]=useState('')
         <li className='text-white'> </li>
     </div>
 </div>
-
-        
-
-
 
 
         <div>
