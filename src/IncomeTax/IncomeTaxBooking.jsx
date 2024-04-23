@@ -107,9 +107,9 @@ export const IncomeTaxBooking = () => {
                 </td>
                 <td>{bookingItem?.institution?.insttype}</td>
                 <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
-                <td>{bookingItem?.date}</td>
-                <td className='px-5'>{bookingItem?.amount}</td>
-                <td className='px-5'>{bookingItem?.tax}</td>
+                <td>{bookingItem?.bookings?.date}</td>
+                <td className='px-5'>{bookingItem?.booings?.amount}</td>
+                <td className='px-5'>{bookingItem?.bookings?.tax}</td>
               </tr>
           ))}
         </tbody>

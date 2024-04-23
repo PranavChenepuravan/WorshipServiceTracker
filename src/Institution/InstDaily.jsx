@@ -6,9 +6,11 @@ export const InstDaily = () => {
 
     const [data,setData]=useState('')
     let id = localStorage.getItem('id')
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
 
     let handleChange=(event)=>{
-        setData({...data,[event.target.name]:event.target.value,institutionId:id})
+        setData({...data,[event.target.name]:event.target.value})
         console.log(data)
     }
 
@@ -17,7 +19,7 @@ export const InstDaily = () => {
 
       console.log(data)
 
-      let response=await axios.post('http://localhost:4000/institution/dailyincome',data)
+      let response=await axios.post('http://localhost:4000/institution/dailyincome',{...data,institutionId:id,date:formattedDate,amount:data.amount})
       console.log(response);
 
     }
@@ -39,16 +41,16 @@ export const InstDaily = () => {
     type="date" 
     id="password" 
     className="ml-[10%] w-[70%] h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-    defaultValue={new Date().toISOString().split('T')[0]} // Set default value to today's date
-    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
-    max={new Date().toISOString().split('T')[0]} // Set max attribute to today's date
+    defaultValue={new Date().toISOString().split('T')[0]} 
+    min={new Date().toISOString().split('T')[0]} 
+    max={new Date().toISOString().split('T')[0]} 
     required 
   />
 </div>
 
     <div className='flex pt-8'> 
         <label htmlFor="income1" className="w-[20%]">Amount :</label>
-        <input onClick={handleChange} type="text"  name="amount" id="" className="ml-[10%] w-[70%] h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <input onChange={handleChange} type="text"  name="amount" id="" className="ml-[10%] w-[70%] h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
     </div>
 
 </div>
