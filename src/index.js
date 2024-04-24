@@ -26,6 +26,9 @@ import { AdminBookingTaxOneInst } from './Admin/AdminBookingTaxOneInst';
 import { AdminDonationTaxInstWise } from './Admin/AdminDonationTaxInstWise';
 import { AdminDonationTaxOneInst } from './Admin/AdminDonationTaxOneInst';
 import { ViewExistingInstitution } from './Admin/ViewExistingInstitution';
+import { AdminBlockInstDetailPage } from './Admin/AdminBlockInstDetailPage';
+import { AdminExistingInstDetailPage } from './Admin/AdminExistingInstDetailPage';
+import { ViewExistingArchaeology } from './Admin/ViewExistingArchaeology';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { RegisterCommon } from './RegisterCommon';
@@ -128,8 +131,9 @@ import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
-import AdminBlockInstDetailPage from './Admin/AdminBlockInstDetailPage';
-import AdminExistingInstDetailPage from './Admin/AdminExistingInstDetailPage';
+import { AdminExistingDeptDetailPage } from './Admin/AdminExistingDeptDetailPage';
+import AdminBlockDeptDetailPage from './Admin/AdminBlockDeptDetailPage';
+
 
 
 
@@ -203,6 +207,9 @@ root.render(
           <Route path="viewexistinginst" element={<ViewExistingInstitution/>}/>
           <Route path="adminblockinstdetailpage/:id" element={<AdminBlockInstDetailPage/>}/>
           <Route path="adminexistinginstdetailpage/:id" element={<AdminExistingInstDetailPage/>}/>
+          <Route path="viewexistingarchaeology" element={<ViewExistingArchaeology/>}/>
+          <Route path="adminexistingdeptdetailpage/:id" element={<AdminExistingDeptDetailPage/>}/>
+          <Route path="adminblockdeptdetailpage/:id" element={<AdminBlockDeptDetailPage/>}/>
 
 
         </Route>
