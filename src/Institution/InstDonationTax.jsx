@@ -50,8 +50,10 @@ export const InstDonationTax = () => {
     // Calculate sum of worth
     const worthSum = data1.reduce((acc, item) => acc + item.amount, 0);
 
+    const dailySum = data4.reduce((acc, item) => acc + item.amount, 0)
+
     // Calculate total sum
-    const totalSum =  amountSum + worthSum;
+    const totalSum =  amountSum + worthSum + dailySum;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -61,6 +63,7 @@ export const InstDonationTax = () => {
             // incomeSum,
             amountSum,
             worthSum,
+            dailySum,
             totalSum,
             id,
             date: formattedDate

@@ -39,6 +39,7 @@ let handleChange=(event)=>{
     formData.append('other', data.other);
     formData.append('otherauthorityname', data.otherauthorityname);
     formData.append('otherauthorityid', data.otherauthorityid);
+    formData.append('caretaker', data.caretaker);
     formData.append('userType','institution');
     
     let response=await axios.post('http://localhost:4000/register',formData, {
@@ -75,17 +76,11 @@ let handleChange=(event)=>{
 
   
 <ToastContainer/>
+<div className='pt-2'>
 <form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
   </div>
-  <div className="mb-5">
-     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>
-     <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
-  </div>
-  <div className="mb-5">
-     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proof : </label>
-     <input type="file" name="idproof" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
-  </div>
+
   <div className="mb-5">
    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institution Type</label>
 
@@ -96,20 +91,37 @@ let handleChange=(event)=>{
         <option value="church">Church</option>
       </select>
   </div>
-  <div className="mb-5">
+  {/* <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Authority Name</label>
        <input type="text" name="otherauthorityname" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required /> 
+  </div> */}
+      <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Authority Name</label>
+        <select name="otherauthorityname" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
+         <option value="" readonly>select community</option>
+         <option value="Devaswam">Devaswam</option>
+         <option value="Roopatah">Roopatha</option>
+         <option value="Waqf">Waqf</option>
+       </select>   
   </div>
   <div className="mb-5">
-    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Authority Id</label>
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Authority Id</label>
        <input type="text" name="otherauthorityid" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required /> 
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of Institution</label>
+     <input type="text" name="institutionName" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
        <input type="text" name="location" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required /> 
   </div>
-
   <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+    <input type="text" name="other" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"  />
+  </div>
+
+  {/* <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Community Type</label>
         <select name="community" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
          <option value="" readonly>select community</option>
@@ -117,14 +129,23 @@ let handleChange=(event)=>{
          <option value="islam">Islam</option>
          <option value="christian">Christian</option>
        </select>   
+  </div> */}
+
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>
+     <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
-     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of Institution</label>
-     <input type="text" name="institutionName" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proof : </label>
+     <input type="file" name="idproof" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
-    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-    <input type="text" name="phone" pattern="[0-9]{10}" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={10} required />
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Care Taker Address : </label>
+    <input type="text" name="caretaker"  onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone No: </label>
+    <input type="text" name="phone" pattern="[0-9]{10}" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={10} maxLength={11} required />
   </div>
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -134,10 +155,7 @@ let handleChange=(event)=>{
   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
   <input type="password" name="password" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" minLength={8} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" required />
 </div>
-  <div className="mb-5">
-    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other Details</label>
-    <input type="text" name="other" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"  />
-  </div>
+
   <div className=' flex items-center gap-[10px] mt-[5%] ml-[13%]'>
 
     <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
@@ -145,6 +163,7 @@ let handleChange=(event)=>{
 
    </div>
 </form>
+</div>
 
 
     </div>

@@ -12,7 +12,7 @@ const Nav = () => {
   return (
     <>
     <div className='bg-red-950 flex  justify-between p-4 items-center m-auto'>
-      <div className='text-neutral-200 text-[35px]'>WORSHIP STRAIGHT PATH</div>
+      <div className='text-neutral-200 text-[35px]'>WORSHIP SERVICE TRACKER</div>
       <div className='text-neutral-200 flex gap-5'>
       <div><button  onClick={dropdown}>
                   Register

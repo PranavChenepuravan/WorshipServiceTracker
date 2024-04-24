@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export const ViewInstitution = () => {
+export const ViewExistingInstitution = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 2; // Adjust the number of items per page as needed
   const [data, setUserData] = useState([]);
@@ -13,7 +13,7 @@ export const ViewInstitution = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/admin/viewnewinstprofile/');
+        const response = await axios.get('http://localhost:4000/admin/viewinstprofile/');
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -67,13 +67,16 @@ export const ViewInstitution = () => {
               Email
             </th>
             <th scope="col" className="px-6 py-3">
-              Head
+              Care Taker
             </th>
             <th scope="col" className="px-6 py-3">
               Community
             </th>
             <th scope="col" className="px-6 py-3">
               Photo
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Status
             </th>
             <th scope="col" className="px-6 py-3">
               Actions
@@ -91,10 +94,14 @@ export const ViewInstitution = () => {
               <td className="px-6 py-4">{item?.email}</td>
               <td className="px-6 py-4">{item?.community}</td>
               <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
+              <td className="px-6 py-4">{item?.status}</td>
               <td className="px-6 py-4">
                 <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                  <Link to={`/admin/admininstdetailpage/${item?._id}`}>View</Link>
+                  <Link to={`/admin/adminexistinginstdetailpage/${item?._id}`}>View</Link>
                 </button>
+                <Link to={`/admin/adminblockinstdetailpage/${item?._id}`}>
+                <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Block</button>
+                </Link>
               </td>
             </tr>
           ))}
@@ -118,4 +125,4 @@ export const ViewInstitution = () => {
   );
 };
 
-export default ViewInstitution;
+export default ViewExistingInstitution;

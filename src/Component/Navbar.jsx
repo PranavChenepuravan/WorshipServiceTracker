@@ -11,7 +11,7 @@ function Navbar() {
     <div>
         <div className='w-[100%] m-auto flex-wrap  bg-red-950  flex  justify-between  '>
               <div className='text-white custom_font_family ps-2 text-[40px] flex flex-wrap ' >
-                <div className='mt-1 text-[25px] pl-[5%] w-[100%] '>WORSHIP STRAIGHT PATH</div>  
+                <div className='mt-1 text-[25px] pl-[5%] w-[100%] '>WORSHIP SERVICE TRACKER</div>  
               </div>
 
       </div>
