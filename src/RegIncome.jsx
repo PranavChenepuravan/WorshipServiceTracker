@@ -26,7 +26,7 @@ export const RegIncome = () => {
     formData.append('email', data.email);
     formData.append('password', data.password);
     formData.append('other', data.other);
-    formData.append('userid', data.userid);
+    formData.append('idproof', data.idproof);
     formData.append('userType','incometax')
     formData.append('transaction','approved')
 
@@ -52,10 +52,7 @@ export const RegIncome = () => {
    
   </div>
 
-  <div className="mb-5">
-    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
-    <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
-  </div>
+
   <div className="mb-5">
    <label for="password"  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department Type</label>
 
@@ -80,6 +77,14 @@ export const RegIncome = () => {
   <div className="mb-5">
     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
     <input type="email" name="email" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo</label>
+    <input type="file" name="photo" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />
+  </div>
+  <div className="mb-5">
+     <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Liscence : </label>
+     <input type="file" name="idproof" onChange={handlefile} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required />   
   </div>
   <div className="mb-5">
     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>

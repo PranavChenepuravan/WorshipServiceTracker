@@ -5,6 +5,7 @@ import SidNav from '../IncomeTax/SidNavigIncome'
 import bac from '../Institution/Oldpaper.png'
 import '../App.css'
 import axios from 'axios'
+import image1 from './Agar.png'
 
 export const IncomeLayout = () => {
 

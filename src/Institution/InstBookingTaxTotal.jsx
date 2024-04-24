@@ -47,7 +47,11 @@ export const InstBookingTaxTotal = () => {
 
 
 
-    let handleChange=(event)=>{
+    let handleChange=(event,item)=>{
+        if (event.target.name === 'payed' && parseFloat(event.target.value) > item?.balance) {
+            alert("Amount should be less than or equal to the balance.");
+            return;
+        }
         setData({...data,[event.target.name]:event.target.value})
       }
 
@@ -147,9 +151,13 @@ const [taxId,setTaxId]=useState('')
     </div>
     <br />
 
+    {item.balance !== 0 && (
+
         <div className='mt-3 flex'> {/* Centering the Pay button */}
             <button type="button" onClick={() => handleSubmit(item?.totaltax, item?._id)} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
         </div>
+
+    )}
 
     <div>
         <li className='text-white'> </li>

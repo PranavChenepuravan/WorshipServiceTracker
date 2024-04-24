@@ -132,7 +132,8 @@ import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
 import { AdminExistingDeptDetailPage } from './Admin/AdminExistingDeptDetailPage';
-import AdminBlockDeptDetailPage from './Admin/AdminBlockDeptDetailPage';
+import { AdminBlockDeptDetailPage } from './Admin/AdminBlockDeptDetailPage';
+import { ViewExistingIncomeTax } from './Admin/ViewExistingIncomeTax';
 
 
 
@@ -210,6 +211,7 @@ root.render(
           <Route path="viewexistingarchaeology" element={<ViewExistingArchaeology/>}/>
           <Route path="adminexistingdeptdetailpage/:id" element={<AdminExistingDeptDetailPage/>}/>
           <Route path="adminblockdeptdetailpage/:id" element={<AdminBlockDeptDetailPage/>}/>
+          <Route path="viewexistingincometax" element={<ViewExistingIncomeTax/>}/>
 
 
         </Route>
