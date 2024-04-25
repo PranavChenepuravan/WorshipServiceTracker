@@ -9,6 +9,8 @@ export const ArchHeritage = () => {
   const [data, setData] = useState(['']);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const [status,setStatus] = useState('pending')
+
   // Filtering data based on search term
   const filteredData = data.filter(item => {
     // Ensure item?.institutionname is defined before calling toLowerCase()
@@ -37,7 +39,7 @@ export const ArchHeritage = () => {
       let response = await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`);
       setUserData(response.data);
 
-      let response1 = await axios.get(`http://localhost:4000/archaeology/archheritagenew/${id}`);
+      let response1 = await axios.get(`http://localhost:4000/archaeology/archheritage/${id}`);
       setData(response1.data);
     };
     fetchData();
@@ -66,6 +68,12 @@ export const ArchHeritage = () => {
         onChange={handleChange}
         className="border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+
+      <div className="">
+        <button onClick={()=>setStatus('pending')}  className='bg-white text-black shadow-md px-3 py-2 rounded-md mb-2'>New</button>
+        <button onClick={()=>setStatus('approved')} className='bg-white text-black shadow-md px-3 py-2 rounded-md ms-2 mb-2'>Existing</button>
+        
+      </div>
 
       {/* Table and pagination */}
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -97,13 +105,13 @@ export const ArchHeritage = () => {
               Rating
             </th>
             <th scope="col" className="px-6 py-3">
-              Status
+              
             </th>
           </tr>
         </thead>
         <tbody>
           {/* Table body */}
-          {currentItems?.map((item, index) => (
+          {filteredData?.filter((i)=> i.status === status ).slice(indexOfFirstItem, indexOfLastItem) .map((item, index) => (
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item?.institutionname}
@@ -126,14 +134,17 @@ export const ArchHeritage = () => {
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item?.heritage}
               </td>
-              <td className='px-2 py-11'>
+             { item.status !== 'approved' &&  <td className='px-2 py-11'>
                 <ReactStars
                   count={5}
                   onChange={ratingChanged}
                   size={24}
                   activeColor="#ffd700"
                 />
-              </td>
+              </td>}
+              { item.status === 'approved' &&  <td className='px-2 py-11'>
+              {item?.rating}
+              </td>}
               <td className="px-4 py-4">
                 <div>
                   <button

@@ -113,7 +113,7 @@ import { ArchProfileEdit } from './Archaeology/ArchProfileEdit';
 import { ArchEmployeeList } from './Archaeology/ArchEmployeeList';
 import { ArchHome } from './Archaeology/ArchHome';
 import { ArchExistingHeritage } from './Archaeology/ArchExistingHeritages';
-
+import { ArchExistingWealth } from './Archaeology/ArchExistingWealth';
 
 
 import { PilgLayout } from './Pilgrim/PilgLayout';
@@ -137,6 +137,7 @@ import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
+
 
 
 
@@ -304,6 +305,7 @@ root.render(
           <Route path="archprofileedit" element={<ArchProfileEdit/>}/>
           <Route path="archemployeelist" element={<ArchEmployeeList/>}/>
           <Route path="archexistingheritage" element={<ArchExistingHeritage/>}/>
+          <Route path="archexistingwealth" element={<ArchExistingWealth/>}/>
           
         </Route>
 

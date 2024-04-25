@@ -14,6 +14,7 @@ export const ArchWealth = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [status,setStatus] = useState('pending')
 
   useEffect(() => {
     let fetchData = async () => {
@@ -79,6 +80,10 @@ export const ArchWealth = () => {
         onChange={handleChange}
         className="border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+       <div className="">
+        <button onClick={()=>setStatus('pending')}  className='bg-white text-black shadow-md px-3 py-2 rounded-md mb-2'>New</button>
+        <button onClick={()=>setStatus('approved')} className='bg-white text-black shadow-md px-3 py-2 rounded-md ms-2 mb-2'>Existing</button>   
+      </div>
 
       {/* Table and pagination */}
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -87,31 +92,25 @@ export const ArchWealth = () => {
             <th scope="col" className="px-6 py-3">
               Name
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-2 py-3">
               Institution Type
             </th>
-            <th scope="col" className="px-6 py-3">
-              Place
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Phone
+            <th scope="col" className="px-2 py-3">
+              Address
             </th>
             <th scope="col" className="px-6 py-3">
               Time of Manufacture
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-2 py-3">
               Made In
             </th>
             <th scope="col" className="px-6 py-3">
               Material
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-2 py-3">
               Size
             </th>
-            <th scope="col" className="px-6 py-3">
+            <th scope="col" className="px-2 py-3">
               Weight
             </th>
             <th scope="col" className="px-6 py-3">
@@ -129,28 +128,29 @@ export const ArchWealth = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((item, index) => (
+          {currentItems?.filter((i)=> i.status === status).map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4">{item?.institutionname}</td>
-              <td className="px-6 py-4">{item?.institutiontype}</td>
-              <td className="px-6 py-4">{item?.location}</td>
-              <td className="px-6 py-4">{item?.email}</td>
-              <td className="px-6 py-4">{item?.phone}</td>
+              <td className="px-2 py-4">{item?.institutiontype}</td>
+              <td className="px-2 py-4">{item?.location},<br /> {item?.email},<br />{item?.phone}</td>
               <td className="px-6 py-4">{item?.eraofmanufacture}</td>
-              <td className="px-6 py-4">{item?.madein}</td>
+              <td className="px-2 py-4">{item?.madein}</td>
               <td className="px-6 py-4">{item?.material}</td>
-              <td className="px-6 py-4">{item?.size}</td>
-              <td className="px-6 py-4">{item?.weight}</td>
+              <td className="px-2 py-4">{item?.size}</td>
+              <td className="px-2 py-4">{item?.weight}</td>
               <td className="px-6 py-4">{item?.antiquevalue}</td>
               <td className="px-6 py-4">{item?.heritage}</td>
-              <td>
+              { item.status !== 'approved' && <td>
                 <ReactStars
                   count={5}
                   onChange={ratingChanged}
                   size={24}
                   activeColor="#ffd700"
                 />
-              </td>
+              </td>}
+              { item.status === 'approved' &&  <td className='px-2 py-11'>
+              {item?.rating}
+              </td>}
               <td className="px-4 py-4">
                 <div>
                   <button

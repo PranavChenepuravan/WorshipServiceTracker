@@ -9,6 +9,7 @@ export const InstInstructionList = () => {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState('');
   const instrId = localStorage.getItem('_id');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,8 +24,7 @@ export const InstInstructionList = () => {
   }, [id, refresh]);
 
   const handleChange = (event) => {
-    // You're trying to update data1 here, I assume you meant to update data
-    setData({ ...data, [event.target.name]: event.target.value });
+    setSearchTerm(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -70,16 +70,19 @@ export const InstInstructionList = () => {
 
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = data.filter(item =>
+    item.instruction.toLowerCase().includes(searchTerm.toLowerCase())
+  ).slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <>
       <div className='flex flex-col'>
         <div className="overflow-x-auto">
-          <div className='flex pb-2'>
-          <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-2 py-1.5 text-center me-2 mb-2 ">Search</button>
-          <input type="text" />
-          </div>
+        <div className='flex pb-2 pt-2'>
+          <input type="text" value={searchTerm} onChange={handleChange} className="h-10 border border-gray-300 rounded-md px-4" placeholder='Serch by instruction'/>
+        </div>
+
+
           <table className="pt-2  w-[60%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>

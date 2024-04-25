@@ -41,6 +41,7 @@ export const ArchLayout = () => {
             <SidNav/>
             <div className='archback w-screen p-4'>
             <Outlet />
+            <p>sadasd</p>
             </div>
             </div>
         </div>
