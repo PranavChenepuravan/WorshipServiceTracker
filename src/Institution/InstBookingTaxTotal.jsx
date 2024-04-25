@@ -56,11 +56,16 @@ export const InstBookingTaxTotal = () => {
       }
 
 
-    let handleSubmit=async(totaltaxes,taxId)=>{
+    let handleSubmit=async(totaltaxes,balance,taxId)=>{
         setrefresh(!refresh)
+        if (parseFloat(data.payed) > parseFloat(balance)) {
+            alert("Amount to pay cannot exceed the balance amount.");
+            return; 
+        }
         console.log(taxId,'taxid')
         let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected'})
         console.log(response);
+        setrefresh(!refresh)
     }
 
 const [taxId,setTaxId]=useState('')
@@ -154,7 +159,7 @@ const [taxId,setTaxId]=useState('')
     {item.balance !== 0 && (
 
         <div className='mt-3 flex'> {/* Centering the Pay button */}
-            <button type="button" onClick={() => handleSubmit(item?.totaltax, item?._id)} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+            <button type="button" onClick={() => handleSubmit(item?.totaltax,item?.balance, item?._id)} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
         </div>
 
     )}

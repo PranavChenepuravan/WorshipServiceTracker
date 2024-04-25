@@ -29,6 +29,9 @@ import { ViewExistingInstitution } from './Admin/ViewExistingInstitution';
 import { AdminBlockInstDetailPage } from './Admin/AdminBlockInstDetailPage';
 import { AdminExistingInstDetailPage } from './Admin/AdminExistingInstDetailPage';
 import { ViewExistingArchaeology } from './Admin/ViewExistingArchaeology';
+import { AdminExistingDeptDetailPage } from './Admin/AdminExistingDeptDetailPage';
+import { AdminBlockDeptDetailPage } from './Admin/AdminBlockDeptDetailPage';
+import { ViewExistingIncomeTax } from './Admin/ViewExistingIncomeTax';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { RegisterCommon } from './RegisterCommon';
@@ -97,6 +100,7 @@ import { IncomeTaxDonation } from './IncomeTax/IncomeTaxDonation';
 import { IncomeTaxDonationInstWise } from './IncomeTax/IncomeTaxDonationInstWise';
 import { IncomeTaxDonationOneInst } from './IncomeTax/IncomeTaxDonationOneInst';
 import { IncomeTaxReportDonation } from './IncomeTax/IncomeTaxReportDonation';
+import { IncomeInstDailyCash } from './IncomeTax/IncomeInstDailyCash';
 
 
 import { ArchLayout } from './Archaeology/ArchLayout';
@@ -108,6 +112,9 @@ import { ArchProfile } from './Archaeology/ArchProfile';
 import { ArchProfileEdit } from './Archaeology/ArchProfileEdit';
 import { ArchEmployeeList } from './Archaeology/ArchEmployeeList';
 import { ArchHome } from './Archaeology/ArchHome';
+import { ArchExistingHeritage } from './Archaeology/ArchExistingHeritages';
+
+
 
 import { PilgLayout } from './Pilgrim/PilgLayout';
 import { PilgProfile } from './Pilgrim/PilgProfile';
@@ -123,7 +130,6 @@ import { PilgDonationListOther } from './Pilgrim/PilgDonationListOther';
 import { PilgDonationListAll } from './Pilgrim/PilgDonationListAll';
 import { PilgPhotos } from './Pilgrim/PilgPhotos';
 import { PilgPhotosAdd } from './Pilgrim/PilgPhotosAdd';
-// import { PilgReview } from './Pilgrim/PilgReview';
 import { PilgReviewAdd } from './Pilgrim/PilgReviewAdd';
 import { PilgBookingInst } from './Pilgrim/PilgBookingInst';
 import { PilgReviewInst } from './Pilgrim/PilgReviewInst';
@@ -131,9 +137,9 @@ import { PilgFestivalList } from './Pilgrim/PillgFestivalList';
 import { PilgFestivalEventList } from './Pilgrim/PilgFestvalEventList';
 import { PilgInstitutionHeritage } from './Pilgrim/PilgInstitutionHeritage';
 import { PilgPreaching } from './Pilgrim/PilgPreaching';
-import { AdminExistingDeptDetailPage } from './Admin/AdminExistingDeptDetailPage';
-import { AdminBlockDeptDetailPage } from './Admin/AdminBlockDeptDetailPage';
-import { ViewExistingIncomeTax } from './Admin/ViewExistingIncomeTax';
+
+
+
 
 
 
@@ -282,6 +288,7 @@ root.render(
           <Route path="incometaxdonationinstwise" element={<IncomeTaxDonationInstWise/>}/>
           <Route path="incometaxdonationoneinst/:id" element={<IncomeTaxDonationOneInst/>}/>
           <Route path="incometaxreportdonation" element={<IncomeTaxReportDonation/>}/>
+          <Route path="incomeinstdailycash/:id" element={<IncomeInstDailyCash/>}/>
           
 
         </Route>
@@ -296,6 +303,7 @@ root.render(
           <Route path="archprofile" element={<ArchProfile/>}/>
           <Route path="archprofileedit" element={<ArchProfileEdit/>}/>
           <Route path="archemployeelist" element={<ArchEmployeeList/>}/>
+          <Route path="archexistingheritage" element={<ArchExistingHeritage/>}/>
           
         </Route>
 

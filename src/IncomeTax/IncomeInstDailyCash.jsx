@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 import { Link, useParams } from 'react-router-dom'
 
-export const IncomeTaxDonationOneInst = () => {
+export const IncomeInstDailyCash = () => {
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3; // Adjust the number of items per page as needed
@@ -11,7 +11,7 @@ export const IncomeTaxDonationOneInst = () => {
 
     let {id}=useParams()
     
-    const [wholedonationData,setWholedonationData]=useState([])
+    const [DailyCashData,setDailyCashData]=useState([])
     const [refresh,setrefresh]=useState(false)
     const [totalTax, setTotalTax] = useState(0);
     const [totalPayed, setTotalPayed] = useState()
@@ -23,30 +23,24 @@ export const IncomeTaxDonationOneInst = () => {
     useEffect(()=>{
         const fetchData = async () =>{
 
-            const response = await axios.get(`http://localhost:4000/incometax/wholedonation/${id}`)
+            const response = await axios.get(`http://localhost:4000/institution/dailyincome/${id}`)
             console.log("Donataion Response Data", response.data)
-            setWholedonationData(response.data)
+            setDailyCashData(response.data)
 
         };
         fetchData();
     },[refresh]);
 
 
-    let handleChange=(event)=>{
-        setData({...data,[event.target.name]:event.target.value})
-      }
 
 
-      let handleSubmit = async (status,txtid) => {
-        let response = await axios.put(`http://localhost:4000/incometax/wholedonationstatus/${txtid}`, {status : status })
-        console.log(response);
-        
-      };
+
+
 
 
 
   
-    const pageCount = Math.ceil(wholedonationData.length / itemsPerPage);
+    const pageCount = Math.ceil(DailyCashData.length / itemsPerPage);
   
   
     const handlePageClick = ({ selected }) => {
@@ -65,35 +59,23 @@ export const IncomeTaxDonationOneInst = () => {
                   Date
               </th>
               <th scope="col" className="px-6 py-3">
-                  Tax
+                  Income 
               </th>
               <th scope="col" className="px-6 py-3">
-                  Payed
+                  Expense
               </th>
               <th scope="col" className="px-6 py-3">
                   Balance
               </th>
-              <th scope="col" className="px-6 py-3">
-                  Status
-              </th>
-              <th scope="col" className="px-6 py-3">
-                  Sanction
-              </th>
-              <th></th>
           </tr>
     </thead>
 <tbody>
-  {wholedonationData.map((item, index) => (
+  {DailyCashData.map((item, index) => (
     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td>{item?.date}</td>
-        <td>{item?.tax}</td>
-        <td>{item?.tax - item?.balance}</td>
-        <td>{item?.balance}</td>
-        <td>{item?.status}</td>
-        <td>
-        <button type="submit" onClick={() => handleSubmit('approved', item._id)}  className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22">Approve</button>
-        <button type="submit" onClick={() => handleSubmit('rejected', item._id)}  className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22">Reject</button>
-      </td>
+      <td>{item?.date}</td>
+      <td>{item?.income}</td>
+      <td>{item?.expense}</td>
+      <td>{item?.amount}</td>
 
     </tr>
   ))}
@@ -121,4 +103,4 @@ export const IncomeTaxDonationOneInst = () => {
     </>
   )
 }
-export default IncomeTaxDonationOneInst
+export default IncomeInstDailyCash

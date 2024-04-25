@@ -20,6 +20,7 @@ export const IncomeTaxReportDonation = () => {
           amount: item?.wholedon?.totalSum,
           tax: item?.wholedon?.tax,
           payed : item?.wholedon?.tax - item?.wholedon?.balance ,
+          status: item?.wholedon?.status
 
         }));
     
@@ -31,7 +32,8 @@ export const IncomeTaxReportDonation = () => {
           `Date: ${item.date}\n` +
           `Amount: ${item.amount}\n` +
           `Tax: ${item.tax}\n` +
-          `Payed: ${item.payed}\n\n`
+          `Payed: ${item.payed}\n`+
+          `status: ${item.status}\n\n`
         )).join('');
     
         // Open a new window and print the data
@@ -124,6 +126,9 @@ export const IncomeTaxReportDonation = () => {
                 <th scope="col" className="px-6 py-3">
                     Balance
                 </th>
+                <th scope="col" className="px-6 py-3">
+                    Status
+                </th>
   
             </tr>
       </thead>
@@ -144,6 +149,7 @@ export const IncomeTaxReportDonation = () => {
                 }
             </td>
             <td>{item?.wholedon?.balance}</td>
+            <td>{item?.wholedon?.status}</td>
         </tr>
     ))}
 </tbody>

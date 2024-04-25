@@ -290,7 +290,13 @@ export const InstDonationList = () => {
                     Date
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Amount
+                    Income
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Expense
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Balance
                 </th>
             </tr>
         </thead>
@@ -298,6 +304,8 @@ export const InstDonationList = () => {
             {data5.map((item,index)=>(
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td>{item.date}</td>
+                    <td>{item.income}</td>
+                    <td>{item.expense}</td>
                     <td>{item.amount}</td>
 
                 </tr>

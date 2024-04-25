@@ -22,10 +22,14 @@ export const InstDonationWholeTax = () => {
         setPayData({...paydata,[event.target.name]:event.target.value})
     }
 
-    let handleSubmit=async(totaltaxes,taxId)=>{
-        setrefresh(!refresh)
+    let handleSubmit=async(totaltaxes,taxId,balance)=>{
+        if (parseFloat(paydata.payed) > parseFloat(balance)) {
+            alert("Amount to pay cannot exceed the balance amount.");
+            return; 
+        }
         let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes,status:'rejected'})
         console.log(response);
+        setrefresh(!refresh)
     }
 
   return (
@@ -102,7 +106,7 @@ export const InstDonationWholeTax = () => {
 
     <br />
     <div>
-    <button type="button" onClick={()=>handleSubmit(item?.donation?.tax,item?.donation?._id)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
+    <button type="button" onClick={()=>handleSubmit(item?.donation?.tax,item?.donation?._id,item.donation.balance)} class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Pay</button>
     </div>
     <div>
         <li className='text-white'> </li>
