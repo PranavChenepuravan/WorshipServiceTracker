@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const ViewExistingArchaeology = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 2; // Adjust the number of items per page as needed
+  const itemsPerPage = 10; // Adjust the number of items per page as needed
   const [data, setUserData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -78,7 +78,7 @@ export const ViewExistingArchaeology = () => {
               <td className="px-6 py-4">{item?.location}</td>
               <td className="px-6 py-4">{item?.phone}</td>
               <td className="px-6 py-4">{item?.email}</td>
-              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
+              <td className="px-6 py-6"><div className='w-28 h-20'><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></div></td>
               <td className="px-6 py-4">
               <Link to={`/admin/adminblockdeptdetailpage/${item?._id}`}>
               <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Block</button>

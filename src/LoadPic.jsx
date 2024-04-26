@@ -11,7 +11,7 @@ const LoadPic = () => {
         </div>
         <br />
         <div className='text-lg font-sans'>
-          <p>Embrace the Divine, Illuminate the Soul: Your Journey Begins Here.</p>
+          <p>Embrace the Divine, Illuminate the Soul.</p>
         </div>
         <div className='w-[50%]'>
         <img src={image1} alt="Worship" className="mt-4 mx-auto h-[100%]"  />

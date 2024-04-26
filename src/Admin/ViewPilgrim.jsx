@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const ViewPilgrim = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 2; // Adjust the number of items per page as needed
+  const itemsPerPage = 10; // Adjust the number of items per page as needed
   const [data, setUserData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -84,7 +84,7 @@ export const ViewPilgrim = () => {
               <td className="px-6 py-4">{item?.phone}</td>
               <td className="px-6 py-4">{item?.email}</td>
               <td className="px-6 py-4">{item?.other}</td>
-              <td className="px-6 py-4"><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></td>
+              <td className="px-6 py-16"><div className='w-28 h-24 mb-2 '><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></div></td>
               <div className='flex'>
                 <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
                   <Link to={`/admin/adminpilgdetailpage/${item?._id}`}>View</Link>

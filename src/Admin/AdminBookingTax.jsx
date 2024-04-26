@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const AdminBookingTax = () => {
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 3;
+    const itemsPerPage = 10;
 
     let id = localStorage.getItem('id');
 
@@ -71,9 +71,6 @@ export const AdminBookingTax = () => {
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
-                            Booking Id
-                        </th>
-                        <th scope="col" className="px-6 py-3">
                             InstType
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -96,7 +93,6 @@ export const AdminBookingTax = () => {
                 <tbody>
                     {currentItems.map((item) => (
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={item._id}>
-                            <td className="px-6 py-4">{item?._id}</td>
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.insttype}</td>
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.institutionName},{item?.institutionInfo[0]?.location},{item?.institutionInfo[0]?.email},{item?.institutionInfo[0]?.phone}</td>
                             <td className="px-6 py-4">{item?.pilgrimId}</td>

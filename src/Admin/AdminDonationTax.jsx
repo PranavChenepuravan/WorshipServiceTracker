@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const AdminDonationTax = () => {
     const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 2; // Adjust the number of items per page as needed
+      const itemsPerPage = 10; // Adjust the number of items per page as needed
 
       let id=localStorage.getItem('id')
 
@@ -81,9 +81,6 @@ export const AdminDonationTax = () => {
             <tr>
 
                 <th scope="col" className="px-6 py-3">
-                    Institution Id
-                </th>
-                <th scope="col" className="px-6 py-3">
                     InstType
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -113,7 +110,6 @@ export const AdminDonationTax = () => {
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-4">{item?.donations?.instittutionId}</td>
               <td className="px-6 py-4">{item?.instInfo?.insttype}</td>
               <td className="px-6 py-4">{item?.instInfo?.institutionName},{item?.instInfo?.location},{item?.instInfo?.phone},{item?.instInfo?.email}</td>
               <td className="px-6 py-4">{item?.donations?.date}</td>

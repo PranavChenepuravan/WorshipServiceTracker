@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const InstPhoto = () => {
-    const [data, setData] = useState(['']);
+    const [data, setData] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 4; // Number of items per page
 
     let id = localStorage.getItem('id');
 
@@ -12,7 +14,6 @@ export const InstPhoto = () => {
         const fetchData = async () => {
             try {
                 let response = await axios.get(`http://localhost:4000/institution/picture/${id}`);
-                console.log(response.data);
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -28,21 +29,27 @@ export const InstPhoto = () => {
     const handleSubmit = async (statuss, itemId) => {
         try {
             await axios.put(`http://localhost:4000/institution/picture/${itemId}`, { status: statuss });
-            setData(data.map(item => {
-                if (item.photos._id === itemId) {
-                    return { ...item, photos: { ...item.photos, status: statuss } };
-                }
-                return item;
-            }));
+            setData((prevData) =>
+                prevData.map((item) =>
+                    item.photos._id === itemId ? { ...item, photos: { ...item.photos, status: statuss } } : item
+                )
+            );
         } catch (error) {
             console.error('Error updating status:', error);
         }
     };
 
-    const filteredData = data.filter(item =>
-        item.pilgrims?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.pilgrims?.email.toLowerCase().includes(searchQuery.toLowerCase())
+    // Pagination logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const filteredData = data.filter(
+        (item) =>
+            item.pilgrims?.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.pilgrims?.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -57,17 +64,17 @@ export const InstPhoto = () => {
                 />
             </div>
 
-            <div className='flex flex-wrap gap-4 justify-center'>
-                {filteredData.map((item, index) => (
+            <div className="flex flex-wrap gap-4 justify-center">
+                {currentItems.map((item, index) => (
                     <div key={index} className="h-[20%] bg-gray-100 flex items-center text-center">
                         <div className="container mx-auto p-9 bg-white max-w-sm rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300">
-                            <img src={`http://localhost:4000/uploads/${item?.photos?.photo}`} className='w-48 h-48' alt="" />
+                            <img src={`http://localhost:4000/uploads/${item?.photos?.photo}`} className="w-48 h-48" alt="" />
                             <span>{item?.photos?.status}</span>
                             <div className="justify-between items-center">
                                 <div>
                                     <h1 className="mt-5 text-m font-semibold">{item?.pilgrims?.name}</h1>
                                     <h1 className="mt-5 text-m font-semibold">{item?.pilgrims?.email}</h1>
-                                    <div className='pt-5'>
+                                    <div className="pt-5">
                                         <button
                                             type="button"
                                             className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 w-[45%]"
@@ -88,6 +95,23 @@ export const InstPhoto = () => {
                             </div>
                         </div>
                     </div>
+                ))}
+            </div>
+
+            {/* Pagination controls */}
+            <div className="mt-4 flex justify-center">
+                {[...Array(Math.ceil(filteredData.length / itemsPerPage))].map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => paginate(index + 1)}
+                        className={`px-3 py-1 mx-1 rounded-lg focus:outline-none ${
+                            currentPage === index + 1
+                                ? 'bg-gray-400 text-white'
+                                : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
+                        }`}
+                    >
+                        {index + 1}
+                    </button>
                 ))}
             </div>
         </>

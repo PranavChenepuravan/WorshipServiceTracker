@@ -54,10 +54,7 @@ export const InstProfileEdit = () => {
         <p class="text-gray-500">Freelance Web Designer</p>
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
-    <div className='flex'> 
-        <div>Photo :  </div>
-        <div><input type="file" name="photo" id="user_name"  className=" w-28 ml-[15%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.userid}  /></div>
-      </div>
+
       <div className='flex'> 
         <div>Name :  </div>
         <div><input type="text" name="institutionName" id="user_name"  className=" w-[20%] ml-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.institutionName}  /></div>
@@ -82,13 +79,13 @@ export const InstProfileEdit = () => {
         <div>Visiting : </div>
         <div><input type="text" name="visitamount" id="user_name" className=" w-[20%] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.visitamount}  /></div>
       </div>
-      <div className='flex'> 
+      <div className=''> 
         <div>Change Password : </div>
-        <div><input type="password" name="password" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.password}  /></div>
+        <div className='ml-20'><input type="password" name="password" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
       </div>
-      <div className='flex'> 
+      <div className='mb-2'> 
         <div>Confirm Password : </div>
-        <div><input type="password" name="cpassword" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.cpassword}  /></div>
+        <div className='ml-20'><input type="password" name="cpassword" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
       </div>
       
     </div>

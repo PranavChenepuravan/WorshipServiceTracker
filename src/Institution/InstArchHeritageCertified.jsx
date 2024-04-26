@@ -22,52 +22,55 @@ console.log(data);
 
   return (
     <>
-      
-{data.map((item,index)=>(
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <div class="flex flex-col items-center pb-10">
-    <img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" className='object-cover object-center h-32' />
-        <div className="flex mt-4 md:mt-6 flex-col">
-        <div className='flex'> 
-           <div>ID : </div>
-           <h2>{item?.institutionId}</h2>
+
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    {data.map((item, index) => (
+        <div key={index} className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex flex-col items-center pb-4 md:pb-6">
+                <img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" className="object-cover object-center h-32" />
+                <div className="mt-4 md:mt-6 flex flex-col px-4">
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">ID:</div>
+                        <div>{item?.institutionId}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Name:</div>
+                        <div>{item?.institutionname}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Type:</div>
+                        <div>{item?.institutiontype}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Location:</div>
+                        <div>{item?.location}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Phone:</div>
+                        <div>{item?.phone}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Email:</div>
+                        <div>{item?.email}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Heritage:</div>
+                        <div>{item?.heritage}</div>
+                    </div>
+                    <div className="flex items-center mb-2">
+                        <div className="font-medium mr-2">Status:</div>
+                        <div>{item?.status}</div>
+                    </div>
+                    <div className="flex items-center">
+                        <div className="font-medium mr-2">Rating:</div>
+                        <div>{item?.rating}</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className='flex'> 
-           <div>Name : </div>
-           <h2>{item?.institutionname}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Name : </div>
-           <h2>{item?.institutiontype}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Location : </div>
-           <h2>{item?.location}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Phone: </div>
-           <h2>{item?.phone}</h2>
-        </div>
-        <div className='flex'> 
-           <div>email : </div>
-           <h2>{item?.email}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Heritage : </div>
-           <h2>{item?.heritage}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Status : </div>
-           <h2>{item?.status}</h2>
-        </div>
-        <div className='flex'> 
-           <div>Rating : </div>
-           <h2>{item?.rating}</h2>
-        </div>
-        </div>
-    </div>
-  </div>
-))}
+    ))}
+</div>
+
 
 
 
