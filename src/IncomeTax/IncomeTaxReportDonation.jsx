@@ -74,7 +74,7 @@ export const IncomeTaxReportDonation = () => {
 
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 10; // Adjust the number of items per page as needed
+  const itemsPerPage = 20; // Adjust the number of items per page as needed
 
   const pageCount = Math.ceil(donationData?.length / itemsPerPage);
 
@@ -102,9 +102,6 @@ export const IncomeTaxReportDonation = () => {
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-            <th scope="col" className="px-6 py-3">
-                    Donation Id
-                </th>
                 <th scope="col" className="px-6 py-3">
                     InstType
                 </th>
@@ -136,7 +133,6 @@ export const IncomeTaxReportDonation = () => {
       <tbody>
     {currentItems.map((item,index)=>(
         <tr className="bg-white dark:bg-gray-800 dark:border-gray-700" key={index}>
-            <td>{item?.wholedon?._id}</td>
             <td>{item?.inst?.insttype}</td>
             <td>{item?.inst?.institutionName},{item?.inst?.location},{item?.inst?.phone},{item?.inst?.email}</td>
             <td>{item?.wholedon?.date}</td>

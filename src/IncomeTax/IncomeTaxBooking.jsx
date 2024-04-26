@@ -44,7 +44,7 @@ export const IncomeTaxBooking = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 10; // Adjust the number of items per page as needed
+  const itemsPerPage = 20; // Adjust the number of items per page as needed
 
   const filteredBookingData = bookingData.filter(bookingItem =>
     bookingItem?.institution?.institutionName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -80,9 +80,6 @@ export const IncomeTaxBooking = () => {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Booking Id
-            </th>
-            <th scope="col" className="px-6 py-3">
               InstType
             </th>
             <th scope="col" className="px-6 py-3">
@@ -102,13 +99,10 @@ export const IncomeTaxBooking = () => {
         <tbody>
           {currentItems.map((bookingItem, index) => (
               <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {bookingItem?._id}
-                </td>
                 <td>{bookingItem?.institution?.insttype}</td>
                 <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
                 <td>{bookingItem?.bookings?.date}</td>
-                <td className='px-5'>{bookingItem?.booings?.amount}</td>
+                <td className='px-5'>{bookingItem?.bookings?.amount}</td>
                 <td className='px-5'>{bookingItem?.bookings?.tax}</td>
               </tr>
           ))}

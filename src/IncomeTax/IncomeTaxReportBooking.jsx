@@ -8,7 +8,7 @@ export const IncomeTaxReportBooking = () => {
   const [bookingData, setBookingData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 10;
+  const itemsPerPage = 20;
  
 //  printing
  

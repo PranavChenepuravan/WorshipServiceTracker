@@ -12,6 +12,8 @@ export const InstBookingTaxTotal = () => {
     const[data,setData]=useState([''])
     const [totdata,setTotdata]=useState([])
     const [payform,setPayform]=useState(false)
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -63,7 +65,7 @@ export const InstBookingTaxTotal = () => {
             return; 
         }
         console.log(taxId,'taxid')
-        let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected'})
+        let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected',date: formattedDate})
         console.log(response);
         setrefresh(!refresh)
     }
@@ -151,8 +153,19 @@ const [taxId,setTaxId]=useState('')
         <input type="text" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
-        <label htmlFor="dateTime" className="w-[20%]">Date and Time :</label>
-        <input type="date" onChange={handleChange} name="dateTime" id="dateTime" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+                            <label htmlFor="date" className="w-[20%]">Date : </label>
+                            <input
+                                onChange={handleChange}
+                                name='date'
+                                type="date"
+                                id="date"
+                                className="ml-[5%] w-[60%] h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                defaultValue={formattedDate}
+                                min={formattedDate}
+                                max={formattedDate}
+                                required
+                            />
+                        
     </div>
     <br />
 

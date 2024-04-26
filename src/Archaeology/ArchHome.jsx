@@ -17,7 +17,7 @@ export const ArchHome = () => {
           <p>Empowering Worship Coordination</p>
         </div>
         <br />
-        <div className='text-lg font-sans'>
+        <div className='text-lg font-bold'>
           <p>Embrace the Divine, Illuminate the Soul.</p>
         </div>
         <div className='w-[50%]'>

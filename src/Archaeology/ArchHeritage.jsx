@@ -128,8 +128,10 @@ export const ArchHeritage = () => {
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item?.phone}
               </td>
-              <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <img src={`http://localhost:4000/uploads/${item?.photo}`} className='w-48 h-48' alt="" />
+              <td scope="row" className="px-4 py-9 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <div className='w-28 h-20'>
+                <img src={`http://localhost:4000/uploads/${item?.photo}`} className='w-48 h-38 pb-2' alt="" />
+                </div>
               </td>
               <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {item?.heritage}

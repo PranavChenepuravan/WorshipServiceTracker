@@ -8,6 +8,8 @@ export const InstDonationWholeTax = () => {
     const [data,setData]=useState([])
     const [paydata,setPayData]=useState([])
     const [refresh,setrefresh]=useState(false)
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
 
     useEffect(()=>{
         let fetchdata=async ()=>{
@@ -27,7 +29,7 @@ export const InstDonationWholeTax = () => {
             alert("Amount to pay cannot exceed the balance amount.");
             return; 
         }
-        let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes,status:'rejected'})
+        let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes,status:'rejected', payeddate : formattedDate})
         console.log(response);
         setrefresh(!refresh)
     }
@@ -91,18 +93,23 @@ export const InstDonationWholeTax = () => {
         <label htmlFor="payeddate" className="w-[20%]">Date :</label>
         <input type="date" onChange={handleChange}  name="payeddate" id="payeddate" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div> */}
-  <div className="mt-3 flex">
-  <label htmlFor="password" className="w-[20%]">Date : </label>
-  <input 
-    onChange={handleChange} 
-    name='payeddate' 
-    type="date" 
-    id="password" 
-    className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
-    required 
-  />
-</div>
+
+<div className='flex mt-3'> 
+                            <label htmlFor="date" className="w-[20%]">Date : </label>
+                            <input
+                                onChange={handleChange}
+                                name='payeddate'
+                                type="date"
+                                id="date"
+                                className="ml-[5%] w-[60%] h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                defaultValue={formattedDate}
+                                min={formattedDate}
+                                max={formattedDate}
+                                required
+                            />
+                        
+    </div>
+    
 
     <br />
     <div>
@@ -114,11 +121,6 @@ export const InstDonationWholeTax = () => {
 </div>
 
         
-
-
-
-
-
 
 
         <div>
