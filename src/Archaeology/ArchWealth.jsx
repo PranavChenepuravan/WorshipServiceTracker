@@ -60,7 +60,8 @@ export const ArchWealth = () => {
     return (item?.institutionname || '').toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  const pageCount = Math.ceil(filteredData.length / itemsPerPage);
+  console.log(Array(filteredData?.filter((i)=> i.status === status)).length,'---------');
+  const pageCount = Math.ceil(Array(filteredData?.filter((i)=> i.status === status)).length / itemsPerPage);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);

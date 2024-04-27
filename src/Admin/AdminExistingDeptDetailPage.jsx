@@ -41,7 +41,7 @@ export const AdminExistingDeptDetailPage = () => {
         <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div>
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
-    <div className='flex flex-col pl-[15%] text-xl'>
+    <div className='flex flex-col pl-[15%] text-xl pt-4'>
       <div className='flex'> 
         <div>Type :  </div>
         <div><input type="text" name="name" id="user_name"  className=" w-[20%] ml-[16%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={userData.departmentName}  /></div>
@@ -58,7 +58,7 @@ export const AdminExistingDeptDetailPage = () => {
         <div>Email : </div>
         <div><input type="text" name="email" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={userData.email}  /></div>
       </div>
-      <div className='flex'> 
+      <div className='flex pb-4'> 
         <div>Other : </div>
         <div><input type="text" name="other" id="user_name" className=" w-[20%] ml-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={userData.other}  /></div>
       </div>

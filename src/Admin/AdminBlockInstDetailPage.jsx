@@ -7,6 +7,7 @@ export const AdminBlockInstDetailPage = () => {
   let {id}=useParams()
   const [userData,setUserData]=useState('')
   const [refresh,setrefresh]=useState(false)
+  const [blocking, setBlocking] = useState('');
 
   useEffect(()=>{
     let fetchdata=async ()=>{
@@ -15,17 +16,21 @@ export const AdminBlockInstDetailPage = () => {
       setUserData(response.data)
     }
     fetchdata()
-  },[refresh])
+  },[id,refresh])
 
   const[data,setData]=useState('')
   let handleChange=(event)=>{
     setData({...data,[event.target.name]:event.target.value})
     console.log(data);
+    const { name, value } = event.target;
+    if (name === 'blocking') {
+      setBlocking(value); // Update blocking state
+    }
   }
 
   let handleSubmit=async(statuss)=>{
     setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/admin/manageUser/${id}`,{status:statuss})
+    let response=await axios.put(`http://localhost:4000/admin/manageUser/${id}`,{status:statuss,block:blocking});
     console.log(response)
   }
 
@@ -41,10 +46,6 @@ export const AdminBlockInstDetailPage = () => {
         <div><img src={`http://localhost:4000/uploads/${userData.photo}`} alt="" className='object-cover object-center h-32' /></div>
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
-    {/* <div class="text-center mt-2">
-        <h2 class="font-semibold">John Smith</h2>
-        <p class="text-gray-500">Freelance Web Designer</p>
-    </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
       <div className='flex'> 
         <div>Name :  </div>
@@ -63,12 +64,16 @@ export const AdminBlockInstDetailPage = () => {
         <div><input type="text" name="email" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={userData.email}  /></div>
       </div>
       <div className='flex'> 
-        <div>Other : </div>
+        <div>Adress : </div>
         <div><input type="text" name="other" id="user_name" className=" w-[20%] ml-[10%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} value={userData.other}  /></div>
+      </div>
+      <div className='flex'> 
+        <div>Reason : </div>
+        <div><input type="text" name="blocking" id="user_name" className=" w-[20%] ml-[7%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.block}  /></div>
       </div>
     </div>
     <div className='pl-[30%] flex w-[40%] mt-3 '>
-        <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-7 py-2.5 text-center me-2 mb-2" onClick={()=>{handleSubmit('blocked')}} href='#'>Block</button>
+        <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-7 py-2.5 text-center me-2 mb-2" onClick={()=>{handleSubmit('blocked')}} href='#'>Block</button>
     </div>
 </div>
 

@@ -38,7 +38,7 @@ export const AdminPilgDetailPage = () => {
         {/* <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'> */}
     </div>
     <div class="mx-auto w-48 h-32 relative -mt-16 border-4 border-white overflow-hidden">
-        <div><img src={`http://localhost:4000/uploads/${userData.photo}`} alt="" className='object-cover object-center h-32' /></div>
+        <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div>
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
     {/* <div class="text-center mt-2">
@@ -69,8 +69,8 @@ export const AdminPilgDetailPage = () => {
       
     </div>
     <div className='pl-[30%] flex w-[40%] mt-3 '>
-    <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-5 mb-2" onClick={()=>{handleSubmit('approved')}} href='#'>Approve</button>
-        <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-7 py-2.5 text-center me-2 mb-2" onClick={()=>{handleSubmit('rejected')}} href='#'>Reject</button>
+     <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-7 py-2.5 text-center me-2 mb-2" onClick={()=>{handleSubmit('rejected')}} href='#'>Block</button>
+     <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-5 mb-2" onClick={()=>{handleSubmit('approved')}} href='#'>Unblock</button>
     </div>
 </div>
 

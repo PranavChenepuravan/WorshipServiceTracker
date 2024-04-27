@@ -25,7 +25,7 @@ export const InstBookingTax = () => {
 
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3; // Adjust the number of items per page as needed
+  const itemsPerPage = 25; // Adjust the number of items per page as needed
 
   const pageCount = Math.ceil(bookingData.length / itemsPerPage);
 
@@ -65,7 +65,7 @@ export const InstBookingTax = () => {
           </tr>
     </thead>
 <tbody>
-  {bookingData.map((item, index) => (
+  {currentItems.map((item, index) => (
     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td>{item?.pilgrims?.name}</td>
       <td>{item?.pilgrims?.email}</td>
