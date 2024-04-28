@@ -56,7 +56,7 @@ export const PilgProfile = () => {
             <h2>{userData.email}</h2>
           </div>
           <div className="flex">
-            <div>Other : </div>
+            <div>Address : </div>
             <h2>{userData.other}</h2>
           </div>
           <div>

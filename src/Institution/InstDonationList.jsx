@@ -34,13 +34,24 @@ export const InstDonationList = () => {
     }, [id, refresh]);
 
     // Calculate sum of all incomes
+    // const incomeSum = data2.reduce((acc, item) => {
+    //     let sum = 0;
+    //     for (let i = 1; i <= 4; i++) {
+    //         sum += item[`income${i}`];
+    //     }
+    //     return acc + sum;
+    // }, 0);
+
     const incomeSum = data2.reduce((acc, item) => {
         let sum = 0;
         for (let i = 1; i <= 4; i++) {
-            sum += item[`income${i}`];
+            // Convert income values to numbers before summing
+            const incomeValue = parseFloat(item[`income${i}`]); // Assuming incomes are stored as strings
+            sum += isNaN(incomeValue) ? 0 : incomeValue; // Add incomeValue if it's a valid number
         }
         return acc + sum;
     }, 0);
+    
 
     // Calculate sum of amounts
     const amountSum = data.reduce((acc, item) => acc + (item.donation ? item.donation.amount : 0), 0);
@@ -51,7 +62,9 @@ export const InstDonationList = () => {
     const dailySum = data5.reduce((acc, item) => acc + item.amount, 0)
 
     // Calculate total sum
-    const totalSum =  amountSum + worthSum + dailySum;
+    // const totalSum =  amountSum + worthSum + dailySum;
+    const totalSum =  amountSum + worthSum + dailySum + incomeSum;
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -141,10 +154,10 @@ export const InstDonationList = () => {
 
             <p className='text-white text-xl pt-2'>Offline</p>
 
-            <div className='flex'>
-        <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
-        <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
-      </div>
+            {/* <div className='flex'>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
+              <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
+           </div> */}
 
 
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -218,10 +231,10 @@ export const InstDonationList = () => {
 
           
             <p className='text-white text-xl mt-2'>Online</p>
-            <div className='flex'>
-        <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
-        <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
-      </div>
+              {/* <div className='flex'>
+                <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
+                <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
+              </div> */}
 
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -278,10 +291,10 @@ export const InstDonationList = () => {
     </table>
 
     <p className='text-white text-xl mt-2'>Daily Income</p>
-            <div className='flex'>
-        <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
-        <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
-      </div>
+            {/* <div className='flex'>
+              <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2">Search</button>
+              <input  type="text" name='time' id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[20%] h-[2%]" required />
+            </div> */}
 
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

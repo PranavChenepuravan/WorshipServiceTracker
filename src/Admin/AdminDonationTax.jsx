@@ -18,7 +18,7 @@ export const AdminDonationTax = () => {
 
       useEffect(()=>{
         let fetchdata=async ()=>{
-          let response=await axios.get('http://localhost:4000/admin/wholedonation')
+          let response=await axios.get('http://localhost:4000/admin/wholedonation2')
           console.log(response.data);
           setData(response.data)
 
@@ -109,21 +109,41 @@ export const AdminDonationTax = () => {
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
+            // <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            //   <td className="px-6 py-4">{item?.instInfo?.insttype}</td>
+            //   <td className="px-6 py-4">{item?.instInfo?.institutionName},{item?.instInfo?.location},{item?.instInfo?.phone},{item?.instInfo?.email}</td>
+            //   <td className="px-6 py-4">{item?.donations?.date}</td>
+            //   <td className="px-6 py-4">{item?.donations?.totalSum}</td>
+            //   <td className="px-6 py-4">{item?.donations?.tax}</td>
+            //   <td>
+            //     {isNaN(item?.donations?.tax - item?.donations?.balance) 
+            //         ? '' 
+            //         : item?.donations?.tax - item?.donations?.balance
+            //     }
+            // </td>
+            //   <td className="px-6 py-4">{item?.donations?.status}</td>
+            //   <td className="px-6 py-4"></td>
+            // </tr>
+
+
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-4">{item?.instInfo?.insttype}</td>
-              <td className="px-6 py-4">{item?.instInfo?.institutionName},{item?.instInfo?.location},{item?.instInfo?.phone},{item?.instInfo?.email}</td>
-              <td className="px-6 py-4">{item?.donations?.date}</td>
-              <td className="px-6 py-4">{item?.donations?.totalSum}</td>
-              <td className="px-6 py-4">{item?.donations?.tax}</td>
-              <td>
-                {isNaN(item?.donations?.tax - item?.donations?.balance) 
-                    ? '' 
-                    : item?.donations?.tax - item?.donations?.balance
+            <td className="px-6 py-4">{item?.instInfo?.[0]?.insttype}</td>
+            <td className="px-6 py-4">
+            {item?.instInfo?.[0]?.institutionName
+                  ? `${item.instInfo[0].institutionName}, ${item.instInfo[0].location}, ${item.instInfo[0].phone}, ${item.instInfo[0].email}`
+                  : '-'
                 }
+
             </td>
-              <td className="px-6 py-4">{item?.donations?.status}</td>
-              <td className="px-6 py-4"></td>
-            </tr>
+            <td className="px-6 py-4">{item?.date}</td>
+            <td className="px-6 py-4">{item?.totalSum}</td>
+            <td className="px-6 py-4">{item?.tax || '-'}</td>
+              <td className="px-6 py-4">{(item?.tax - item?.balance) || '-'}</td>
+              <td className="px-6 py-4">{item?.balance || '-'}</td>
+              <td className="px-6 py-4">{item?.status || '-'}</td>
+          </tr>
+
+
           ))}
         </tbody>
     </table>
