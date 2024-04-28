@@ -56,12 +56,24 @@ export const ArchWealth = () => {
     }
   };
 
+  // const filteredData = data.filter(item => {
+  //   return (item?.institutionname || '').toLowerCase().includes(searchTerm.toLowerCase());
+  // });
+
+  // console.log(Array(filteredData?.filter((i)=> i.status === status)).length,'---------');
+  // const pageCount = Math.ceil(Array(filteredData?.filter((i)=> i.status === status)).length / itemsPerPage);
+
   const filteredData = data.filter(item => {
+    // Ensure item?.institutionname is defined before calling toLowerCase()
     return (item?.institutionname || '').toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  console.log(Array(filteredData?.filter((i)=> i.status === status)).length,'---------');
-  const pageCount = Math.ceil(Array(filteredData?.filter((i)=> i.status === status)).length / itemsPerPage);
+
+
+
+  const filteredTotalData = filteredData?.filter((i)=> i.status === status)
+  console.log(filteredTotalData.length,'filteredTotalData')
+  const pageCount = Math.ceil(filteredTotalData.length / itemsPerPage);
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -129,7 +141,7 @@ export const ArchWealth = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems?.filter((i)=> i.status === status).map((item, index) => (
+          {filteredData?.filter((i)=> i.status === status).slice(indexOfFirstItem, indexOfLastItem).map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4">{item?.institutionname}</td>
               <td className="px-2 py-4">{item?.institutiontype}</td>
