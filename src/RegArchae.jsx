@@ -2,8 +2,10 @@ import React,{ useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const RegArchae = () => {
+  const navigate=useNavigate()
   const [data,setData]=useState('')
 
   // let handlefile=(event)=>{
@@ -46,6 +48,7 @@ let handleSubmit=async (event)=>{
       }
     })
     console.log(response);
+    navigate('/login')
   }
   catch(e){
     console.log(e);

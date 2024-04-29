@@ -3,8 +3,11 @@ import React,{useState} from 'react'
 import './App.css'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 export const RegInst = () => {
+  const navigate=useNavigate()
   const[data,setData]=useState('')
 
   const[prodata,setProdata]=useState('')
@@ -47,6 +50,7 @@ let handleChange=(event)=>{
         'Content-Type' : 'multipart/form-data'
       }
     })
+    navigate('/login')
   }
     catch(e){
       console.log(e);

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const RegIncome = () => {
+  const navigate=useNavigate()
   const [data,setData]=useState('')
   let handlefile=(event)=>{
     console.log(event.target.files);
@@ -36,6 +38,7 @@ export const RegIncome = () => {
       }
     })
     console.log(response)
+    navigate('/login')
   }
   catch(e){
     console.log(e);

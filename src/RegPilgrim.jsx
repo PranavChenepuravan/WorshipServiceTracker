@@ -2,7 +2,9 @@ import React,{useState} from 'react'
 import './App.css'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 export const RegPilgrim = () => {
+const navigate=useNavigate()
 const [data,setData]=useState('')
 let handlefile=(event)=>{
   console.log(event.target.files);
@@ -39,6 +41,7 @@ let handleSubmit=async (event)=>{
         }
         
       })
+      navigate('/login')
     }catch(e){
       console.log(e);
       toast.error( e.response.data.message || e.message)
