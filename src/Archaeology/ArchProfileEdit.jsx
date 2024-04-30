@@ -2,9 +2,11 @@ import React,{ useEffect ,useState } from 'react'
 import boy from '../Pilgrim/Boy.jpg'
 import { Link } from 'react-router-dom' 
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 export const ArchProfileEdit = () => {
   let id=localStorage.getItem('id')
+  const navigate=useNavigate()
   const [userData,setUserData]=useState('')
   const [refresh,setrefresh]=useState(false)
 
@@ -23,17 +25,26 @@ export const ArchProfileEdit = () => {
     console.log(data);
   }
 
-  let handleSubmit=async(event)=>{
-    event.preventDefault()
-    if(data.cpassword!=data.password){
-
+  let handleSubmit =  (event) => {
+    event.preventDefault();
   
-    }
-    else{
-    setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
-    console.log(response);
-    setData('')
+    if (data.cpassword !== data.password) {
+      // Handle password mismatch scenario
+      console.log("Passwords do not match");
+    } else {
+      try {
+        let response =  axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`, data);
+        console.log(response);
+        if(response){
+
+          window.location.reload();
+        }
+  
+        // Reload the page after successful update
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        // Handle error case if needed
+      }
     }
   }
 
@@ -50,11 +61,6 @@ export const ArchProfileEdit = () => {
         {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
     </div>
     <div className='flex flex-col pl-[15%] text-xl'>
-    <div className='flex'> 
-        <div>ID :  </div>
-        <div><input type="text" name="userid" id="user_name"  className=" w-[20%] ml-[28%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.userid}  /></div>
-      </div>
-      
       <div className='flex'> 
         <div>Place :   </div>
         <div><input type="text" name="location" id="user_name" className=" w-[20%] ml-[14%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.location}  /></div>
@@ -65,7 +71,7 @@ export const ArchProfileEdit = () => {
       </div>
       <div className='flex'> 
         <div>Phone :   </div>
-        <div><input type="text" name="phone" id="user_name" className=" w-[20%] ml-[8%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.phone}  /></div>
+        <div><input type="text" name="phone" id="user_name" className=" w-[20%] ml-[8%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.phone} maxLength={10} minLength={10}  /></div>
       </div>
       <div className='flex'> 
         <div>Email : </div>
@@ -73,11 +79,11 @@ export const ArchProfileEdit = () => {
       </div>
       <div className=''> 
         <div>Change Password : </div>
-        <div className='ml-16 mr-24'><input type="password" name="password" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
+        <div className='ml-16 mr-24'><input type="password" name="password" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} minLength={8} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"  /></div>
       </div>
       <div className='mb-2'> 
         <div>Confirm Password : </div>
-        <div className='ml-16 mr-24'><input type="password" name="cpassword" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}  /></div>
+        <div className='ml-16 mr-24'><input type="password" name="cpassword" id="user_name" className=" w-[20%] ml-[12.5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} minLength={8} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" /></div>
       </div>
 
       

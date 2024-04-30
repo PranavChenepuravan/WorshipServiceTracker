@@ -10,11 +10,12 @@ export const InstInstruction = () => {
     setData({...data,[event.target.name]:event.target.value,institutionId:id})
   }
 
-  let handleSubmit=async (event)=>{
+  let handleSubmit= (event)=>{
     event.preventDefault()
 
-    let response=await axios.post('http://localhost:4000/institution/instruction',data)
+    let response=axios.post('http://localhost:4000/institution/instruction',data)
     console.log(response);
+    window.location.reload();
   }
   return (
     <>

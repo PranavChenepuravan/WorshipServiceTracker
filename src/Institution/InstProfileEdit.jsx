@@ -23,7 +23,7 @@ export const InstProfileEdit = () => {
     console.log(data);
   }
 
-  let handleSubmit=async(event)=>{
+  let handleSubmit=(event)=>{
     event.preventDefault()
     if(data.cpassword!=data.password){
 
@@ -31,8 +31,9 @@ export const InstProfileEdit = () => {
     }
     else{
     setrefresh(!refresh)
-    let response=await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
+    let response= axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
     console.log(response);
+    window.location.reload();
     setData('')
     }
   }
@@ -65,7 +66,7 @@ export const InstProfileEdit = () => {
       </div>
       <div className='flex'> 
         <div>Phone :   </div>
-        <div><input type="text" name="phone" id="user_name" className=" w-[20%] ml-[8%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.phone}  /></div>
+        <div><input type="text" name="phone" id="user_name" className=" w-[20%] ml-[8%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} placeholder={userData.phone} minLength={10} maxLength={11} /></div>
       </div>
       <div className='flex'> 
         <div>Email : </div>
@@ -81,11 +82,11 @@ export const InstProfileEdit = () => {
       </div>
       <div className=''> 
         <div>Change Password : </div>
-        <div className='ml-20'><input type="password" name="password" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
+        <div className='ml-20'><input type="password" name="password" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} minLength={8} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"   /></div>
       </div>
       <div className='mb-2'> 
         <div>Confirm Password : </div>
-        <div className='ml-20'><input type="password" name="cpassword" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}   /></div>
+        <div className='ml-20'><input type="password" name="cpassword" id="user_name" className=" w-36 ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange} minLength={8} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"   /></div>
       </div>
       
     </div>

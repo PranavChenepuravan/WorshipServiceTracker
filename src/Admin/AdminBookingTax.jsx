@@ -96,7 +96,7 @@ export const AdminBookingTax = () => {
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.insttype}</td>
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.institutionName},{item?.institutionInfo[0]?.location},{item?.institutionInfo[0]?.email},{item?.institutionInfo[0]?.phone}</td>
                             <td className="px-6 py-4">{item?.pilgrimId}</td>
-                            <td className="px-6 py-4">{item?.date}</td>
+                            <td className="px-6 py-4">{ new Date(item?.date).toLocaleDateString()}</td>
                             <td className="px-6 py-4">{item?.amount}</td>
                             <td className="px-6 py-4">{item?.tax}</td>
                         </tr>

@@ -81,9 +81,6 @@ export const IncomeTaxInst = () => {
               Head
             </th>
             <th scope="col" className="px-6 py-3">
-              Community
-            </th>
-            <th scope="col" className="px-6 py-3">
               Photo
             </th>
             <th scope="col" className="px-6 py-3"></th>
@@ -97,8 +94,7 @@ export const IncomeTaxInst = () => {
               <td className="px-6 py-4">{item?.location}</td>
               <td className="px-6 py-4">{item?.phone}</td>
               <td className="px-6 py-4">{item?.email}</td>
-              <td className="px-6 py-4">{item?.email}</td>
-              <td className="px-6 py-4">{item?.community}</td>
+              <td className="px-6 py-4">{item?.caretaker}</td>
               <td className="px-6 py-9">
                 <div className='w-28 h-20'>
                   <img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" />

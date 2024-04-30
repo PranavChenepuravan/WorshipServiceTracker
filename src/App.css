@@ -288,3 +288,10 @@
   height: fit-content!important;
   padding-top: 20px!important;
 }
+
+
+.homeback{
+  background-image: url('../src/Agar.png');
+  background-repeat: no-repeat ;
+  background-size: 100%
+}
