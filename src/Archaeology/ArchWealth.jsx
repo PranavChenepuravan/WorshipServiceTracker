@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios';
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const ArchWealth = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -83,6 +84,34 @@ export const ArchWealth = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
+
+
+
+
+  const RatingStars = ({ rating }) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+  
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<FaStar key={i} />);
+    }
+  
+    // Add half star if applicable
+    if (hasHalfStar) {
+      stars.push(<FaStarHalfAlt key={stars.length} />);
+    }
+  
+    // Fill remaining stars (if any) with empty stars
+    const remainingStars = 5 - stars.length;
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+    }
+  
+    return <div className="flex">{stars}</div>;
+  };
+
   return (
     <div className="overflow-x-auto">
       {/* Search bar */}
@@ -144,7 +173,7 @@ export const ArchWealth = () => {
           {filteredData?.filter((i)=> i.status === status).slice(indexOfFirstItem, indexOfLastItem).map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4">{item?.institutionname}</td>
-              <td className="px-2 py-4">{item?.institutiontype}</td>
+              <td className="px-2 py-4">{item?.insttype}</td>
               <td className="px-2 py-4">{item?.location},<br /> {item?.email},<br />{item?.phone}</td>
               <td className="px-6 py-4">{item?.eraofmanufacture}</td>
               <td className="px-2 py-4">{item?.madein}</td>
@@ -162,7 +191,7 @@ export const ArchWealth = () => {
                 />
               </td>}
               { item.status === 'approved' &&  <td className='px-2 py-11'>
-              {item?.rating}
+              <RatingStars rating={item?.rating} />
               </td>}
               <td className="px-4 py-4">
               

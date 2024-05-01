@@ -125,15 +125,15 @@ let handleChange=(event)=>{
     <input type="text" name="other" onChange={handleChange} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]"  />
   </div>
 
-  {/* <div className="mb-5">
-    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Community Type</label>
+  <div className="mb-5">
+    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Religion</label>
         <select name="community" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" id="">
-         <option value="" readonly>select community</option>
+         <option value="" readonly>select Religion</option>
          <option value="hindu">Hindu</option>
          <option value="islam">Islam</option>
          <option value="christian">Christian</option>
        </select>   
-  </div> */}
+  </div>
 
   <div className="mb-5">
      <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo : </label>

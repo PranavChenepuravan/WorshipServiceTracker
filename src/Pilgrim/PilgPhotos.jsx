@@ -65,9 +65,11 @@ export const PilgPhotos = () => {
                             <img src={`http://localhost:4000/uploads/${item.Picture?.photo}`} className="w-48 h-48" alt="" />
                             <div className="justify-between items-center">
                                 <div>
-                                    <h1 className="mt-5 text-2xl font-semibold">{item.institutions?.institutionName}</h1>
-                                    <h1 className="mt-5 text-2xl font-semibold">{item.pilgrims?.name}</h1>
-                                    <p className="mt-2"> </p>
+                                    <h1 className="mt-5 mb-3 text-2xl font-semibold">{item.institutions?.institutionName}</h1>
+                                    <p>By</p>
+                                    <h1 className="mt-2 text-2xl font-semibold">{item.pilgrims?.name}</h1>
+                                    <h1 className="mt-2 text-2xl font-semibold">{item.pilgrims?.email}</h1>
+                                    <p className="mt-1"> </p>
                                 </div>
                             </div>
                         </div>

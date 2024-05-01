@@ -26,12 +26,6 @@ export const PilgDonationListAll = () => {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
-                    Donation Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Institution Id
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Institution Type
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -70,12 +64,6 @@ export const PilgDonationListAll = () => {
         <tbody>
             {data.map((item,index)=>(
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td>
-                  {item._id}
-                </td>
-                <td>
-                  {item.institutionId}
-                </td>
                 <td>
                   {item.usersInfo?.insttype}
                 </td>
@@ -126,12 +114,6 @@ export const PilgDonationListAll = () => {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
-                    Donation Id
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Institution Id
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Institution Type
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -167,12 +149,6 @@ export const PilgDonationListAll = () => {
         {data.map((item,index)=>(
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td>
-                  {item._id}
-                </td>
-                <td>
-                  {item.institutionId}
-                </td>
-                <td>
                   {item.usersInfo?.insttype}
                 </td>
                 <td>
@@ -196,8 +172,8 @@ export const PilgDonationListAll = () => {
                 <td>
                     {item.material}
                 </td>
-                <td>
-                    {item.tax}
+                <td>    
+                  {item.amount}
                 </td>
                 <td>
                     {item.status}

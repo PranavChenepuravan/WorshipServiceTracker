@@ -38,9 +38,9 @@ export const InstInstructionList = () => {
     }
   };
 
-  const handleDelete = async (instId) => {
+  const handleDelete =  (instId) => {
     try {
-      const response = await axios.delete(`http://localhost:4000/institution/instructiondelete/${instId}`);
+      const response = axios.delete(`http://localhost:4000/institution/instructiondelete/${instId}`);
       console.log(response);
       setRefresh(!refresh);
     } catch (error) {
@@ -99,7 +99,8 @@ export const InstInstructionList = () => {
                 <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <td><input type="text" name="instruction" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" required value={item.instruction} onChange={handleChange} /></td>
                   <td className="px-6 py-4">
-                    <button type="submit" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[40%]"><Link to={`/instlayout/instinstructionediting/${item._id}`}>Edit</Link></button>
+
+                    <Link to={`/instlayout/instinstructionediting/${item._id}`}><button type="submit" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[40%]">Edit</button></Link>
                     <div><button onClick={() => handleDelete(item._id)} type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[40%]">Delete</button></div>
                   </td>
                 </tr>

@@ -3,6 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom'
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const PilgReviewAdd = () => {
     const ratingChanged = (newRating) => {
@@ -39,6 +40,34 @@ export const PilgReviewAdd = () => {
         console.log(response);
         
       }
+
+
+
+
+
+      const RatingStars = ({ rating }) => {
+        const stars = [];
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+      
+        // Add full stars
+        for (let i = 0; i < fullStars; i++) {
+          stars.push(<FaStar key={i} />);
+        }
+      
+        // Add half star if applicable
+        if (hasHalfStar) {
+          stars.push(<FaStarHalfAlt key={stars.length} />);
+        }
+      
+        // Fill remaining stars (if any) with empty stars
+        const remainingStars = 5 - stars.length;
+        for (let i = 0; i < remainingStars; i++) {
+          stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+        }
+      
+        return <div className="flex">{stars}</div>;
+      };
 
 
       
@@ -136,18 +165,12 @@ export const PilgReviewAdd = () => {
 
                         <span>{item?.reviews?.review}</span>
                     </div>
-                    {/* <div class="flex p-1 gap-1 text-orange-300">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star-half"></ion-icon>
-                    </div> */}
+     
                 </div>
 
                 <div className='text-black'>
                   Rating : 
-                    {item?.reviews?.rating}
+                  <RatingStars rating={item?.reviews?.rating} />
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactStars from "react-rating-stars-component";
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const ArchHeritage = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -58,6 +59,34 @@ export const ArchHeritage = () => {
   let handleSubmit = (statuss, newid) => {
     let response1 = axios.put(`http://localhost:4000/archaeology/manageHeritage/${newid}`, { rating: rating, status: statuss });
     console.log(response1);
+  };
+
+
+
+
+
+  const RatingStars = ({ rating }) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+  
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<FaStar key={i} />);
+    }
+  
+    // Add half star if applicable
+    if (hasHalfStar) {
+      stars.push(<FaStarHalfAlt key={stars.length} />);
+    }
+  
+    // Fill remaining stars (if any) with empty stars
+    const remainingStars = 5 - stars.length;
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+    }
+  
+    return <div className="flex">{stars}</div>;
   };
 
   return (
@@ -147,7 +176,7 @@ export const ArchHeritage = () => {
                 />
               </td>}
               { item.status === 'approved' &&  <td className='px-2 py-11'>
-              {item?.rating}
+              <RatingStars rating={item?.rating} />
               </td>}
               <td className="px-4 py-4">
                 <div>

@@ -23,10 +23,10 @@ export const InstInstructionEditing = () => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     try {
-      await axios.put(`http://localhost:4000/institution/instructionedit/${instrId}`, data);
+       axios.put(`http://localhost:4000/institution/instructionedit/${instrId}`, data);
       setRefresh(!refresh);
     } catch (error) {
       console.error('Error updating data:', error);

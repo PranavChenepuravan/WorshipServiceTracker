@@ -55,7 +55,7 @@ export const InstArchaeology = () => {
     <br />
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400">
    <div className='flex'> 
-    <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mx-[5%] my-[5%]"><Link to='/instlayout/instarchlist'>List</Link></button>
+   <Link to='/instlayout/instarchlist'><button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mx-[5%] my-[5%]">List</button></Link>
     
   </div>
   <div className="mb-5">

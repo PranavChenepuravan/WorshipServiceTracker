@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate';
 import str from '../Institution/Rating.jpeg';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const InstRating = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -42,6 +43,36 @@ export const InstRating = () => {
     const filteredItems = searchQuery
         ? currentItems.filter(item => item?.pilgrim?.name.toLowerCase().includes(searchQuery.toLowerCase()))
         : currentItems;
+
+
+    
+
+        
+
+        const RatingStars = ({ rating }) => {
+          const stars = [];
+          const fullStars = Math.floor(rating);
+          const hasHalfStar = rating % 1 !== 0;
+        
+          // Add full stars
+          for (let i = 0; i < fullStars; i++) {
+            stars.push(<FaStar key={i} />);
+          }
+        
+          // Add half star if applicable
+          if (hasHalfStar) {
+            stars.push(<FaStarHalfAlt key={stars.length} />);
+          }
+        
+          // Fill remaining stars (if any) with empty stars
+          const remainingStars = 5 - stars.length;
+          for (let i = 0; i < remainingStars; i++) {
+            stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+          }
+        
+          return <div className="flex">{stars}</div>;
+        };
+
 
     return (
         <div className="overflow-x-auto">
@@ -87,7 +118,10 @@ export const InstRating = () => {
                             <td className="px-6 py-4">{item?.pilgrim?.phone}</td>
                             <td className="px-6 py-4">{item?.pilgrim?.email}</td>
                             <td className="px-6 py-4">{item?.reviews?.review}</td>
-                            <td className="px-6 py-4">{item?.reviews?.rating}</td>
+                            {/* <td className="px-6 py-4">{item?.reviews?.rating}</td> */}
+                            <td className="px-6 py-4">
+                                  <RatingStars rating={item?.reviews?.rating} />
+                            </td>
                         </tr>
                     ))}
                 </tbody>

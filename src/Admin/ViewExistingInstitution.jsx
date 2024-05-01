@@ -70,7 +70,7 @@ export const ViewExistingInstitution = () => {
               Care Taker
             </th>
             <th scope="col" className="px-6 py-3">
-              Community
+              Religion
             </th>
             <th scope="col" className="px-6 py-3">
               Photo

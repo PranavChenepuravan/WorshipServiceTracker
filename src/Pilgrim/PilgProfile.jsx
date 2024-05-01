@@ -9,9 +9,9 @@ export const PilgProfile = () => {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData =  () => {
       try {
-        const response = await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`);
+        const response = axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`);
         console.log(response.data);
         setUserData(response.data);
       } catch (error) {
