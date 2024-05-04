@@ -63,6 +63,7 @@ export const PilgDonationListAll = () => {
         </thead>
         <tbody>
             {data.map((item,index)=>(
+                item.material ? (null) :
                 <tr className="bg-white border-b text-black">
                 <td>
                   {item.usersInfo?.insttype}
@@ -91,12 +92,9 @@ export const PilgDonationListAll = () => {
                 <td>
                   {item.status} 
                 </td>
-
-                {/* <td className="px-6 py-4">
-                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Bill</button>
-                </td> */}
                 
             </tr>
+                
             ))}
 
         </tbody>
@@ -132,6 +130,9 @@ export const PilgDonationListAll = () => {
                     Date 
                 </th>
                 <th scope="col" className="px-6 py-3">
+                    Time
+                </th>
+                <th scope="col" className="px-6 py-3">
                     Weight
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -147,6 +148,7 @@ export const PilgDonationListAll = () => {
         </thead>
         <tbody>
         {data.map((item,index)=>(
+            item.material ? (
             <tr className="bg-white border-b text-black">
                 <td>
                   {item.usersInfo?.insttype}
@@ -166,6 +168,9 @@ export const PilgDonationListAll = () => {
                 <td>
                   {item.date}
                 </td>
+                <td>    
+                  {item.time}
+                </td>
                 <td>
                     {item.weight}
                 </td>
@@ -180,6 +185,7 @@ export const PilgDonationListAll = () => {
                 </td>
 
             </tr>
+            ):null
             ))}
    
         </tbody>

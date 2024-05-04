@@ -76,7 +76,7 @@ export const InstProfile = () => {
         <h2>{userData.email}</h2>
       </div>
       <div className='flex flex-col'> 
-        <div className='underline'>Adress  </div>
+        <div className='underline'>Address  </div>
         <h2>{userData.other}</h2>
       </div>
       <div>

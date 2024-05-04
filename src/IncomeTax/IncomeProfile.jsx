@@ -48,8 +48,8 @@ export const IncomeProfile = () => {
         <div>Email: </div>
         <h2>{userData.email}</h2>
       </div>
-      <div className='flex'> 
-        <div>Other: </div>
+      <div className='flex flex-col'> 
+        <div className='underline'>Address </div>
         <h2>{userData.other}</h2>
       </div>
 
