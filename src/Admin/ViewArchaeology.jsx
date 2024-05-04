@@ -73,7 +73,7 @@ export const ViewArchaeology = () => {
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={index} className="bg-white border-b text-black">
               <td className="px-6 py-4">{item?.departmentName}</td>
               <td className="px-6 py-4">{item?.location}</td>
               <td className="px-6 py-4">{item?.phone}</td>

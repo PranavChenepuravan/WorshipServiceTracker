@@ -54,9 +54,11 @@ export const PilgPhotos = () => {
                     onChange={handleSearchChange}
                 />
             </div>
+            <Link to="/pilglayout/pilgphotosadd">
             <button className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2 mx-[2%]">
-                <Link to="/pilglayout/pilgphotosadd">Add</Link>
+                Add
             </button>
+            </Link>
 
             <div className="flex flex-wrap gap-4 justify-center">
                 {currentItems.map((item, index) => (

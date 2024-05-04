@@ -171,7 +171,7 @@ export const ArchWealth = () => {
         </thead>
         <tbody>
           {filteredData?.filter((i)=> i.status === status).slice(indexOfFirstItem, indexOfLastItem).map((item, index) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={index} className="bg-white border-b text-black">
               <td className="px-6 py-4">{item?.institutionname}</td>
               <td className="px-2 py-4">{item?.insttype}</td>
               <td className="px-2 py-4">{item?.location},<br /> {item?.email},<br />{item?.phone}</td>

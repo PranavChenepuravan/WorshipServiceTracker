@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const AdminDonationTax = () => {
     const [currentPage, setCurrentPage] = useState(0);
-      const itemsPerPage = 10; // Adjust the number of items per page as needed
+      const itemsPerPage = 7; // Adjust the number of items per page as needed
 
       let id=localStorage.getItem('id')
 
@@ -47,6 +47,11 @@ export const AdminDonationTax = () => {
       const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
       };
+
+      const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+      };
     
       const indexOfLastItem = (currentPage + 1) * itemsPerPage;
       const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -66,11 +71,11 @@ export const AdminDonationTax = () => {
   </div>
   </form>
 
-  {currentItems.length > 0 && currentItems[0]?.donations?.currentPercentage &&
+  {currentItems.length > 0 && currentItems[0]?.currentPercentage &&
 
   <div className="text-white flex text-2xl">
                     <label htmlFor="password" className="block mb-2 font-medium text-white dark:text-white ">Current Tax : </label>
-                    {currentItems[0]?.donations?.currentPercentage}
+                    {currentItems[currentItems.length-1]?.currentPercentage}
                     <p>%</p>
  </div>
  }
@@ -135,7 +140,7 @@ export const AdminDonationTax = () => {
                 }
 
             </td>
-            <td className="px-6 py-4">{item?.date}</td>
+            <td className="px-6 py-4">{formatDate(item?.date)}</td>
             <td className="px-6 py-4">{item?.totalSum}</td>
             <td className="px-6 py-4">{item?.tax || '-'}</td>
               <td className="px-6 py-4">{(item?.tax - item?.balance) || '-'}</td>

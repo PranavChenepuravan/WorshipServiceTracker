@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import boy from '../Pilgrim/Boy.jpg'
-import { Link } from 'react-router-dom' 
+import { Link, useNavigate } from 'react-router-dom' 
 import axios from 'axios'
 
 export const InstProfile = () => {
   let id=localStorage.getItem('id')
   const [userData,setUserData]=useState('')
   const [refresh,setrefresh]=useState(false)
+  const navigate=useNavigate()
+  const [showWarning, setshowWarning] = useState(false);
+  const [showPaymentDetails, setShowPaymentDetails] = useState(false);
   useEffect(()=>{
     let fetchdata=async ()=>{
       let response=await axios.get(`http://localhost:4000/pilgrim/viewprofile/${id}`)
@@ -15,6 +18,25 @@ export const InstProfile = () => {
     }
     fetchdata()
   },[refresh])
+
+
+  let handleSubmit=async (event)=>{
+    event.preventDefault();
+    try {
+      await axios.put(`http://localhost:4000/terminate/${id}`);
+      setUserData('');
+      setrefresh(!refresh);
+      navigate('/')
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setshowWarning(true);
+  };
+
+  
   return (
     <>
       <div
@@ -31,7 +53,7 @@ export const InstProfile = () => {
         <p class="text-gray-500">Freelance Web Designer</p>
     </div> */}
     <div className='flex flex-col pl-[15%] text-xl pt-2'>
-    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><Link to='/instlayout/instproperties'>Properties</Link></button>
+    <Link to='/instlayout/instproperties'><button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-72">Properties</button></Link>
 
       <div className='flex'> 
         <div>Name : </div>
@@ -53,20 +75,33 @@ export const InstProfile = () => {
         <div>Email : </div>
         <h2>{userData.email}</h2>
       </div>
-      <div className='flex'> 
-        <div>Other : </div>
+      <div className='flex flex-col'> 
+        <div className='underline'>Adress  </div>
         <h2>{userData.other}</h2>
       </div>
       <div>
         <li className='text-white'> </li>
         <div className='flex'>
-           <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] "><Link to='/instlayout/instprofileedit'>Edit</Link></button>
-           <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[53%] ">Delete</button>
+           <Link to='/instlayout/instprofileedit'><button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-36 ">Edit</button></Link>
+           <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-36 " onClick={handlePageClick}>Delete</button>
         </div>
       </div>
     </div>
-    
 </div>
+
+
+{showWarning && (
+  <div className='bg-white absolute flex flex-col w-96 h-32 ml-96 -mt-28'>
+    <div className='pt-5 pl-2'>
+     <p>Are you sure</p>
+    </div>
+    <div className='flex pt-9 pl-48 '>
+       <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-20" onClick={()=>setshowWarning(false)}>Cancel</button>
+       <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-20" onClick={handleSubmit}>Ok</button>
+    </div>
+
+  </div>
+)}
     </>
   )
 }

@@ -10,12 +10,27 @@ export const PilgBookingList = () => {
 
     useEffect(()=>{
         let fetchdata=async ()=>{
+            try{
              let response=await axios.get(`http://localhost:4000/pilgrim/booking2/${id}`)
              console.log(response.data);
              setData(response.data)
+            }
+            catch(e)
+            {
+                console.error(e)
+            }
         }
         fetchdata()
     },[refresh])
+
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+      };
+
+
+
 
     console.log(data,'data');
   return (
@@ -27,9 +42,6 @@ export const PilgBookingList = () => {
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="px-6 py-3">
-                    Booing Id
-                </th>
                 <th scope="col" className="px-6 py-3">
                     Institution Type
                 </th>
@@ -61,14 +73,13 @@ export const PilgBookingList = () => {
         </thead>
         <tbody>
             {data.map((item,index)=>(
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td>{item?.booking?._id}</td>
+                <tr className="bg-white border-b text-black">
                     <td>{item?.institutions?.insttype}</td>
                     <td>{item?.institutions?.location}</td>
                     <td>{item?.institutions?.institutionName}</td>
                     <td>{item?.institutions?.phone}</td>
                     <td>{item?.institutions?.email}</td>
-                    <td>{item?.booking?.date}</td>
+                    <td>{formatDate(item?.booking?.date)}</td>
                     <td>{item?.booking?.time}</td>
                     <td>{item?.booking?.amount}</td>
                     <td>{item?.booking?.tax}</td>

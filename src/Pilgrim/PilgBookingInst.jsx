@@ -48,12 +48,16 @@ export const PilgBookingInst = () => {
         <>
             <div className="flex flex-col">
                 <div className="flex">
-                    <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-[5%] w-[10%]">
-                        <Link to="/pilglayout/pilgbookinglist">Booking List</Link>
-                    </button>
-                    <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-[5%] w-[10%]">
-                        <Link to="/pilglayout/pilgdonationlistall">Donation List</Link>
-                    </button>
+                   <Link to="/pilglayout/pilgbookinglist">
+                       <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-[5%] ">
+                         Booking List
+                       </button>
+                    </Link>
+                    <Link to="/pilglayout/pilgdonationlistall">
+                      <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-[5%] ">
+                        Donation List
+                      </button>
+                    </Link>
                 </div>
                 <div className="overflow-x-auto">
                     <div className='flex'>
@@ -97,25 +101,33 @@ export const PilgBookingInst = () => {
                                         </div>
                                         <div className="flex">
                                             <div className="p-1 pt-0">
-                                                <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                                                    <Link to={`/pilglayout/pilgbooking/${item._id}`}>Select</Link>
+                                               <Link to={`/pilglayout/pilgbooking/${item._id}`}>
+                                                <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-24 ml-1" type="button">
+                                                    Visit
                                                 </button>
+                                                </Link>
                                             </div>
                                             <div className="p-1 pt-0">
-                                                <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                                                    <Link to={`/pilglayout/pilgdonation/${item._id}`}>Donate</Link>
-                                                </button>
+                                               <Link to={`/pilglayout/pilgdonation/${item._id}`}>
+                                                 <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-24" type="button">
+                                                    Donate
+                                                 </button>
+                                                </Link>
                                             </div>
                                             <div className="p-1 pt-0">
-                                                <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-5 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
-                                                    <Link to={`/pilglayout/pilgpreaching/${item._id}`}>Preaching</Link>
-                                                </button>
+                                               <Link to={`/pilglayout/pilgpreaching/${item._id}`}>
+                                                 <button className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-3 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none w-24 mr-1" type="button">
+                                                    Preaching
+                                                 </button>
+                                                </Link>
                                             </div>
                                         </div>
-                                        <div className="p-1 pt-0 ml-[30%] mr-[30%]">
-                                            <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-9 py-2.5 text-center me-2 mb-2 ">
-                                                <Link to={`/pilglayout/pilginstitutionheritage/${item._id}`}>More</Link>
+                                        <div className="p-1 pt-0 ml-[34%] mr-[30%]">
+                                          <Link to={`/pilglayout/pilginstitutionheritage/${item._id}`}>
+                                            <button type="button" className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-6 py-2.5 text-center me-2 mb-2 w-24">
+                                                More
                                             </button>
+                                          </Link>
                                         </div>
                                     </div>
                                 );

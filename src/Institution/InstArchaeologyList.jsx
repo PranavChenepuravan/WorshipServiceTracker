@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const InstArchaeologyList = () => {
 
@@ -15,6 +16,33 @@ export const InstArchaeologyList = () => {
         }
         fetchdata()
     },[refresh])
+
+
+
+
+    const RatingStars = ({ rating }) => {
+        const stars = [];
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+      
+        // Add full stars
+        for (let i = 0; i < fullStars; i++) {
+          stars.push(<FaStar key={i} />);
+        }
+      
+        // Add half star if applicable
+        if (hasHalfStar) {
+          stars.push(<FaStarHalfAlt key={stars.length} />);
+        }
+      
+        // Fill remaining stars (if any) with empty stars
+        const remainingStars = 5 - stars.length;
+        for (let i = 0; i < remainingStars; i++) {
+          stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+        }
+      
+        return <div className="flex">{stars}</div>;
+      };
   return (
     <>
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -96,7 +124,8 @@ export const InstArchaeologyList = () => {
                         {item.archaeological ? item.archaeological.status : "Wealth data is not available"}
                     </td>
                     <td>
-                        {item.archaeological ? item.archaeological.rating : "Wealth data is not available"}
+                        {/* {item.archaeological ? item.archaeological.rating : "Wealth data is not available"} */}
+                        <RatingStars rating={item?.archaeological?.rating} />
                     </td>
                 </tr>
             ))}

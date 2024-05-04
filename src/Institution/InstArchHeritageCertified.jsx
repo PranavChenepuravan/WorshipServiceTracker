@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 export const InstArchHeritageCertified = () => {
 
@@ -20,6 +21,33 @@ export const InstArchHeritageCertified = () => {
 
 console.log(data);
 
+
+
+
+const RatingStars = ({ rating }) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+  
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<FaStar key={i} />);
+    }
+  
+    // Add half star if applicable
+    if (hasHalfStar) {
+      stars.push(<FaStarHalfAlt key={stars.length} />);
+    }
+  
+    // Fill remaining stars (if any) with empty stars
+    const remainingStars = 5 - stars.length;
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(<FaStar key={stars.length} className="text-gray-300" />);
+    }
+  
+    return <div className="flex">{stars}</div>;
+  };
+
   return (
     <>
 
@@ -29,10 +57,6 @@ console.log(data);
             <div className="flex flex-col items-center pb-4 md:pb-6">
                 <img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" className="object-cover object-center h-32" />
                 <div className="mt-4 md:mt-6 flex flex-col px-4">
-                    <div className="flex items-center mb-2">
-                        <div className="font-medium mr-2">ID:</div>
-                        <div>{item?.institutionId}</div>
-                    </div>
                     <div className="flex items-center mb-2">
                         <div className="font-medium mr-2">Name:</div>
                         <div>{item?.institutionname}</div>
@@ -63,7 +87,8 @@ console.log(data);
                     </div>
                     <div className="flex items-center">
                         <div className="font-medium mr-2">Rating:</div>
-                        <div>{item?.rating}</div>
+                        <RatingStars rating={item?.rating} />
+                        
                     </div>
                 </div>
             </div>

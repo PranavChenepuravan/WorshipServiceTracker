@@ -1,12 +1,13 @@
 import React,{ useEffect ,useState } from 'react'
 import boy from '../Pilgrim/Boy.jpg'
-import { Link, useParams } from 'react-router-dom' 
+import { Link, useNavigate, useParams } from 'react-router-dom' 
 import axios from 'axios'
 
 export const AdminDeptDetailPage = () => {
   let {id}=useParams()
   const [userData,setUserData]=useState('')
   const [refresh,setrefresh]=useState(false)
+  const navigate=useNavigate()
 
   useEffect(()=>{
     let fetchdata=async ()=>{
@@ -27,6 +28,7 @@ export const AdminDeptDetailPage = () => {
     setrefresh(!refresh)
     let response=await axios.put(`http://localhost:4000/admin/manageUser/${id}`,{status:statuss})
     console.log(response)
+    navigate('/admin')
   }
 
   return (

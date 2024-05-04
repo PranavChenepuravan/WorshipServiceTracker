@@ -82,7 +82,7 @@ export const ViewInstitution = () => {
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={index} className="bg-white border-b text-black">
               <td className="px-6 py-4">{item?.institutionName}</td>
               <td className="px-6 py-4">{item?.insttype}</td>
               <td className="px-6 py-4">{item?.location}</td>

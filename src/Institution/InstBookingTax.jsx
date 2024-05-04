@@ -34,6 +34,12 @@ export const InstBookingTax = () => {
     setCurrentPage(selected);
   };
 
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = bookingData.slice(indexOfFirstItem, indexOfLastItem);
@@ -70,7 +76,7 @@ export const InstBookingTax = () => {
       <td>{item?.pilgrims?.name}</td>
       <td>{item?.pilgrims?.email}</td>
       <td>{item?.pilgrims?.phone}</td>
-      <td>{item?.bookings?.date}</td>
+      <td>{formatDate(item?.bookings?.date)}</td>
       <td>{item?.bookings?.amount}</td>
       <td>{item?.bookings?.tax}</td>
     </tr>

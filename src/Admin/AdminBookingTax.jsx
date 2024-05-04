@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const AdminBookingTax = () => {
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 10;
+    const itemsPerPage = 7;
 
     let id = localStorage.getItem('id');
 
@@ -76,9 +76,9 @@ export const AdminBookingTax = () => {
                         <th scope="col" className="px-6 py-3">
                             Institution Address
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        {/* <th scope="col" className="px-6 py-3">
                             Pilgrim Id
-                        </th>
+                        </th> */}
                         <th scope="col" className="px-6 py-3">
                             Date
                         </th>
@@ -95,7 +95,7 @@ export const AdminBookingTax = () => {
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={item._id}>
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.insttype}</td>
                             <td className="px-6 py-4">{item?.institutionInfo[0]?.institutionName},{item?.institutionInfo[0]?.location},{item?.institutionInfo[0]?.email},{item?.institutionInfo[0]?.phone}</td>
-                            <td className="px-6 py-4">{item?.pilgrimId}</td>
+                            {/* <td className="px-6 py-4">{item?.pilgrimId}</td> */}
                             <td className="px-6 py-4">{ new Date(item?.date).toLocaleDateString()}</td>
                             <td className="px-6 py-4">{item?.amount}</td>
                             <td className="px-6 py-4">{item?.tax}</td>

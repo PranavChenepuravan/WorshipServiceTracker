@@ -45,6 +45,12 @@ export const IncomeTaxDonation = () => {
     setCurrentPage(selected);
   };
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
+
+
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
@@ -52,9 +58,11 @@ export const IncomeTaxDonation = () => {
   return (
     <>
       <div className='flex'>
+        <Link to='/incomelayout/incometaxdonationinstwise'>
         <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-          <Link to='/incomelayout/incometaxdonationinstwise'>Institution Wise</Link>
+          Institution Wise
         </button>
+        </Link>
       </div>
      <div className='pb-2'>
       <input
@@ -97,7 +105,7 @@ export const IncomeTaxDonation = () => {
             <tr key={index} className="bg-white dark:bg-gray-800 dark:border-gray-700">
               <td>{item?.inst?.insttype}</td>
               <td>{item?.inst?.institutionName}, {item?.inst?.location}, {item?.inst?.phone}, {item?.inst?.email}</td>
-              <td>{item?.wholedon?.date}</td>
+              <td>{formatDate(item?.wholedon?.date)}</td>
               <td>{item?.wholedon?.totalSum}</td>
               <td>{item?.wholedon?.tax}</td>
               <td>

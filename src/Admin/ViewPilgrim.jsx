@@ -78,7 +78,7 @@ export const ViewPilgrim = () => {
 
         <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr key={index} className="bg-white border-b text-black">
               <td className="px-6 py-3">{item?.name}</td>
               <td className="px-6 py-3">{item?.location}</td>
               <td className="px-6 py-3">{item?.phone}</td>

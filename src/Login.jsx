@@ -3,6 +3,9 @@ import { Outlet } from 'react-router-dom'
 import './App.css'
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom'
+import { toast,ToastContainer } from 'react-toastify'
+
+
 const Login = () => {
     const navigate=useNavigate()
     const[data,setData]=useState('')
@@ -11,6 +14,8 @@ const Login = () => {
     }
     let handleSubmit=async (event)=>{
         event.preventDefault()
+        try{
+
         const requiredField = ['email','password'];
 
         for(const field of requiredField){
@@ -30,6 +35,7 @@ const Login = () => {
             else if(response.data.userType=='archaeology'){
                 if(response.data.status=='approved'){
                     navigate('/archlayout')
+                    toast.success('Login Success')
                 }
             }
             else if(response.data.userType=='incometax'){
@@ -51,6 +57,11 @@ const Login = () => {
                 
             }
         }
+        
+    }
+    catch(e){
+        toast.error('invalid username or password')
+    }
 
 
         setData(data)
@@ -61,6 +72,7 @@ const Login = () => {
     
   return (
     <>
+    <ToastContainer/>
     <div className='back text-white pt-10 text-center w-[100%] h-[885px]'>
       
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
