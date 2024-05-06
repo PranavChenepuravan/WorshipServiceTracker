@@ -9,6 +9,10 @@ export const IncomeTaxBooking = () => {
   const [bookingData, setBookingData] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
 
   useEffect(() => {
     let fetchData = async () => {
@@ -103,7 +107,7 @@ export const IncomeTaxBooking = () => {
               <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td>{bookingItem?.institution?.insttype}</td>
                 <td className='px-5'>{bookingItem?.institution?.institutionName},{bookingItem?.institution?.location},{bookingItem?.institution?.phone},{bookingItem?.institution?.email}</td>
-                <td>{bookingItem?.bookings?.date}</td>
+                <td>{formatDate(bookingItem?.bookings?.date)}</td>
                 <td className='px-5'>{bookingItem?.bookings?.amount}</td>
                 <td className='px-5'>{bookingItem?.bookings?.tax}</td>
               </tr>
