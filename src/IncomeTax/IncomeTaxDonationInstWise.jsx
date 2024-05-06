@@ -91,12 +91,16 @@ export const IncomeTaxDonationInstWise = () => {
               </td>
               <td className="px-6 py-4">
                 <div className="flex flex-col">
-                  <button className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                    <Link to={`/incomelayout/incometaxdonationoneinst/${item?.institution?._id}`}>View</Link>
+                  <Link to={`/incomelayout/incometaxdonationoneinst/${item?.institution?._id}`}>
+                  <button className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-32">
+                    View
                   </button>
-                  <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
-                     <Link to={`/incomelayout/incomeinstdailycash/${item?.institution?._id}`}>Dily Cash</Link>
+                  </Link>
+                  <Link to={`/incomelayout/incomeinstdailycash/${item?.institution?._id}`}>
+                  <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 w-32">
+                     Dily Cash
                   </button>
+                  </Link>
                 </div>
               </td>
             </tr>

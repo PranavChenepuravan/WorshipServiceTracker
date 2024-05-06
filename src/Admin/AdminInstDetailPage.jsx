@@ -40,13 +40,17 @@ export const AdminInstDetailPage = () => {
         {/* <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'> */}
     </div>
     <div class="mx-auto w-48 h-32 relative -mt-16 border-4 border-white overflow-hidden">
-        <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div>
-        {/* <img class="object-cover object-center h-32" src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Woman looking front'> */}
+        {/* <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div> */}
+        <div className="mx-auto w-48 h-32 relative -mt-16 border-4 border-white overflow-hidden">
+          <a target="_blank" href={`http://localhost:4000/uploads/${userData.idproof}`} download>
+         <img className="w-[100px] h-14" src={`http://localhost:5000/uploads/${userData.healthcertificate}`} alt="click to view & download pdf" />
+         </a>
+         <a target="_blank" href={`http://localhost:4000/uploads/${userData.idproof}`} download>
+         <span className='text-blue-700'>Download ID Proof</span>
+         </a>
+       </div>
+
     </div>
-    {/* <div class="text-center mt-2">
-        <h2 class="font-semibold">John Smith</h2>
-        <p class="text-gray-500">Freelance Web Designer</p>
-    </div> */}
     <div className='flex flex-col pl-[15%] text-xl'>
       <div className='flex'> 
         <div>Name :  </div>

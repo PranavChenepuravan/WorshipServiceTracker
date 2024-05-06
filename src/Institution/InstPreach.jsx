@@ -39,6 +39,8 @@ let handleChange=(event)=>{
     console.log(response);
   }
 
+  const today = new Date().toISOString().split('T')[0]; // Get today's date in "yyyy-mm-dd" format
+
   return (
     <div className=''>
    
@@ -69,7 +71,7 @@ let handleChange=(event)=>{
     type="date" 
     id="password" 
     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" 
-    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
+    min={today} // Set min attribute to today's date
     required 
   />
 </div>
@@ -85,7 +87,7 @@ let handleChange=(event)=>{
     type="date" 
     id="password" 
     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-[2%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[95%]" 
-    min={new Date().toISOString().split('T')[0]} // Set min attribute to today's date
+    min={data.startingdate || today} // Set min attribute to today's date
     required 
   />
 </div>

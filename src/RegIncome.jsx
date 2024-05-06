@@ -50,6 +50,7 @@ export const RegIncome = () => {
   return (
     <>
     <div className='regback h-screen'>
+    <ToastContainer/>
     <form  id='mycomponet' onSubmit={handleSubmit} className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
    

@@ -37,7 +37,15 @@ export const AdminDeptDetailPage = () => {
     <div
     class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
     <div class="mx-auto w-48 h-32 relative  border-4 border-white  overflow-hidden">
-        <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div>
+        {/* <div><img src={`http://localhost:4000/uploads/${userData.idproof}`} alt="" className='object-cover object-center h-32' /></div> */}
+        <div className="mx-auto w-48 h-32 relative mt-12 border-4 border-white overflow-hidden">
+          <a target="_blank" href={`http://localhost:4000/uploads/${userData.idproof}`} download>
+         {/* <img className="w-[100px] h-14" src={`http://localhost:5000/uploads/${userData.healthcertificate}`} alt="click to view & download pdf" /> */}
+         </a>
+         <a target="_blank" href={`http://localhost:4000/uploads/${userData.idproof}`} download>
+         <span className='text-blue-600'>Download ID Proof</span>
+         </a>
+       </div>
     </div>
     <div className='flex flex-col pl-[15%] text-xl mt-7'>
       <div className='flex'> 

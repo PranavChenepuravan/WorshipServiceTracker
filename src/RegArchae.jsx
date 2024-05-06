@@ -61,6 +61,7 @@ let handleSubmit=async (event)=>{
   return (
     <>
     <div className='regback h-screen'>
+    <ToastContainer/>
 
  <form onSubmit={handleSubmit} id='mycomponet' className="max-w-sm mx-auto bg-gray-400/80">
    <div className='flex'> 
