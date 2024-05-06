@@ -16,6 +16,8 @@ export const IncomeTaxDonationOneInst = () => {
     const [totalTax, setTotalTax] = useState(0);
     const [totalPayed, setTotalPayed] = useState()
     const [status, setStatus ] = useState('');
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
     // const [date, setDate]= useState('')
     const[data,setData]=useState('')
 
@@ -62,7 +64,7 @@ export const IncomeTaxDonationOneInst = () => {
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
               <th scope="col" className="px-6 py-3">
-                  Date
+                  Date and Time
               </th>
               <th scope="col" className="px-6 py-3">
                   Tax
@@ -85,7 +87,7 @@ export const IncomeTaxDonationOneInst = () => {
 <tbody>
   {wholedonationData.map((item, index) => (
     <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <td>{item?.date}</td>
+        <td>{(new Date(item.date)).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</td>
         <td>{item?.tax}</td>
         <td>{item?.tax - item?.balance}</td>
         <td>{item?.balance}</td>

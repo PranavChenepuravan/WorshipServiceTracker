@@ -80,9 +80,11 @@ export const ViewArchaeology = () => {
               <td className="px-6 py-4">{item?.email}</td>
               <td className="px-6 py-4"><div className='w-28 h-20'><img src={`http://localhost:4000/uploads/${item?.photo}`} alt="" /></div></td>
               <td className="px-6 py-4">
-                <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                  <Link to={`/admin/admindeptdetailpage/${item?._id}`}>View</Link>
-                </button>
+                <Link to={`/admin/admindeptdetailpage/${item?._id}`}>
+                 <button type="button" className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  View
+                 </button>
+                </Link>
               </td>
             </tr>
           ))}

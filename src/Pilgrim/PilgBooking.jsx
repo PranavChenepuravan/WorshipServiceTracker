@@ -34,6 +34,9 @@ export const PilgrimBooking = () => {
 
     let response=await axios.post(`http://localhost:4000/pilgrim/booking`,{...data,institutionId:id,pilgrimId:pilgrimIds,amount:userData.visitamount,bookeddate:formattedDate})
     console.log(response);
+    window.location.reload()
+    
+
     
   }
 
@@ -134,7 +137,7 @@ export const PilgrimBooking = () => {
     </div>
     <div className='flex mt-3'> 
         <label htmlFor="password" className="w-[20%]">Password :</label>
-        <input type="text" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="password" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
                             <label htmlFor="date" className="w-[20%]">Date : </label>

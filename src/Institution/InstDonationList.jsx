@@ -57,7 +57,7 @@ export const InstDonationList = () => {
     const amountSum = data.reduce((acc, item) => acc + (item.donation ? item.donation.amount : 0), 0);
 
     // Calculate sum of worth
-    const worthSum = data1.reduce((acc, item) => acc + item.amount, 0);
+    const worthSum = data1.reduce((acc, item) => acc + item.donInfo.amount, 0);
 
     const dailySum = data5.reduce((acc, item) => acc + item.amount, 0)
 
