@@ -2,6 +2,7 @@ import React,{ useEffect ,useState } from 'react'
 import boy from '../Pilgrim/Boy.jpg'
 import { Link } from 'react-router-dom' 
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export const ArchProfileEdit = () => {
@@ -25,7 +26,7 @@ export const ArchProfileEdit = () => {
     console.log(data);
   }
 
-  let handleSubmit =  (event) => {
+  let handleSubmit = async (event) => {
     event.preventDefault();
   
     if (data.cpassword !== data.password) {
@@ -33,23 +34,23 @@ export const ArchProfileEdit = () => {
       console.log("Passwords do not match");
     } else {
       try {
-        let response =  axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`, data);
+        let response =await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`, data);
         console.log(response);
         if(response){
-
-          window.location.reload();
+          toast.success('Success')
         }
   
         // Reload the page after successful update
       } catch (error) {
         console.error("Error updating profile:", error);
-        // Handle error case if needed
+        toast.error( error.response.data.message || error.message)
       }
     }
   }
 
   return (
     <>
+    <ToastContainer/>
     <form onSubmit={handleSubmit}>
     <div
     class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">

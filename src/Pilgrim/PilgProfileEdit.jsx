@@ -1,6 +1,7 @@
 import React,{ useEffect ,useState } from 'react'
 import boy from '../Pilgrim/Boy.jpg'
 import { Link } from 'react-router-dom' 
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
 
 export const PilgProfileEdit = () => {
@@ -31,7 +32,8 @@ export const PilgProfileEdit = () => {
   }
 
 
-  let handleSubmit=(event)=>{
+  let handleSubmit=async (event)=>{
+    try{
     event.preventDefault()
     if(data.cpassword!=data.password){
 
@@ -39,12 +41,6 @@ export const PilgProfileEdit = () => {
     }
     else{
     setrefresh(!refresh)
-    let response= axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
-    console.log(response);
-
-      window.location.reload();
-
-    setData('')
     const formData = new FormData();
   
     for (const key in data) {
@@ -52,11 +48,29 @@ export const PilgProfileEdit = () => {
         formData.append(key, data[key]);
       }
     }
+    // window.location.reload();
+    let response=await axios.put(`http://localhost:4000/pilgrim/editprofile/${id}`,data)
+    console.log(response);
+
+    if(response){
+      toast.success('Success')
+    }
+
+    setData('')
+
+    
   }
+}
+catch(e){
+  console.log(e,'-------------------');
+  toast.error( e.response.data.message || e.message)
+
+}
   }
 
   return (
     <>
+    <ToastContainer/>
     <form onSubmit={handleSubmit}>
     <div
     class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
