@@ -19,7 +19,7 @@ export const InstDonationTax = () => {
             try {
                 const [response, response1, response2,response4] = await Promise.all([
                     axios.get(`http://localhost:4000/institution/donation/${id}`),
-                    axios.get(`http://localhost:4000/institution/pilgdonation/${id}`),
+                    axios.get(`http://localhost:4000/institution/pilgdonation3/${id}`),
                     axios.get(`http://localhost:4000/institution/propertieinst/${id}`),
                     axios.get(`http://localhost:4000/institution/dailyincome/${id}`)
                 ]);
@@ -222,7 +222,10 @@ export const InstDonationTax = () => {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
-                    PilgrimId
+                    Pilgrim
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Address
                 </th>
                 <th scope="col" className="px-6 py-3">
                     Date
@@ -247,14 +250,15 @@ export const InstDonationTax = () => {
         <tbody>
             {data1.map((item,index)=>(
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td>{item.pilgrimId}</td>
-                    <td>{item.date}</td>
-                    <td>{item.time}</td>
+                    <td>{item?.pilgInfo?.name}</td>
+                    <td>{item?.pilgInfo?.location},{item?.pilgInfo?.phone},{item?.pilgInfo?.email}</td>
+                    <td>{item?.donInfo?.date}</td>
+                    <td>{item?.donInfo?.time}</td>
                     
-                    <td>{item.material}</td>
-                    <td>{item.size}</td>
-                    <td>{item.weight}</td>
-                    <td>{item.amount}</td>
+                    <td>{item?.donInfo?.material}</td>
+                    <td>{item?.donInfo?.size}</td>
+                    <td>{item?.donInfo?.weight}</td>
+                    <td>{item?.donInfo?.amount}</td>
 
                 </tr>
             ))}

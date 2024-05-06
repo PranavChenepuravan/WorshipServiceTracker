@@ -18,7 +18,7 @@ export const InstDonationList = () => {
             try {
                 const [response, response1, response2,response5] = await Promise.all([
                     axios.get(`http://localhost:4000/institution/donation/${id}`),
-                    axios.get(`http://localhost:4000/institution/pilgdonation/${id}`),
+                    axios.get(`http://localhost:4000/institution/pilgdonation3/${id}`),
                     axios.get(`http://localhost:4000/institution/propertieinst/${id}`),
                     axios.get(`http://localhost:4000/institution/dailyincome/${id}`)
                 ]);
@@ -239,9 +239,12 @@ export const InstDonationList = () => {
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                {/* <th scope="col" className="px-6 py-3">
-                    PilgrimId
-                </th> */}
+                <th scope="col" className="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Address
+                </th>
                 <th scope="col" className="px-6 py-3">
                     Date
                 </th>
@@ -266,19 +269,17 @@ export const InstDonationList = () => {
         </thead>
         <tbody>
         {data1.map((item, index) => {
-    if (item.status === 'approved') {
+    if (item?.donInfo?.status === 'approved') {
         return (
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                {/* <td>{item.pilgrimId}</td> */}
-                <td>{item.date}</td>
-                <td>{item.time}</td>
-                <td>{item.material}</td>
-                <td>{item.size}</td>
-                <td>{item.weight}</td>
-                <td>{item.amount}</td>
-                <td>
-                    {/* Buttons for Approve and Reject */}
-                </td>
+                    <td>{item?.pilgInfo?.name}</td>
+                    <td>{item?.pilgInfo?.location},{item?.pilgInfo?.phone},{item?.pilgInfo?.email}</td>
+                    <td>{item?.donInfo?.date}</td>
+                    <td>{item?.donInfo?.time}</td>      
+                    <td>{item?.donInfo?.material}</td>
+                    <td>{item?.donInfo?.size}</td>
+                    <td>{item?.donInfo?.weight}</td>
+                    <td>{item?.donInfo?.amount}</td>
             </tr>
         );
     } else {
