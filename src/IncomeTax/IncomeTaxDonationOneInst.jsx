@@ -76,6 +76,9 @@ export const IncomeTaxDonationOneInst = () => {
                   Balance
               </th>
               <th scope="col" className="px-6 py-3">
+                  Bank
+              </th>
+              <th scope="col" className="px-6 py-3">
                   Status
               </th>
               <th scope="col" className="px-6 py-3">
@@ -91,6 +94,7 @@ export const IncomeTaxDonationOneInst = () => {
         <td>{item?.tax}</td>
         <td>{item?.tax - item?.balance}</td>
         <td>{item?.balance}</td>
+        <td>{item?.bankName},{item?.accountNo}</td>
         <td>{item?.status}</td>
         <td>
         <button type="submit" onClick={() => handleSubmit('approved', item._id)}  className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-6 w-22">Approve</button>

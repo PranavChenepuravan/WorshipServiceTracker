@@ -71,22 +71,22 @@ export const InstDonationWholeTax = () => {
 
     <div className='flex mt-3'> 
         <label htmlFor="bank" className="w-[20%]">Bank Name :</label>
-        <input type="text" name="bank" id="bank" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="text" onChange={handleChange} name="bankName" id="bankName" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
         <label htmlFor="account" className="w-[20%]">Account No :</label>
-        <input type="text" name="account" id="account" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="text" onChange={handleChange} name="accountNo" id="accountNo" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
         <label htmlFor="ifsc" className="w-[20%]">IFSC No:</label>
-        <input type="text" name="ifsc" id="ifsc" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="text" onChange={handleChange} name="ifsc" id="ifsc" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
         <label htmlFor="username" className="w-[20%]">User Name :</label>
-        <input type="text" name="other" id="username" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
+        <input type="text" onChange={handleChange} name="username" id="username" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     <div className='flex mt-3'> 
-        <label htmlFor="password" className="w-[20%]">Password :</label>
+        <label htmlFor="password" className="w-[20%]">PIN:</label>
         <input type="password" name="password" id="password" className="w-[60%] h-[2.5rem] ml-[5%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"   /> 
     </div>
     {/* <div className='flex mt-3'> 

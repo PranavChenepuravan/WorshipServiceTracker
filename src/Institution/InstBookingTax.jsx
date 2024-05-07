@@ -63,6 +63,9 @@ export const InstBookingTax = () => {
                   Date
               </th>
               <th scope="col" className="px-6 py-3">
+                  Bank
+              </th>
+              <th scope="col" className="px-6 py-3">
                   Amount
               </th>
               <th scope="col" className="px-6 py-3">
@@ -77,6 +80,7 @@ export const InstBookingTax = () => {
       <td>{item?.pilgrims?.email}</td>
       <td>{item?.pilgrims?.phone}</td>
       <td>{formatDate(item?.bookings?.date)}</td>
+      <td><td className="px-6 py-4">{item?.bookings?.bankName},{item?.bookings?.accountNo}</td></td>
       <td>{item?.bookings?.amount}</td>
       <td>{item?.bookings?.tax}</td>
     </tr>

@@ -77,6 +77,9 @@ export const InstVisit = () => {
               Time
             </th>
             <th scope="col" className="px-6 py-3">
+              Bank
+            </th>
+            <th scope="col" className="px-6 py-3">
               Amount
             </th>
             <th scope="col" className="px-6 py-3">
@@ -96,6 +99,7 @@ export const InstVisit = () => {
               <td className="px-6 py-4">{item?.pilgrims?.email}</td>
               <td className="px-6 py-4">{ new Date(item?.bookings?.date).toLocaleDateString()}</td>
               <td className="px-6 py-4">{item?.bookings?.time}</td>
+              <td className="px-6 py-4">{item?.bookings?.bankName},{item?.bookings?.accountNo}</td>
               <td className="px-6 py-4">{item?.bookings?.amount}</td>
               <td className="px-6 py-4">{item?.bookings?.tax}</td>
               <td className="px-6 py-4">{ new Date(item?.bookings?.bookeddate).toLocaleDateString()}</td>

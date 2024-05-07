@@ -87,6 +87,9 @@ export const IncomeTaxDonation = () => {
               Date and Time
             </th>
             <th scope="col" className="px-6 py-3">
+              Bank
+            </th>
+            <th scope="col" className="px-6 py-3">
               Amount
             </th>
             <th scope="col" className="px-6 py-3">
@@ -106,6 +109,7 @@ export const IncomeTaxDonation = () => {
               <td>{item?.inst?.insttype}</td>
               <td>{item?.inst?.institutionName}, {item?.inst?.location}, {item?.inst?.phone}, {item?.inst?.email}</td>
               <td>{formatDate(item?.wholedon?.date)}</td>
+              <td>{item?.wholedon?.bankName},{item?.wholedon?.accountNo}</td>
               <td>{item?.wholedon?.totalSum}</td>
               <td>{item?.wholedon?.tax}</td>
               <td>
