@@ -76,6 +76,9 @@ export const ViewInstitution = () => {
               Photo
             </th>
             <th scope="col" className="px-6 py-3">
+              Status
+            </th>
+            <th scope="col" className="px-6 py-3">
               Actions
             </th>
           </tr>
@@ -99,6 +102,7 @@ export const ViewInstitution = () => {
                    />
                   </div>
                </td>
+               <td className="px-6 py-4">{item?.status}</td>
              
               <td className="px-6 py-4">
                 <Link to={`/admin/admininstdetailpage/${item?._id}`}>

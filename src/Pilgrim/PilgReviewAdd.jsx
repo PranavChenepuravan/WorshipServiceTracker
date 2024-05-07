@@ -151,7 +151,7 @@ export const PilgReviewAdd = () => {
             
         </div>
         
-        {reviews?.map((item, index)=>(   
+        {/* {reviews?.map((item, index)=>(   
         <div class="flex flex-col gap-3 mt-14">
             <div class="flex flex-col gap-4 bg-white p-4">
                 <div className='flex flex-col text-black' >
@@ -174,7 +174,38 @@ export const PilgReviewAdd = () => {
                 </div>
             </div>
         </div>
-        ))}
+        ))} */}
+
+
+{reviews?.map((item, index) => {
+  // Check if item.pilgrim.status is 'approved'
+  if (item?.pilgrim?.status === 'approved') {
+    return (
+      <div className="flex flex-col gap-3 mt-14" key={index}>
+        <div className="flex flex-col gap-4 bg-white p-4">
+          <div className="flex flex-col text-black">
+            <p>{item?.pilgrim?.name}</p>
+            <p>{item?.pilgrim?.location}</p>
+            <p>{item?.pilgrim?.email}</p>
+          </div>
+          <p className="text-2xl text-black">REVIEW</p>
+          <div className="flex justify-between">
+            <div className="flex gap-2 flex-col text-black">
+              <span>{item?.reviews?.review}</span>
+            </div>
+          </div>
+          <div className="text-black">
+            Rating: <RatingStars rating={item?.reviews?.rating} />
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    // If item.pilgrim.status is not 'approved', return null or placeholder
+    return null; // or you can return a placeholder element
+  }
+})}
+
     </div>
 </div>
 

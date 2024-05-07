@@ -70,6 +70,9 @@ export const ViewPilgrim = () => {
             <th scope="col" className="px-6 py-3">
               Photo
             </th>
+            <th scope="col" className="px-6 py-3">
+              Status
+            </th>
             <th>
 
             </th>
@@ -93,6 +96,7 @@ export const ViewPilgrim = () => {
                    />
                   </div>
                </td>
+               <td className="px-6 py-3">{item?.status}</td>
 
               <div className='flex'>
                 <Link to={`/admin/adminpilgdetailpage/${item?._id}`}>
