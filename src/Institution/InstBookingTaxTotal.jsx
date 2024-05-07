@@ -58,17 +58,51 @@ export const InstBookingTaxTotal = () => {
       }
 
 
-    let handleSubmit=async(totaltaxes,balance,taxId)=>{
-        setrefresh(!refresh)
-        if (parseFloat(data.payed) > parseFloat(balance)) {
-            alert("Amount to pay cannot exceed the balance amount.");
-            return; 
+    // let handleSubmit=async(totaltaxes,balance,taxId)=>{
+    //     if (/^\d+$/.test(data.payed)) {
+    //     setrefresh(!refresh)
+    //     if (parseFloat(data.payed) > parseFloat(balance)) {
+    //         alert("Amount to pay cannot exceed the balance amount.");
+    //         return; 
+    //     }
+    //     console.log(taxId,'taxid')
+    //     let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected',date: formattedDate})
+    //     console.log(response);
+        
+    // }
+    // setrefresh(!refresh)
+    // }
+
+
+    let handleSubmit = async (totaltaxes, balance, taxId) => {
+        try {
+          if (/^\d+$/.test(data.payed)) {
+            if (parseFloat(data.payed) > parseFloat(balance)) {
+              alert("Amount to pay cannot exceed the balance amount.");
+              return; 
+            }
+      
+            console.log(taxId, 'taxid');
+      
+            // Make the API request to update the tax record
+            let response = await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`, {
+              ...data,
+              totaltax: totaltaxes,
+              status: 'rejected',
+              date: formattedDate
+            });
+      
+            console.log(response);
+      
+            // Update the refresh state to trigger a refresh
+            setrefresh(!refresh);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          // Handle error appropriately, e.g., show error message to the user
         }
-        console.log(taxId,'taxid')
-        let response=await axios.put(`http://localhost:4000/admin/institutionsbookingtax/${taxId}`,{...data,totaltax:totaltaxes,status:'rejected',date: formattedDate})
-        console.log(response);
-        setrefresh(!refresh)
-    }
+      };
+      
 
 const [taxId,setTaxId]=useState('')
     const toggle=(tid)=>{

@@ -25,6 +25,7 @@ export const InstDonationWholeTax = () => {
     }
 
     let handleSubmit=async(totaltaxes,taxId,balance)=>{
+        if (/^\d+$/.test(paydata.payed)) {
         if (parseFloat(paydata.payed) > parseFloat(balance)) {
             alert("Amount to pay cannot exceed the balance amount.");
             return; 
@@ -32,6 +33,7 @@ export const InstDonationWholeTax = () => {
         let response=await axios.put(`http://localhost:4000/admin/institutionsdonationtax/${taxId}`,{...paydata,totaltaxes:totaltaxes,status:'rejected', payeddate : formattedDate})
         console.log(response);
         setrefresh(!refresh)
+    }
     }
 
   return (

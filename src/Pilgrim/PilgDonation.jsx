@@ -23,12 +23,34 @@ export const PilgDonation = () => {
     setData({...data,[event.target.name]:event.target.value})
   }
 
-  let handleSubmit=async (event)=>{
-    event.preventDefault()
+  // let handleSubmit=async (event)=>{
+  //   event.preventDefault()
 
-    let response=await axios.post(`http://localhost:4000/pilgrim/pilgrimdonation`,{...data,institutionId:id,pilgrimId:pilgrimIds})
-    console.log(response);
-  }
+  //   let response=await axios.post(`http://localhost:4000/pilgrim/pilgrimdonation`,{...data,institutionId:id,pilgrimId:pilgrimIds})
+  //   console.log(response);
+  // }
+
+
+  let handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    // Check if data.amount contains only digits
+    if (/^\d+$/.test(data.amount)) {
+      // If data.amount consists only of digits, proceed with the API request
+      let response = await axios.post(`http://localhost:4000/pilgrim/pilgrimdonation`, {
+        ...data,
+        institutionId: id,
+        pilgrimId: pilgrimIds
+      });
+  
+      console.log(response);
+    } else {
+      // Handle case where data.amount contains non-digit characters
+      console.log("Invalid amount. Please enter a valid number.");
+      // You can also set an error state or show a validation message to the user
+    }
+  };
+  
   
   
 
